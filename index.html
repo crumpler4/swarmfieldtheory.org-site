@@ -1,40 +1,123 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Swarm Field Theory</title>
-  <meta name="description" content="Swarm Field Theory: a geometric framework for unification in physics. Research papers, equations, and contact information.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Swarm Field Theory: a geometric framework for unification in physics. A simple membrane lattice yields fundamental constants and bridges quantum behavior with relativistic structure." />
+  <!-- Social previews -->
+  <meta property="og:title" content="Swarm Field Theory" />
+  <meta property="og:description" content="A modest, geometric framework for unification in physics — deriving constants from first principles and linking quantum behavior with relativistic structure." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.swarmfieldtheory.org/" />
+  <meta name="twitter:card" content="summary" />
+
   <style>
-    body { font-family: Arial, sans-serif; max-width: 750px; margin: 50px auto; line-height: 1.6; color: #333; padding: 0 15px; }
-    h1 { color: #004080; margin-bottom: 0; }
-    h2 { margin-top: 2em; color: #222; }
-    p { font-size: 1.1em; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 0.5em 0; }
-    a { color: #0066cc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    footer { margin-top: 3em; font-size: 0.9em; color: #666; border-top: 1px solid #ccc; padding-top: 1em; }
+    :root {
+      --ink: #1f2a44;
+      --accent: #0b5fff;
+      --muted: #5f6b7a;
+      --rule: #d9dee5;
+      --maxw: 780px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      margin: 0; padding: 0;
+      line-height: 1.6;
+      background: #fff;
+    }
+    header, main, footer { width: 100%; }
+    .wrap {
+      max-width: var(--maxw);
+      margin: 48px auto;
+      padding: 0 16px;
+    }
+    h1 { font-size: 2.2rem; margin: 0 0 0.25rem; color: var(--ink); }
+    h2 { font-size: 1.35rem; margin: 2rem 0 0.5rem; color: var(--ink); }
+    p { margin: 0.75rem 0; font-size: 1.05rem; }
+    .tagline { color: var(--muted); margin-bottom: 1rem; }
+    ul { padding: 0; margin: 0.5rem 0 0; list-style: none; }
+    li { margin: 0.4rem 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover, a:focus { text-decoration: underline; }
+    .benefits li::before { content: "• "; color: var(--muted); }
+    .rule { border-top: 1px solid var(--rule); margin: 2rem 0 1.5rem; }
+    footer { border-top: 1px solid var(--rule); background: #fafbfc; }
+    footer .wrap { margin: 28px auto; }
+    .small { color: var(--muted); font-size: 0.95rem; }
+    .resources li { display: flex; gap: 0.5rem; align-items: baseline; }
+    .emoji { width: 1.2rem; display: inline-block; text-align: center; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #0b0e13; color: #e8edf5; }
+      .tagline, .small { color: #a9b3c3; }
+      .rule, footer { border-color: #2a3442; background: #0f141b; }
+      a { color: #8bb0ff; }
+    }
   </style>
 </head>
 <body>
-  <h1>Swarm Field Theory</h1>
-  <p><em>A geometric framework for unification in physics</em></p>
+  <header>
+    <div class="wrap">
+      <h1>Swarm Field Theory</h1>
+      <p class="tagline"><em>A geometric framework for unification in physics</em></p>
+      <p>
+        Swarm Field Theory models physical space as a lattice of tension-bearing membranes.
+        From this simple geometry, fundamental constants — including Planck’s constant,
+        the fine-structure constant, and the speed of light — emerge from first principles
+        rather than being inserted by hand.
+      </p>
+    </div>
+  </header>
 
-  <p>
-    Swarm Field Theory is an independent research program that models physical space 
-    as a coherence lattice of tension-bearing membranes. From this simple geometry, 
-    fundamental constants such as Planck’s constant, the fine-structure constant, 
-    and the speed of light can be derived directly from first principles.
-  </p>
+  <main>
+    <div class="wrap">
+      <h2>The Geometry</h2>
+      <p>
+        The framework treats space not as empty volume but as a woven array of two-dimensional
+        membranes anchored at <em>zero-nodes</em>. These sheets intersect at fixed angles and carry
+        tension, forming a real yet massless scaffold. Disturbances move across this lattice
+        as <em>helical waves</em> bound by membrane tension and node spacing. Quantization arises from
+        discrete apertures in the lattice; energy, momentum, and phase follow directly from the
+        geometry and its boundary conditions.
+      </p>
+      <p>
+        This picture links the two pillars of modern physics in a natural way:
+        in the <strong>quantum regime</strong>, the lattice’s discrete apertures and helical transport
+        reproduce familiar quantized behavior and yield constant values; in the
+        <strong>relativistic regime</strong>, the membrane tension and node spacing set invariant
+        propagation speeds and curvature responses, giving a geometric route to effects
+        we associate with spacetime structure. The same underlying lattice accounts for both,
+        without adding speculative fields or parameters.
+      </p>
 
-  <h2>Resources</h2>
-  <ul>
-    <li>💻 <a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series">GitHub Repository</a> — Equations and appendices</li>
-    <li>✉️ Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></li>
-  </ul>
+      <h2>Why It Matters</h2>
+      <ul class="benefits">
+        <li><strong>Mathematical clarity</strong> — a compact geometric model that recovers known constants with high precision.</li>
+        <li><strong>Unification</strong> — one lattice, two faces: quantization from apertures; relativistic behavior from tension and spacing.</li>
+        <li><strong>Predictive potential</strong> — parameters such as coherence aperture and response time are measurable, enabling tests.</li>
+        <li><strong>Economy</strong> — fewer assumptions, minimal inputs, and direct derivations from structure rather than curve-fits.</li>
+        <li><strong>Accessibility</strong> — rigorous but intuitive geometry that can be visualized, taught, and extended.</li>
+      </ul>
+
+      <div class="rule"></div>
+
+      <h2>Resources</h2>
+      <ul class="resources">
+        <li><span class="emoji">💻</span> <a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series">GitHub Repository</a> — equations, derivations, and appendices</li>
+        <!-- Add your Zenodo author/collection link here when ready:
+        <li><span class="emoji">📄</span> <a href="YOUR_ZENODO_LINK">Zenodo Archive</a> — DOI-linked papers and preprints</li>
+        -->
+        <li><span class="emoji">✉️</span> Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></li>
+      </ul>
+    </div>
+  </main>
 
   <footer>
-    © 2025 J. Paul Crumpler — Independent researcher in theoretical physics
+    <div class="wrap small">
+      © 2025 J. Paul Crumpler — Independent researcher in theoretical physics
+    </div>
   </footer>
 </body>
 </html>
