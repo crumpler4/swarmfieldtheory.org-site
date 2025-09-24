@@ -1,59 +1,70 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Swarm Field Theory</title>
+  <title>Swarm Field Theory | Geometric Unification Framework</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Swarm Field Theory: a geometric framework for unification in physics. A simple membrane lattice yields fundamental constants and bridges quantum behavior with relativistic structure." />
-  <!-- Social previews -->
-  <meta property="og:title" content="Swarm Field Theory" />
-  <meta property="og:description" content="A modest, geometric framework for unification in physics — deriving constants from first principles and linking quantum behavior with relativistic structure." />
+  <meta name="description" content="Swarm Field Theory: a modest, math-first framework for unification in physics—deriving constants like h, α, e, and G from simple lattice geometry with disciplined, testable derivations." />
+  <link rel="canonical" href="https://www.swarmfieldtheory.org/">
+  <!-- Social -->
+  <meta property="og:title" content="Swarm Field Theory | Geometric Unification Framework" />
+  <meta property="og:description" content="Constants from geometry. UFEB replaces time with updates. A modest, testable path to unification." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.swarmfieldtheory.org/" />
   <meta name="twitter:card" content="summary" />
-
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Swarm Field Theory",
+    "url": "https://www.swarmfieldtheory.org/",
+    "description": "A geometric framework for unification in physics—constants from first principles.",
+    "publisher": {"@type": "Person","name": "John Paul Crumpler, PE"}
+  }
+  </script>
   <style>
-    :root {
-      --ink: #1f2a44;
-      --accent: #0b5fff;
-      --muted: #5f6b7a;
-      --rule: #d9dee5;
-      --maxw: 780px;
+    :root{
+      --ink:#1f2a44; --muted:#5f6b7a; --rule:#d9dee5;
+      --h1:#005bbb; --h2:#0066cc; --accent:#0b5fff; --bg:#fff;
+      --wrap:820px;
     }
-    * { box-sizing: border-box; }
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color: var(--ink);
-      margin: 0; padding: 0;
-      line-height: 1.6;
-      background: #fff;
-    }
-    header, main, footer { width: 100%; }
-    .wrap {
-      max-width: var(--maxw);
-      margin: 48px auto;
-      padding: 0 16px;
-    }
-    h1 { font-size: 2.2rem; margin: 0 0 0.25rem; color: #005bbb; }
-    h2 { font-size: 1.35rem; margin: 2rem 0 0.5rem; color: #0066cc; }
-    p { margin: 0.75rem 0; font-size: 1.05rem; }
-    .tagline { color: var(--muted); margin-bottom: 1rem; }
-    ul { padding: 0; margin: 0.5rem 0 0; list-style: none; }
-    li { margin: 0.4rem 0; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover, a:focus { text-decoration: underline; }
-    .benefits li::before { content: "• "; color: var(--muted); }
-    .rule { border-top: 1px solid var(--rule); margin: 2rem 0 1.5rem; }
-    footer { border-top: 1px solid var(--rule); background: #fafbfc; }
-    footer .wrap { margin: 28px auto; }
-    .small { color: var(--muted); font-size: 0.95rem; }
-    .resources li { display: flex; gap: 0.5rem; align-items: baseline; }
-    .emoji { width: 1.2rem; display: inline-block; text-align: center; }
-    @media (prefers-color-scheme: dark) {
-      body { background: #0b0e13; color: #e8edf5; }
-      .tagline, .small { color: #a9b3c3; }
-      .rule, footer { border-color: #2a3442; background: #0f141b; }
-      a { color: #8bb0ff; }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink);line-height:1.6}
+    header,main,footer{width:100%}
+    .wrap{max-width:var(--wrap);margin:48px auto;padding:0 16px}
+    h1{margin:.1rem 0 .25rem;font-size:2.25rem;color:var(--h1)}
+    h2{margin:2rem 0 .5rem;font-size:1.35rem;color:var(--h2)}
+    p{margin:.75rem 0;font-size:1.06rem}
+    ul{margin:.5rem 0 0;padding-left:1.1rem}
+    li{margin:.35rem 0}
+    a{color:var(--accent);text-decoration:none} a:hover,a:focus{text-decoration:underline}
+    .tag{color:var(--muted);margin:.2rem 0 1.2rem}
+    .rule{border-top:1px solid var(--rule);margin:2rem 0 1.5rem}
+    .grid{display:grid;gap:1.25rem}
+    .two{grid-template-columns:1.2fr .8fr}
+    .note{font-size:.95rem;color:var(--muted)}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.95rem;background:#f5f7fb;border:1px solid var(--rule);border-radius:6px;padding:.15rem .35rem}
+    /* SVG */
+    .svg-wrap{background:#fafbff;border:1px solid var(--rule);border-radius:10px;padding:12px}
+    .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:.6rem}
+    .legend span{display:inline-flex;align-items:center;gap:.35rem;font-size:.95rem;color:#394355}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot.node{background:#111}
+    .line{width:16px;height:2px;background:#1f6fff}
+    .line.alt{background:#00a795}
+    .dash{width:16px;height:2px;background:repeating-linear-gradient(90deg,#7b8798 0 6px,transparent 6px 12px)}
+    blockquote{margin:1rem 0;padding:.5rem .8rem;border-left:3px solid var(--rule);color:#3a3f49;background:#fafbfc}
+    footer{border-top:1px solid var(--rule);background:#fafbfc}
+    footer .wrap{margin:28px auto}
+    .small{font-size:.95rem;color:var(--muted)}
+    @media (max-width:860px){ .two{grid-template-columns:1fr} }
+    @media (prefers-color-scheme:dark){
+      body{background:#0b0e13;color:#e8edf5}
+      .tag,.small,.note{color:#9fb0c6}
+      .rule,footer{border-color:#293344;background:#0f141b}
+      .svg-wrap{background:#0f141b;border-color:#293344}
+      a{color:#8bb0ff}
     }
   </style>
 </head>
@@ -61,62 +72,236 @@
   <header>
     <div class="wrap">
       <h1>Swarm Field Theory</h1>
-      <p class="tagline"><em>A geometric framework for unification in physics</em></p>
-      <p>
-        Swarm Field Theory models physical space as a lattice of tension-bearing membranes.
-        From this simple geometry, fundamental constants — including Planck’s constant,
-        the fine-structure constant, and the speed of light — emerge from first principles
-        rather than being inserted by hand.
-      </p>
+      <p class="tag"><em>A modest, math-first framework for unification in physics</em></p>
+      <p>Swarm Field Theory models real space as a lattice of tension-bearing membranes stretched between zero-nodes.
+         From this simple geometry, fundamental constants — including Planck’s constant (h), the fine-structure constant (α),
+         the speed of light (c), the elementary charge (e), the gravitational constant (G), and others — emerge directly from first principles.</p>
     </div>
   </header>
 
   <main>
-    <div class="wrap">
-      <h2>The Geometry</h2>
-      <p>
-        The framework treats space not as empty volume but as a woven array of two-dimensional
-        membranes anchored at <em>zero-nodes</em>. These sheets intersect at fixed angles and carry
-        tension, forming a real yet massless scaffold. Disturbances move across this lattice
-        as <em>helical waves</em> bound by membrane tension and node spacing. Quantization arises from
-        discrete apertures in the lattice; energy, momentum, and phase follow directly from the
-        geometry and its boundary conditions.
-      </p>
-      <p>
-        This picture links the two pillars of modern physics in a natural way:
-        in the <strong>quantum regime</strong>, the lattice’s discrete apertures and helical transport
-        reproduce familiar quantized behavior and yield constant values; in the
-        <strong>relativistic regime</strong>, the membrane tension and node spacing set invariant
-        propagation speeds and curvature responses, giving a geometric route to effects
-        we associate with spacetime structure. The same underlying lattice accounts for both,
-        without adding speculative fields or parameters.
-      </p>
+    <div class="wrap grid two">
+      <!-- Left column: text -->
+      <section>
+        <h2>The Geometry</h2>
+        <p>Space is treated not as empty volume but as a woven array of two-dimensional membranes anchored at <strong>zero-nodes</strong>.
+           These sheets intersect at fixed angles and carry tension, forming a real yet massless scaffold. Disturbances travel as
+           <em>helical waves</em> bound by membrane tension and node spacing. Quantization arises from discrete apertures in the lattice;
+           energy, momentum, and phase follow from geometry and boundary conditions.</p>
 
-      <h2>Why It Matters</h2>
-      <ul class="benefits">
-        <li><strong>Mathematical clarity</strong> — a compact geometric model that recovers known constants with high precision.</li>
-        <li><strong>Unification</strong> — one lattice, two faces: quantization from apertures; relativistic behavior from tension and spacing.</li>
-        <li><strong>Predictive potential</strong> — parameters such as coherence aperture and response time are measurable, enabling tests.</li>
-        <li><strong>Economy</strong> — fewer assumptions, minimal inputs, and direct derivations from structure rather than curve-fits.</li>
-        <li><strong>Accessibility</strong> — rigorous but intuitive geometry that can be visualized, taught, and extended.</li>
-      </ul>
+        <h2>What Falls Out (from geometry alone)</h2>
+        <ul>
+          <li><strong>Electromagnetic set</strong>: h, α, e, ε₀, μ₀, Z₀, c</li>
+          <li><strong>Gravitational</strong>: G; Planck family (mₚ, lₚ, tₚ, Eₚ)</li>
+          <li><strong>Thermal</strong>: k<sub>B</sub>, σ, a, b, T<sub>P</sub></li>
+          <li><strong>Atomic touchstones</strong>: R∞, a₀ (with noted mass inputs)</li>
+        </ul>
 
-      <div class="rule"></div>
+        <h2>The Simplification (UFEB)</h2>
+        <p>The Unified Field Equation, Budget form (UFEB), replaces continuous time with <strong>discrete updates</strong>. Each update is a
+           reconciliation of lattice-tension budgets — like closing a balance sheet. The lattice shares a universal response interval (τ),
+           but consequences still propagate locally at finite speed (<em>c</em>), preserving relativity.</p>
+        <blockquote>“We measure progress in steps, not seconds.”</blockquote>
 
-      <h2>Resources</h2>
-      <ul class="resources">
-        <li><span class="emoji">💻</span> <a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series">GitHub Repository</a> — equations, derivations, and appendices</li>
-        <!-- Add your Zenodo author/collection link here when ready:
-        <li><span class="emoji">📄</span> <a href="YOUR_ZENODO_LINK">Zenodo Archive</a> — DOI-linked papers and preprints</li>
-        -->
-        <li><span class="emoji">✉️</span> Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></li>
-      </ul>
+        <h2>Publications</h2>
+        <p>Open-access papers with full derivations and worked numerics:</p>
+        <ul>
+          <li><a href="https://doi.org/10.5281/zenodo.17129863">Planck’s Constant (h)</a></li>
+          <li><a href="https://doi.org/10.5281/zenodo.17130007">Fine-Structure Constant (α)</a></li>
+          <li><a href="https://doi.org/10.5281/zenodo.17164270">Gravitational Constant (G)</a></li>
+          <li><a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series">→ Full Series on GitHub</a></li>
+        </ul>
+
+        <div class="rule"></div>
+
+<div class="rule"></div>
+<h2>Numbers That Work</h2>
+<p>Selected constants derived from geometry, with references. Entered SFT values auto-compute Δ (ppm) vs. CODATA.</p>
+
+<div class="numbers">
+  <table>
+    <thead>
+      <tr>
+        <th>Quantity</th>
+        <th>CODATA (reference)</th>
+        <th>SFT (derived)</th>
+        <th>Δ (ppm)</th>
+        <th>Paper</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Planck constant h -->
+      <tr data-codata="6.62607015e-34" data-sft="">
+        <td>Planck constant, h</td>
+        <td>6.62607015×10⁻³⁴ J·s (exact SI)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17129863">DOI</a></td>
+      </tr>
+
+      <!-- Fine-structure constant α -->
+      <tr data-codata="7.2973525693e-3" data-sft="">
+        <td>Fine-structure constant, α</td>
+        <td>7.2973525693×10⁻³ (CODATA 2018/22)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17130007">DOI</a></td>
+      </tr>
+
+      <!-- Elementary charge e -->
+      <tr data-codata="1.602176634e-19" data-sft="">
+        <td>Elementary charge, e</td>
+        <td>1.602176634×10⁻¹⁹ C (exact SI)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17141219">DOI</a></td>
+      </tr>
+
+      <!-- Vacuum permittivity ε0 -->
+      <tr data-codata="8.8541878128e-12" data-sft="">
+        <td>Vacuum permittivity, ε₀</td>
+        <td>8.8541878128×10⁻¹² F·m⁻¹ (2018)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17141112">DOI</a></td>
+      </tr>
+
+      <!-- Vacuum permeability μ0 -->
+      <tr data-codata="1.25663706212e-6" data-sft="">
+        <td>Vacuum permeability, μ₀</td>
+        <td>1.25663706212×10⁻⁶ H·m⁻¹ (2018)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17151806">DOI</a></td>
+      </tr>
+
+      <!-- Impedance of free space Z0 -->
+      <tr data-codata="376.730313668" data-sft="">
+        <td>Wave impedance of vacuum, Z₀</td>
+        <td>376.730313668 Ω</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17140967">DOI</a></td>
+      </tr>
+
+      <!-- Speed of light c -->
+      <tr data-codata="299792458" data-sft="">
+        <td>Speed of light, c</td>
+        <td>299,792,458 m·s⁻¹ (exact SI)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><!-- overview paper link if desired --></td>
+      </tr>
+
+      <!-- Gravitational constant G -->
+      <tr data-codata="6.67430e-11" data-sft="">
+        <td>Gravitational constant, G</td>
+        <td>6.67430×10⁻¹¹ m³·kg⁻¹·s⁻² (2020 ±0.00015×10⁻¹¹)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17164270">DOI</a></td>
+      </tr>
+
+      <!-- Rydberg constant -->
+      <tr data-codata="10973731.568160" data-sft="">
+        <td>Rydberg constant, R∞</td>
+        <td>10,973,731.568160 m⁻¹ (2018)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17169451">DOI</a></td>
+      </tr>
+
+      <!-- Bohr radius -->
+      <tr data-codata="5.29177210903e-11" data-sft="">
+        <td>Bohr radius, a₀</td>
+        <td>5.29177210903×10⁻¹¹ m (2018)</td>
+        <td class="sft"><span class="edit" contenteditable="true" data-placeholder="enter SFT value"> </span></td>
+        <td class="ppm">—</td>
+        <td><a href="https://doi.org/10.5281/zenodo.17169451">DOI</a></td>
+      </tr>
+
+      <!-- Add more rows as needed... -->
+    </tbody>
+  </table>
+  <p class="note">Tip: click in the “SFT (derived)” cell and paste your value (scientific notation allowed). Δ (ppm) updates automatically.</p>
+</div>
+        
+        
+        <h2>About</h2>
+        <p>John Paul Crumpler, PE, is a licensed professional engineer with 46 years in applied research, energy systems, and theoretical physics.
+           He has authored trade articles, technical reports, and fact sheets; taught continuing-education courses for engineers; and lectured at
+           the University of Georgia (PhD bioengineering cohort) and Georgia Tech (undergraduate). Recent work develops Swarm Field Theory as a
+           disciplined, testable path to unification.</p>
+      </section>
+
+      <!-- Right column: lattice detail (SVG) -->
+      <aside>
+        <h2>Lattice—Detail View</h2>
+        <div class="svg-wrap">
+          <!-- Self-contained SVG schematic: zero-nodes + membranes + helical wave -->
+          <svg viewBox="0 0 520 420" width="100%" height="auto" role="img" aria-label="Lattice detail schematic">
+            <!-- membranes: two families -->
+            <g stroke="#1f6fff" stroke-width="2" opacity="0.9">
+              <!-- diagonal family 1 -->
+              <path d="M-60 70 L 580 70" />
+              <path d="M-60 150 L 580 150" />
+              <path d="M-60 230 L 580 230" />
+              <path d="M-60 310 L 580 310" />
+            </g>
+            <g stroke="#00a795" stroke-width="2" opacity="0.9">
+              <!-- diagonal family 2 -->
+              <path d="M 70 -60 L 70 480" />
+              <path d="M 170 -60 L 170 480" />
+              <path d="M 270 -60 L 270 480" />
+              <path d="M 370 -60 L 370 480" />
+              <path d="M 470 -60 L 470 480" />
+            </g>
+
+            <!-- zero-nodes at intersections -->
+            <g fill="#111">
+              <!-- generate node grid -->
+              <circle cx="70" cy="70" r="3"/><circle cx="170" cy="70" r="3"/><circle cx="270" cy="70" r="3"/><circle cx="370" cy="70" r="3"/><circle cx="470" cy="70" r="3"/>
+              <circle cx="70" cy="150" r="3"/><circle cx="170" cy="150" r="3"/><circle cx="270" cy="150" r="3"/><circle cx="370" cy="150" r="3"/><circle cx="470" cy="150" r="3"/>
+              <circle cx="70" cy="230" r="3"/><circle cx="170" cy="230" r="3"/><circle cx="270" cy="230" r="3"/><circle cx="370" cy="230" r="3"/><circle cx="470" cy="230" r="3"/>
+              <circle cx="70" cy="310" r="3"/><circle cx="170" cy="310" r="3"/><circle cx="270" cy="310" r="3"/><circle cx="370" cy="310" r="3"/><circle cx="470" cy="310" r="3"/>
+            </g>
+
+            <!-- helical wave path across membranes (projected) -->
+            <path d="M 20 360
+                     C 60 300, 100 340, 140 280
+                     S 220 260, 260 300
+                     S 340 360, 380 300
+                     S 460 260, 500 300"
+                  fill="none" stroke="#c23bff" stroke-width="3"/>
+
+            <!-- coherence aperture (dashed loop) -->
+            <ellipse cx="270" cy="230" rx="38" ry="22"
+                     fill="none" stroke="#7b8798" stroke-width="2"
+                     stroke-dasharray="6 6" />
+          </svg>
+
+          <div class="legend">
+            <span><span class="dot node"></span> zero-node (anchor)</span>
+            <span><span class="line"></span> membrane family A</span>
+            <span><span class="line alt"></span> membrane family B</span>
+            <span><span class="dash"></span> coherence aperture</span>
+          </div>
+          <p class="note">Helical transport across tensioned membranes; quantization from discrete apertures; updates reconcile tension budgets at cadence τ.</p>
+        </div>
+
+        <div class="rule"></div>
+
+        <h2>Contact</h2>
+        <p>✉️ <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></p>
+        <p class="note">Plain text email only; no social comments. Serious correspondence welcome.</p>
+      </aside>
     </div>
   </main>
 
   <footer>
     <div class="wrap small">
-      © 2025 J. Paul Crumpler — Independent researcher in theoretical physics
+      <span>© 2025 John Paul Crumpler — Independent researcher in theoretical physics</span>
+      <span style="float:right"><a href="/privacy.html">Privacy</a></span>
     </div>
   </footer>
 </body>
