@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Swarm Field Theory | Geometric Unification Framework</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Swarm Field Theory: a modest, math-first framework for unification in physics—deriving constants like h, α, e, and G from simple lattice geometry with disciplined, testable derivations." />
+  <meta name="description" content="Swarm Field Theory: a math-first framework deriving constants like h, alpha, e, and G from simple lattice geometry with disciplined, testable derivations." />
   <link rel="canonical" href="https://www.swarmfieldtheory.org/">
 
   <!-- Social -->
@@ -29,9 +29,8 @@
   <style>
     :root{
       --ink:#1f2a44; --muted:#5f6b7a; --rule:#d9dee5;
-      --h1:#005bbb; --h2:#0066cc; --accent:#0b5fff; --bg:#fff;
-      --wrap:820px;
-      --card:#f9fbff;
+      --h1:#0f172a; --h2:#0b3d91; --accent:#0b5fff; --bg:#fff;
+      --wrap:820px; --card:#f9fbff;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -40,36 +39,45 @@
       margin:0;background:var(--bg);color:var(--ink);line-height:1.6;
       text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased
     }
+    a{color:var(--accent);text-decoration:none}
+    a:hover,a:focus{text-decoration:underline}
     header,main,footer{width:100%}
     .wrap{max-width:var(--wrap);margin:48px auto;padding:0 16px}
-    h1{margin:.1rem 0 .25rem;font-size:2.25rem;color:var(--h1)}
+    h1{margin:.1rem 0 .25rem;font-size:2.25rem;color:var(--h1);letter-spacing:-0.01em}
     h2{margin:2rem 0 .5rem;font-size:1.35rem;color:var(--h2)}
+    h3{margin:1.25rem 0 .35rem;font-size:1.1rem}
     p{margin:.75rem 0;font-size:1.06rem}
     ul{margin:.5rem 0 0;padding-left:1.1rem}
     li{margin:.35rem 0}
-    a{color:var(--accent);text-decoration:none}
-    a:hover,a:focus{text-decoration:underline}
     .tag{color:var(--muted);margin:.2rem 0 1.2rem}
     .rule{border-top:1px solid var(--rule);margin:2rem 0 1.5rem}
     .grid{display:grid;gap:1.25rem}
     .two{grid-template-columns:1.2fr .8fr}
     .note{font-size:.95rem;color:var(--muted)}
+    .small{font-size:.95rem;color:var(--muted)}
+
+    /* Accessible skip link */
+    .visually-hidden{position:absolute;left:-9999px}
+    .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{position:static;width:auto;height:auto;margin:8px;display:inline-block;background:#fff;border:1px solid var(--rule);padding:.4rem .6rem;border-radius:6px}
+
+    /* Hero */
+    .hero{
+      max-width:960px;margin:2.5rem auto 1.25rem; padding:1.5rem 1.25rem;
+      border:1px solid #e5e7eb;border-radius:12px;background:#fafafa
+    }
+    .hero h1{margin:0 0 .25rem 0;font-size:2rem;line-height:1.1;color:#0f172a}
+    .hero .slogan{margin:.25rem 0 1rem 0;font-size:1.05rem;color:#475569}
+    .hero p{margin:0 0 .75rem 0;font-size:1.05rem;line-height:1.6;color:#1f2937}
 
     /* Details/summary (Privacy) */
     details.privacy{
-      background:var(--card);
-      border:1px solid var(--rule);
-      border-radius:8px;
-      padding:.5rem .75rem .75rem;
-      margin:1rem 0;
+      background:var(--card); border:1px solid var(--rule); border-radius:8px;
+      padding:.5rem .75rem .75rem; margin:1rem 0;
     }
     details.privacy > summary{
-      list-style:none;
-      cursor:pointer;
-      font-size:1.1rem;            /* slightly larger */
-      font-weight:650;             /* slightly bolder */
-      color:var(--muted);
-      outline:none;
+      list-style:none; cursor:pointer; outline:none;
+      font-size:1.1rem; font-weight:650; color:var(--muted);
     }
     details.privacy > summary::-webkit-details-marker{display:none}
     details.privacy[open]{padding-bottom:.9rem}
@@ -78,18 +86,18 @@
     /* Numbers table */
     .table-wrap{overflow:auto}
     table.numbers{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.97rem;min-width:560px}
-    table.numbers th, table.numbers td{border-bottom:1px solid var(--rule);padding:.5rem .4rem;text-align:left;vertical-align:top}
-    table.numbers th{font-weight:600;color:var(--h2)}
-    table.numbers td a{color:var(--accent)}
+    table.numbers th, table.numbers td{border-bottom:1px solid var(--rule);padding:.6rem .5rem;text-align:left;vertical-align:top}
+    table.numbers th{font-weight:650;color:var(--h2)}
+    table.numbers tbody tr:nth-child(odd){background:#fafbfe}
 
     blockquote{margin:1rem 0;padding:.5rem .8rem;border-left:3px solid var(--rule);color:#3a3f49;background:#fafbfc}
 
     footer{border-top:1px solid var(--rule);background:#fafbfc}
     footer .wrap{margin:28px auto;display:flex;gap:1rem;justify-content:space-between;align-items:center}
-    .small{font-size:.95rem;color:var(--muted)}
 
     @media (max-width:860px){
       .two{grid-template-columns:1fr}
+      .hero{margin:1.5rem .75rem}
     }
     @media (prefers-color-scheme:dark){
       body{background:#0b0e13;color:#e8edf5}
@@ -98,39 +106,41 @@
       details.privacy{background:#0f141b;border-color:#293344}
       blockquote{background:#0f141b;color:#cdd9ea}
       a{color:#8bb0ff}
+      .hero{background:#0f141b;border-color:#293344}
+      .hero h1{color:#e8edf5}
+      .hero .slogan{color:#b7c4da}
+      .hero p{color:#d8e2f2}
+      table.numbers tbody tr:nth-child(odd){background:#0f141b}
     }
   </style>
 </head>
 <body>
-  <a href="#main" class="visually-hidden">Skip to content</a>
+  <a href="#main" class="skip">Skip to content</a>
 
   <header>
-    <div class="wrap"
-      <!-- Hero: Slogan + Intro (paste inside <body>) -->
-<section style="max-width:960px;margin:2.5rem auto;padding:1.5rem 1.25rem;border:1px solid #e5e7eb;border-radius:12px;background:#fafafa">
-  <h1 style="margin:0 0 .25rem 0;font-size:2rem;line-height:1.1;letter-spacing:-0.01em;color:#0f172a;">
-    Returning Normality to Physics
-  </h1>
-  <p style="margin:.25rem 0 1rem 0;font-size:1.05rem;color:#475569;">
-    Physics without the fluff.
-  </p>
-  <p style="margin:0 0 .75rem 0;font-size:1.05rem;line-height:1.6;color:#1f2937;">
-    Modern physics is often wrapped in speculation — multiverses, hidden dimensions, and exotic entities we may never observe.
-    Swarm Theory takes the opposite approach. It derives familiar constants — including Newton’s gravitational constant —
-    directly from geometry and tension, without adding layers of conjecture.
-  </p>
-  <p style="margin:0;font-size:1.05rem;line-height:1.6;color:#1f2937;">
-    The goal is simple: make physics simpler, testable, and grounded in clear mathematics. Gravity, electromagnetism, and
-    quantum behavior emerge from the same coherent structure — no extra dimensions required.
-  </p>
-</section>
+    <div class="wrap">
+      <!-- Hero -->
+      <section class="hero" aria-label="Introduction">
+        <h1>Returning Normality to Physics</h1>
+        <p class="slogan">Physics without the fluff.</p>
+        <p>
+          Modern physics is often wrapped in speculation — multiverses, hidden dimensions, and exotic entities we may never observe.
+          Swarm Theory takes the opposite approach. It derives familiar constants — including Newton’s gravitational constant —
+          directly from geometry and tension, without adding layers of conjecture.
+        </p>
+        <p>
+          The goal is simple: make physics simpler, testable, and grounded in clear mathematics. Gravity, electromagnetism, and
+          quantum behavior emerge from the same coherent structure — no extra dimensions required.
+        </p>
+      </section>
 
-      
       <h1>Swarm Field Theory</h1>
       <p class="tag"><em>A modest, math-first framework for unification in physics</em></p>
-      <p>Swarm Field Theory models real space as a lattice of tension-bearing membranes stretched between zero-nodes.
-         From this simple geometry, fundamental constants — including Planck’s constant (h), the fine-structure constant (α),
-         the speed of light (c), the elementary charge (e), the gravitational constant (G), and others — emerge directly from first principles.</p>
+      <p>
+        Swarm Field Theory models real space as a lattice of tension-bearing membranes stretched between zero-nodes.
+        From this simple geometry, fundamental constants — including Planck’s constant (h), the fine-structure constant (α),
+        the speed of light (c), the elementary charge (e), the gravitational constant (G), and others — emerge directly from first principles.
+      </p>
 
       <!-- Privacy block -->
       <details class="privacy">
@@ -149,23 +159,27 @@
     <div class="wrap grid two">
       <section>
         <h2>The Geometry</h2>
-        <p>Space is treated not as empty volume but as a woven array of two-dimensional membranes anchored at <strong>zero-nodes</strong>.
-           These sheets intersect at fixed angles and carry tension, forming a real yet massless scaffold. Disturbances travel as
-           <em>helical waves</em> bound by membrane tension and node spacing. Quantization arises from discrete apertures in the lattice;
-           energy, momentum, and phase follow from geometry and boundary conditions.</p>
+        <p>
+          Space is treated not as empty volume but as a woven array of two-dimensional membranes anchored at <strong>zero-nodes</strong>.
+          These sheets intersect at fixed angles and carry tension, forming a real yet massless scaffold. Disturbances travel as
+          <em>helical waves</em> bound by membrane tension and node spacing. Quantization arises from discrete apertures in the lattice;
+          energy, momentum, and phase follow from geometry and boundary conditions.
+        </p>
 
         <h2>What Falls Out (from geometry alone)</h2>
         <ul>
           <li><strong>Electromagnetic set</strong>: h, α, e, ε₀, μ₀, Z₀, c</li>
-          <li><strong>Gravitational</strong>: G; Planck family (mₚ, lₚ, tₚ, Eₚ)</li>
+          <li><strong>Gravitational</strong>: G; Planck family (mₚ, ℓₚ, tₚ, Eₚ)</li>
           <li><strong>Thermal</strong>: k<sub>B</sub>, σ, a, b, T<sub>P</sub></li>
           <li><strong>Atomic touchstones</strong>: R∞, a₀ (with noted mass inputs)</li>
         </ul>
 
         <h2>The Simplification (UFEB)</h2>
-        <p>The Unified Field Equation, Budget form (UFEB), replaces continuous time with <strong>discrete updates</strong>. Each update is a
-           reconciliation of lattice-tension budgets — like closing a balance sheet. The lattice shares a universal response interval (τ),
-           but consequences still propagate locally at finite speed (<em>c</em>), preserving relativity.</p>
+        <p>
+          The Unified Field Equation, Budget form (UFEB), replaces continuous time with <strong>discrete updates</strong>. Each update is a
+          reconciliation of lattice-tension budgets — like closing a balance sheet. The lattice shares a universal response interval (τ),
+          but consequences still propagate locally at finite speed (<em>c</em>), preserving relativity.
+        </p>
         <blockquote>“We measure progress in steps, not seconds.”</blockquote>
 
         <h2>Publications</h2>
@@ -252,7 +266,13 @@
         <div class="rule"></div>
 
         <h2>About</h2>
-        <p>John Paul Crumpler, PE, is a licensed professional engineer with 46 years of experience in applied research, machine design, energy systems, and theoretical physics. He has authored numerous trade articles, technical reports, and fact sheets; taught continuing-education courses for engineers; and lectured at the University of Georgia (PhD bioengineering cohort). He has also advised undergraduate students in energy systems at Georgia Tech and the University of Virginia. His recent work develops Swarm Field Theory as a disciplined, testable path to unification.</p>
+        <p>
+          John Paul Crumpler, PE, is a licensed professional engineer with 46 years of experience in applied research, machine design,
+          energy systems, and theoretical physics. He has authored numerous trade articles, technical reports, and fact sheets;
+          taught continuing-education courses for engineers; and lectured at the University of Georgia (PhD bioengineering cohort).
+          He has also advised undergraduate students in energy systems at Georgia Tech and the University of Virginia. His recent work
+          develops Swarm Field Theory as a disciplined, testable path to unification.
+        </p>
       </section>
 
       <aside>
