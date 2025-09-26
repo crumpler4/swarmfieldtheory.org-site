@@ -7,6 +7,8 @@
   <meta name="description" content="Swarm Field Theory: a math-first framework deriving constants like h, alpha, e, and G from simple lattice geometry with disciplined, testable derivations." />
   <link rel="canonical" href="https://www.swarmfieldtheory.org/">
 
+
+
   <!-- Social -->
   <meta property="og:title" content="Swarm Field Theory | Geometric Unification Framework" />
   <meta property="og:description" content="Constants from geometry. UFEB replaces time with updates. A modest, testable path to unification." />
@@ -53,7 +55,21 @@
     .grid{display:grid;gap:1.25rem}
     .two{grid-template-columns:1.2fr .8fr}
     .note{font-size:.95rem;color:var(--muted)}
-    .small{font-size:.95rem;color:var(--muted)}
+    .small{font-size:.95rem;color:var(--/* PRIVACY styles */
+
+/* PRIVACY styles */
+.privacy-card{
+  border:1px solid #d9dee5; border-radius:8px;
+  background:#f9fbff; padding:.5rem .75rem .75rem; margin:1rem 0;
+}
+.privacy-card > summary{
+  cursor:pointer; list-style:none; font-weight:650; color:#1f2a44; font-size:1.05rem;
+}
+.privacy-card > summary::-webkit-details-marker{ display:none; }
+.privacy-card[open]{ padding-bottom:.9rem; }
+.privacy-card .privacy-body p{ margin:.5rem 0; }
+
+
 
     /* Hero */
     .hero{
@@ -134,17 +150,17 @@
           quantum behavior emerge from the same coherent structure — no extra dimensions required.
         </p>
       </section>
-details.privacy{
-  background:#f9fbff; border:1px solid #d9dee5; border-radius:8px;
-  padding:.5rem .75rem .75rem; margin:1rem 0;
-}
-details.privacy > summary{
-  list-style:none; cursor:pointer; outline:none;
-  font-size:1.1rem; font-weight:650; color:#5f6b7a;
-}
-details.privacy > summary::-webkit-details-marker{display:none}
-details.privacy[open]{padding-bottom:.9rem}
-details.privacy p{margin:.5rem 0}
+
+<!-- PRIVACY (styled card) -->
+<details id="privacy" class="privacy-card" open>
+  <summary>Privacy</summary>
+  <div class="privacy-body">
+    <p>This site does not collect or store personal data, does not use cookies, and does not require login.</p>
+    <p>Traffic metrics may be provided in aggregate, non-identifying form to measure basic page views and performance.</p>
+    <p>No personally identifiable information is collected, processed, or shared. Visitors may access the site freely without consent.</p>
+    <p>Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></p>
+  </div>
+</details>
       
 <section id="contact">
   <h2>Contact</h2>
