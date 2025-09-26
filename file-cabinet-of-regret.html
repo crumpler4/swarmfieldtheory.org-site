@@ -187,36 +187,27 @@
 <footer>
   © 2025 J. P. Crumpler — Swarm Field Theory
 </footer>
-<!-- Alien Popup -->
-<style>
-  #alien-popup {
-    display: none;
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #0b0e13;
-    color: #e8edf5;
-    padding: 2rem 3rem;
-    border: 3px solid #7ccfff;
-    border-radius: 16px;
-    text-align: center;
-    font-size: 2rem; /* 👈 bigger text and emoji */
-    line-height: 1.5;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
-  }
-  #alien-popup.show { display: block; opacity: 1; }
-  #alien-popup.hide { opacity: 0; }
-</style>
-
 <div id="alien-popup">
   👽 <br>
-  <strong>What are you looking at?</strong>
+  <strong id="alien-message">What are you looking at?</strong>
 </div>
 
 <script>
+  const messages = [
+    "What are you looking at?",
+    "We’ve been watching you for some time…",
+    "Do not tell Mulder you found this page.",
+    "Stop poking the lattice, human.",
+    "Your Nobel is delayed. Please remain calm.",
+    "Careful… too much geometry makes the membrane snap.",
+    "We invented π. You’re welcome.",
+    "This is not pseudoscience. This is pre-alien science."
+  ];
+
+  // Pick a random message
+  document.getElementById("alien-message").innerText =
+    messages[Math.floor(Math.random() * messages.length)];
+
   // Show popup after 5 seconds
   setTimeout(function(){
     const popup = document.getElementById('alien-popup');
