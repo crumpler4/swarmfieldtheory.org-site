@@ -7,8 +7,6 @@
   <meta name="description" content="Swarm Field Theory: a math-first framework deriving constants like h, alpha, e, and G from simple lattice geometry with disciplined, testable derivations." />
   <link rel="canonical" href="https://www.swarmfieldtheory.org/">
 
-
-
   <!-- Social -->
   <meta property="og:title" content="Swarm Field Theory | Geometric Unification Framework" />
   <meta property="og:description" content="Constants from geometry. UFEB replaces time with updates. A modest, testable path to unification." />
@@ -32,16 +30,44 @@
     :root{
       --ink:#1f2a44; --muted:#5f6b7a; --rule:#d9dee5;
       --h1:#0f172a; --h2:#0b3d91; --accent:#0b5fff; --bg:#fff;
-      --wrap:820px; --card:#f9fbff;
+      --wrap:820px; --card:#f9fbff; --focus:#94b8ff;
     }
     *{box-sizing:border-box}
+    html:focus-within{scroll-behavior:smooth}
     body{
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       margin:0;background:var(--bg);color:var(--ink);line-height:1.6;
       text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased
     }
-    a{color:var(--accent);text-decoration:none}
-    a:hover,a:focus{text-decoration:underline}
+
+    /* Professional link styling */
+    a{
+      color:var(--accent);
+      text-decoration:underline;
+      text-decoration-thickness:.06em;
+      text-underline-offset:.18em;
+      text-decoration-skip-ink:auto;
+      transition:text-decoration-thickness .15s ease, color .15s ease, background-color .15s ease;
+    }
+    a:hover,
+    a:focus{text-decoration-thickness:.12em}
+    a:visited{color:#6a7cd6}
+    a:focus-visible{
+      outline:2px solid var(--focus);
+      outline-offset:2px;
+      border-radius:4px;
+    }
+
+    /* Skip link */
+    .skip{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      left:12px; top:12px; width:auto; height:auto; padding:.5rem .75rem; z-index:9999;
+      background:#fff; border:2px solid var(--focus); border-radius:6px;
+      box-shadow:0 3px 10px rgba(0,0,0,.08);
+    }
+
     header,main,footer{width:100%}
     .wrap{max-width:var(--wrap);margin:48px auto;padding:0 16px}
     h1{margin:.1rem 0 .25rem;font-size:2.25rem;color:var(--h1);letter-spacing:-0.01em}
@@ -51,25 +77,11 @@
     ul{margin:.5rem 0 0;padding-left:1.1rem}
     li{margin:.35rem 0}
     .tag{color:var(--muted);margin:.2rem 0 1.2rem}
+    .note{font-size:.95rem;color:var(--muted)}
+    .small{font-size:.95rem;color:var(--muted)}
     .rule{border-top:1px solid var(--rule);margin:2rem 0 1.5rem}
     .grid{display:grid;gap:1.25rem}
     .two{grid-template-columns:1.2fr .8fr}
-    .note{font-size:.95rem;color:var(--muted)}
-    .small{font-size:.95rem;color:var(--/* PRIVACY styles */
-
-/* PRIVACY styles */
-.privacy-card{
-  border:1px solid #d9dee5; border-radius:8px;
-  background:#f9fbff; padding:.5rem .75rem .75rem; margin:1rem 0;
-}
-.privacy-card > summary{
-  cursor:pointer; list-style:none; font-weight:650; color:#1f2a44; font-size:1.05rem;
-}
-.privacy-card > summary::-webkit-details-marker{ display:none; }
-.privacy-card[open]{ padding-bottom:.9rem; }
-.privacy-card .privacy-body p{ margin:.5rem 0; }
-
-
 
     /* Hero */
     .hero{
@@ -86,20 +98,22 @@
       padding:.75rem; margin:1.5rem 0;
     }
     details.faq > summary{
-      font-size:1.1rem; font-weight:bold; cursor:pointer; color:#1b2942; list-style:none;
+      font-size:1.1rem; font-weight:650; cursor:pointer; color:#1b2942; list-style:none;
     }
     details.faq > summary::-webkit-details-marker{display:none}
     details.faq div{margin-top:.6rem; line-height:1.6; color:#1b2942}
 
-    /* Privacy block */
-    details.privacy{
-      background:var(--card); border:1px solid var(--rule); border-radius:8px;
-      padding:.5rem .75rem .75rem; margin:1rem 0;
+    /* Privacy card (single source of truth) */
+    details.privacy-card{
+      border:1px solid var(--rule); border-radius:8px;
+      background:var(--card); padding:.5rem .75rem .75rem; margin:1rem 0;
     }
-    details.privacy > summary{
-      list-style:none; cursor:pointer; font-size:1.1rem; font-weight:650; color:var(--muted);
+    details.privacy-card > summary{
+      cursor:pointer; list-style:none; font-weight:650; color:#1f2a44; font-size:1.05rem;
     }
-    details.privacy > summary::-webkit-details-marker{display:none}
+    details.privacy-card > summary::-webkit-details-marker{display:none}
+    details.privacy-card[open]{ padding-bottom:.9rem }
+    .privacy-body p{ margin:.5rem 0 }
 
     /* Table */
     .table-wrap{overflow:auto}
@@ -121,9 +135,10 @@
       body{background:#0b0e13;color:#e8edf5}
       .tag,.small,.note{color:#9fb0c6}
       .rule,footer{border-color:#293344;background:#0f141b}
-      details.privacy,details.faq{background:#0f141b;border-color:#293344}
+      details.privacy-card,details.faq{background:#0f141b;border-color:#293344}
       blockquote{background:#0f141b;color:#cdd9ea}
       a{color:#8bb0ff}
+      a:visited{color:#a2b9ff}
       .hero{background:#0f141b;border-color:#293344}
       .hero h1{color:#e8edf5}
       .hero .slogan{color:#b7c4da}
@@ -151,24 +166,24 @@
         </p>
       </section>
 
-<!-- PRIVACY (styled card) -->
-<details id="privacy" class="privacy-card" open>
-  <summary>Privacy</summary>
-  <div class="privacy-body">
-    <p>This site does not collect or store personal data, does not use cookies, and does not require login.</p>
-    <p>Traffic metrics may be provided in aggregate, non-identifying form to measure basic page views and performance.</p>
-    <p>No personally identifiable information is collected, processed, or shared. Visitors may access the site freely without consent.</p>
-    <p>Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></p>
-  </div>
-</details>
-      
-<section id="contact">
-  <h2>Contact</h2>
-  <p>✉️ <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></p>
-  <p class="note">Plain text email only; serious correspondence welcome.</p>
-</section>
+      <!-- PRIVACY (styled card) -->
+      <details id="privacy" class="privacy-card" open>
+        <summary>Privacy</summary>
+        <div class="privacy-body">
+          <p>This site does not collect or store personal data, does not use cookies, and does not require login.</p>
+          <p>Traffic metrics may be provided in aggregate, non-identifying form to measure basic page views and performance.</p>
+          <p>No personally identifiable information is collected, processed, or shared. Visitors may access the site freely without consent.</p>
+          <p>Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></p>
+        </div>
+      </details>
 
-      <h1>Swarm Field Theory</h1>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>✉️ <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></p>
+        <p class="note">Plain text email only; serious correspondence welcome.</p>
+      </section>
+
+      <h2>Swarm Field Theory</h2>
       <p class="tag"><em>A modest, math-first framework for unification in physics</em></p>
       <p>
         Swarm Field Theory models real space as a lattice of tension-bearing membranes stretched between zero-nodes.
@@ -185,33 +200,32 @@
 
   <main id="main">
     <div class="wrap">
-
       <p>
         Curious (or skeptical)? Visit the 
         <a href="file-cabinet-of-regret.html">File Cabinet of Regret</a>.
       </p>
 
-      <<details class="faq">
-  <summary><h2>CLICK HERE -> Is Swarm Field Theory just another pseudoscience idea? </h2></summary>
-  <div>
-    <p>
-      No. Pseudoscience is usually marked by vague claims, a lack of math, and no way to compare with experiment. 
-      Swarm Field Theory is different. It begins with clear geometric assumptions about membranes and zero nodes, 
-      and from those assumptions it derives testable results: the speed of light, Planck’s constant, 
-      the gravitational constant, and other physical quantities.
-    </p>
-    <p>
-      These values are calculated to high precision and match CODATA measurements within small margins. 
-      That makes the framework falsifiable: if the derivations did not agree with experiment, the theory would fail.
-    </p>
-    <p>
-      The mathematics is not speculative — it is deterministic and produces real, verifiable numbers. 
-      What is speculative is the interpretation of what space and time fundamentally are. 
-      In that respect Swarm Field Theory is no different from the Copenhagen Interpretation or other foundational views in physics: 
-      it provides a conceptual model for the mathematics we already trust. 
-    </p>
-  </div>
-</details>
+      <details class="faq">
+        <summary>CLICK HERE → Is Swarm Field Theory just another pseudoscience idea?</summary>
+        <div>
+          <p>
+            No. Pseudoscience is usually marked by vague claims, a lack of math, and no way to compare with experiment. 
+            Swarm Field Theory is different. It begins with clear geometric assumptions about membranes and zero nodes, 
+            and from those assumptions it derives testable results: the speed of light, Planck’s constant, 
+            the gravitational constant, and other physical quantities.
+          </p>
+          <p>
+            These values are calculated to high precision and match CODATA measurements within small margins. 
+            That makes the framework falsifiable: if the derivations did not agree with experiment, the theory would fail.
+          </p>
+          <p>
+            The mathematics is not speculative — it is deterministic and produces real, verifiable numbers. 
+            What is speculative is the interpretation of what space and time fundamentally are. 
+            In that respect Swarm Field Theory is no different from the Copenhagen Interpretation or other foundational views in physics: 
+            it provides a conceptual model for the mathematics we already trust. 
+          </p>
+        </div>
+      </details>
 
       <div class="grid two">
         <section>
@@ -244,24 +258,24 @@
           <ul>
             <li>
               <strong>Plain Language Paper</strong><br />
-              <a href="https://doi.org/10.5281/zenodo.17120195">DOI: 10.5281/zenodo.17120195</a>
+              <a href="https://doi.org/10.5281/zenodo.17120195" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17120195</a>
             </li>
             <li>
               <strong>Unified Field Equation (UFE)</strong><br />
-              <a href="https://doi.org/10.5281/zenodo.17118609">DOI: 10.5281/zenodo.17118609</a>
+              <a href="https://doi.org/10.5281/zenodo.17118609" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17118609</a>
             </li>
             <li>
               <strong>UFEB: Update-Based Formulation</strong><br />
-              <a href="https://doi.org/10.5281/zenodo.17159129">DOI: 10.5281/zenodo.17159129</a>
+              <a href="https://doi.org/10.5281/zenodo.17159129" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17159129</a>
             </li>
           </ul>
 
           <p>Open-access papers with full derivations and worked numerics:</p>
           <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.17129863">Planck’s Constant (h)</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.17130007">Fine-Structure Constant (α)</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.17164270">Gravitational Constant (G)</a></li>
-            <li><a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series">Full Series on GitHub</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">Planck’s Constant (h)</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">Fine-Structure Constant (α)</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.17164270" target="_blank" rel="noopener">Gravitational Constant (G)</a></li>
+            <li><a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series" target="_blank" rel="noopener">Full Series on GitHub</a></li>
           </ul>
 
           <div class="rule"></div>
@@ -284,37 +298,37 @@
                   <td>Planck’s constant, h</td>
                   <td>6.62607015×10⁻³⁴ J·s (exact)</td>
                   <td>6.6264×10⁻³⁴ J·s</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17129863">DOI</a></td>
+                  <td><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">DOI</a></td>
                 </tr>
                 <tr>
                   <td>Fine-structure constant, α</td>
                   <td>7.2973525693×10⁻³</td>
                   <td>7.2973×10⁻³</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17130007">DOI</a></td>
+                  <td><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">DOI</a></td>
                 </tr>
                 <tr>
                   <td>Elementary charge, e</td>
                   <td>1.602176634×10⁻¹⁹ C (exact)</td>
                   <td>1.6022×10⁻¹⁹ C</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17141219">DOI</a></td>
+                  <td><a href="https://doi.org/10.5281/zenodo.17141219" target="_blank" rel="noopener">DOI</a></td>
                 </tr>
                 <tr>
                   <td>Vacuum permittivity, ε₀</td>
                   <td>8.8541878128×10⁻¹² F·m⁻¹</td>
                   <td>8.854×10⁻¹² F·m⁻¹</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17141112">DOI</a></td>
+                  <td><a href="https://doi.org/10.5281/zenodo.17141112" target="_blank" rel="noopener">DOI</a></td>
                 </tr>
                 <tr>
                   <td>Vacuum permeability, μ₀</td>
                   <td>1.25663706212×10⁻⁶ H·m⁻¹</td>
                   <td>1.257×10⁻⁶ H·m⁻¹</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17151806">DOI</a></td>
+                  <td><a href="https://doi.org/10.5281/zenodo.17151806" target="_blank" rel="noopener">DOI</a></td>
                 </tr>
                 <tr>
                   <td>Gravitational constant, G</td>
                   <td>6.67430×10⁻¹¹ m³·kg⁻¹·s⁻²</td>
                   <td>6.6743×10⁻¹¹ m³·kg⁻¹·s⁻²</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17164270">DOI</a></td>
+                  <td><a href="https://doi.org/10.5281/zenodo.17164270" target="_blank" rel="noopener">DOI</a></td>
                 </tr>
               </tbody>
             </table>
@@ -327,4 +341,29 @@
             John Paul Crumpler, PE, is a licensed professional engineer with 46 years of experience in applied research, machine design,
             energy systems, and theoretical physics. He has authored numerous trade articles, technical reports, and fact sheets;
             taught continuing-education courses for engineers; and lectured at the University of Georgia (PhD bioengineering cohort).
-            He has also advised undergraduate students in energy systems at Georgia Tech and the University of Virginia. His recent work
+            He has also advised undergraduate students in energy systems at Georgia Tech and the University of Virginia.
+            <!-- (continue your About copy here) -->
+          </p>
+        </section>
+
+        <!-- You can add a complementary sidebar in the second grid column if needed -->
+        <aside>
+          <!-- Optional sidebar content -->
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="small">© <span id="y"></span> Swarm Field Theory</div>
+      <div class="small"><a href="#privacy">Privacy</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // year stamp
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
