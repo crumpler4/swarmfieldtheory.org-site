@@ -27,118 +27,180 @@
   </script>
 
   <style>
-    :root{
+    :root {
       --ink:#1f2a44; --muted:#5f6b7a; --rule:#d9dee5;
       --h1:#0f172a; --h2:#0b3d91; --accent:#0b5fff; --bg:#fff;
       --wrap:1100px; --card:#f9fbff; --focus:#94b8ff;
-      --sidebar: 340px;
+      --sidebar:340px;
     }
-    *{box-sizing:border-box}
-    html:focus-within{scroll-behavior:smooth}
-    body{
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      margin:0;background:var(--bg);color:var(--ink);line-height:1.6;
-      text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased
-    }
-
-    /* Links */
-    a{ color:var(--accent); text-decoration:underline; text-decoration-thickness:.06em; text-underline-offset:.18em; text-decoration-skip-ink:auto; transition:text-decoration-thickness .15s ease, color .15s ease }
-    a:hover, a:focus{ text-decoration-thickness:.12em }
-    a:visited{ color:#6a7cd6 }
-    a:focus-visible{ outline:2px solid var(--focus); outline-offset:2px; border-radius:4px }
-
-    /* Skip link */
-    .skip{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
-    .skip:focus{
-      left:12px; top:12px; width:auto; height:auto; padding:.5rem .75rem; z-index:9999;
-      background:#fff; border:2px solid var(--focus); border-radius:6px; box-shadow:0 3px 10px rgba(0,0,0,.08)
+    * { box-sizing: border-box }
+    html:focus-within { scroll-behavior: smooth }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header,main,footer{width:100%}
-    .wrap{max-width:var(--wrap);margin:48px auto;padding:0 16px}
-    h1{margin:.1rem 0 .25rem;font-size:2.25rem;color:var(--h1);letter-spacing:-0.01em}
-    h2{margin:2rem 0 .5rem;font-size:1.35rem;color:var(--h2)}
-    h3{margin:1.25rem 0 .35rem;font-size:1.1rem}
-    p{margin:.75rem 0;font-size:1.06rem}
-    ul{margin:.5rem 0 0;padding-left:1.1rem}
-    li{margin:.35rem 0}
-    .tag{color:var(--muted);margin:.2rem 0 1.2rem}
-    .note,.small{font-size:.95rem;color:var(--muted)}
-    .rule{border-top:1px solid var(--rule);margin:2rem 0 1.5rem}
-    .grid{display:grid;gap:1.25rem}
-
-    /* Hero */
-    .hero{
-      max-width:960px;margin:2.5rem auto 1.25rem; padding:1.5rem 1.25rem;
-      border:1px solid #e5e7eb;border-radius:12px;background:#fafafa
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: .06em;
+      text-underline-offset: .18em;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-thickness .15s ease, color .15s ease;
     }
-    .hero h1{margin:0 0 .25rem;font-size:2rem;line-height:1.1;color:#0f172a}
-    .hero .slogan{margin:.25rem 0 1rem;font-size:1.05rem;color:#475569}
-    .hero p{margin:0 0 .75rem;font-size:1.05rem;line-height:1.6;color:#1f2937}
-
-    /* FAQ block */
-    details.faq{
-      background:#f0f8ff; border:1px solid #7ccfff; border-radius:8px;
-      padding:.75rem; margin:0 0 1rem;
-    }
-    details.faq > summary{
-      font-size:1.1rem; font-weight:650; cursor:pointer; color:#1b2942; list-style:none;
-    }
-    details.faq > summary::-webkit-details-marker{display:none}
-    details.faq div{margin-top:.6rem; line-height:1.6; color:#1b2942}
-
-    /* Privacy card */
-    details.privacy-card{
-      border:1px solid var(--rule); border-radius:8px;
-      background:var(--card); padding:.5rem .75rem .75rem; margin:1rem 0;
-    }
-    details.privacy-card > summary{ cursor:pointer; list-style:none; font-weight:650; color:#1f2a44; font-size:1.05rem }
-    details.privacy-card > summary::-webkit-details-marker{display:none}
-    details.privacy-card[open]{ padding-bottom:.9rem }
-    .privacy-body p{ margin:.5rem 0 }
-
-    /* Numbers table */
-    .table-wrap{overflow:auto}
-    table.numbers{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.97rem;min-width:560px}
-    table.numbers th, table.numbers td{border-bottom:1px solid var(--rule);padding:.6rem .5rem;text-align:left}
-    table.numbers th{font-weight:650;color:var(--h2)}
-    table.numbers tbody tr:nth-child(odd){background:#fafbfe}
-
-    blockquote{margin:1rem 0;padding:.5rem .8rem;border-left:3px solid var(--rule);color:#3a3f49;background:#fafbfc}
-
-    footer{border-top:1px solid var(--rule);background:#fafbfc}
-    footer .wrap{margin:28px auto;display:flex;gap:1rem;justify-content:space-between;align-items:center}
-
-    /* --- NEW: page layout with left sidebar --- */
-    .layout{
-      display:grid; grid-template-columns: var(--sidebar) 1fr; gap:1.25rem; align-items:start;
-    }
-    .sidebar{ position:sticky; top:18px }
-    .card-link{
-      border:1px solid var(--rule); background:var(--card);
-      padding:.9rem .9rem; border-radius:8px; margin:0 0 1rem;
-    }
-    .card-link h3{ margin:.1rem 0 .35rem }
-    .card-link p{ margin:.4rem 0 }
-
-    @media (max-width: 980px){
-      .layout{ grid-template-columns: 1fr }
-      .sidebar{ position:static }
+    a:hover, a:focus { text-decoration-thickness: .12em }
+    a:visited { color: #6a7cd6 }
+    a:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+      border-radius: 4px;
     }
 
-    @media (prefers-color-scheme:dark){
-      body{background:#0b0e13;color:#e8edf5}
-      .tag,.small,.note{color:#9fb0c6}
-      .rule,footer{border-color:#293344;background:#0f141b}
-      details.privacy-card,details.faq,.card-link{background:#0f141b;border-color:#293344}
-      blockquote{background:#0f141b;color:#cdd9ea}
-      a{color:#8bb0ff}
-      a:visited{color:#a2b9ff}
-      .hero{background:#0f141b;border-color:#293344}
-      .hero h1{color:#e8edf5}
-      .hero .slogan{color:#b7c4da}
-      .hero p{color:#d8e2f2}
-      table.numbers tbody tr:nth-child(odd){background:#0f141b}
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skip:focus {
+      left: 12px; top: 12px; width: auto; height: auto;
+      padding: .5rem .75rem; z-index: 9999;
+      background: #fff; border: 2px solid var(--focus); border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,.08);
+    }
+
+    header, main, footer { width: 100% }
+    .wrap {
+      max-width: var(--wrap);
+      margin: 48px auto;
+      padding: 0 16px;
+    }
+    h1 { margin: .1rem 0 .25rem; font-size: 2.25rem; color: var(--h1); letter-spacing: -0.01em }
+    h2 { margin: 2rem 0 .5rem; font-size: 1.35rem; color: var(--h2) }
+    h3 { margin: 1.25rem 0 .35rem; font-size: 1.1rem }
+    p { margin: .75rem 0; font-size: 1.06rem }
+    ul { margin: .5rem 0 0; padding-left: 1.1rem }
+    li { margin: .35rem 0 }
+    .tag { color: var(--muted); margin: .2rem 0 1.2rem }
+    .note, .small { font-size: .95rem; color: var(--muted) }
+    .rule { border-top: 1px solid var(--rule); margin: 2rem 0 1.5rem }
+    .grid { display: grid; gap: 1.25rem }
+
+    .hero {
+      max-width: 960px; margin: 2.5rem auto 1.25rem; padding: 1.5rem 1.25rem;
+      border: 1px solid #e5e7eb; border-radius: 12px; background: #fafafa;
+    }
+    .hero h1 { margin: 0 0 .25rem; font-size: 2rem; line-height: 1.1; color: #0f172a }
+    .hero .slogan { margin: .25rem 0 1rem; font-size: 1.05rem; color: #475569 }
+    .hero p { margin: 0 0 .75rem; font-size: 1.05rem; line-height: 1.6; color: #1f2937 }
+
+    details.faq {
+      background: #f0f8ff; border: 1px solid #7ccfff; border-radius: 8px;
+      padding: .75rem; margin: 0 0 1rem;
+    }
+    details.faq > summary {
+      font-size: 1.1rem; font-weight: 650; cursor: pointer; color: #1b2942; list-style: none;
+    }
+    details.faq > summary::-webkit-details-marker { display: none }
+    details.faq div { margin-top: .6rem; line-height: 1.6; color: #1b2942 }
+
+    details.privacy-card {
+      border: 1px solid var(--rule); border-radius: 8px;
+      background: var(--card); padding: .5rem .75rem .75rem; margin: 1rem 0;
+    }
+    details.privacy-card > summary {
+      cursor: pointer; list-style: none; font-weight: 650; color: var(--ink); font-size: 1.05rem;
+    }
+    details.privacy-card > summary::-webkit-details-marker { display: none }
+    details.privacy-card[open] { padding-bottom: .9rem }
+    .privacy-body p { margin: .5rem 0 }
+
+    .table-wrap { overflow-x: auto }
+    table.numbers {
+      width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: .97rem; min-width: 320px;
+    }
+    table.numbers th, table.numbers td {
+      border-bottom: 1px solid var(--rule); padding: .6rem .5rem; text-align: left;
+    }
+    table.numbers th { font-weight: 650; color: var(--h2) }
+    table.numbers tbody tr:nth-child(odd) { background: #fafbfe }
+
+    blockquote {
+      margin: 1rem 0; padding: .5rem .8rem; border-left: 3px solid var(--rule);
+      color: #3a3f49; background: #fafbfc;
+    }
+
+    footer { border-top: 1px solid var(--rule); background: #fafbfc }
+    footer .wrap {
+      margin: 28px auto; display: flex; gap: 1rem; justify-content: space-between; align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Layout with sidebar */
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sidebar) 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      max-width: 100%;
+      word-break: break-word;
+    }
+    .card-link {
+      border: 1px solid var(--rule); background: var(--card);
+      padding: .9rem .9rem; border-radius: 8px; margin: 0 0 1rem;
+    }
+    .card-link h3 { margin: .1rem 0 .35rem }
+    .card-link p { margin: .4rem 0 }
+
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 980px) {
+      .wrap { max-width: 100%; margin: 24px auto; padding: 0 8px; }
+      .hero { padding: 1rem .5rem; }
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; margin-bottom: 2rem; }
+      table.numbers { font-size: .95rem; min-width: 0; }
+      h1, .hero h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.12rem; margin: 1.2rem 0 .5rem; }
+      .card-link { padding: .7rem .6rem; }
+      footer .wrap { flex-direction: column; gap: .5rem; align-items: flex-start; }
+      .table-wrap { margin-bottom: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 0 4px; }
+      .hero { padding: .7rem .2rem; }
+      .layout { gap: .7rem; }
+      .card-link { padding: .4rem .3rem; }
+      .table-wrap { margin-bottom: 1rem; }
+      table.numbers th, table.numbers td { padding: .45rem .2rem; font-size: .9rem; }
+      h1, .hero h1 { font-size: 1.1rem; }
+      h2 { font-size: 1rem; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #0b0e13; color: #e8edf5 }
+      .tag, .small, .note { color: #9fb0c6 }
+      .rule, footer { border-color: #293344; background: #0f141b }
+      details.privacy-card, details.faq, .card-link { background: #0f141b; border-color: #293344 }
+      blockquote { background: #0f141b; color: #cdd9ea }
+      a { color: #8bb0ff }
+      a:visited { color: #a2b9ff }
+      .hero { background: #0f141b; border-color: #293344 }
+      .hero h1 { color: #e8edf5 }
+      .hero .slogan { color: #b7c4da }
+      .hero p { color: #d8e2f2 }
+      table.numbers tbody tr:nth-child(odd) { background: #0f141b }
     }
   </style>
 </head>
@@ -157,7 +219,6 @@
     <div class="wrap">
       <section class="hero" aria-label="Introduction">
         <h1>Returning Normality to Physics</h1>
-      
         <p>
           Modern physics is often wrapped in speculation — multiverses, hidden dimensions, and exotic entities we may never observe.
           Swarm Field Theory takes the opposite approach. It derives familiar constants — including Newton’s gravitational constant —
@@ -169,7 +230,7 @@
         </p>
       </section>
 
-      <!-- PRIVACY (styled card) -->
+      <!-- Privacy card -->
       <details id="privacy" class="privacy-card" open>
         <summary>Privacy</summary>
         <div class="privacy-body">
@@ -197,11 +258,15 @@
 
   <main id="main">
     <div class="wrap layout">
-      <!-- LEFT SIDEBAR (top-left, non-distracting) -->
+      <!-- LEFT SIDEBAR -->
       <aside class="sidebar" aria-label="Quick context">
-            </p>
-          </div>
-        </details>
+        <div class="card-link">
+          <h3>🗂️ The File Cabinet of Regret</h3>
+          <p class="small">Affectionate parody. Skepticism with a smile. Geometry everywhere.</p>
+          <p class="small">A selection of weird questions some of which have actually been asked.</p>
+          <p><a href="file-cabinet-of-regret.html">Open the cabinet →</a></p>
+        </div>
+      </aside>
 
       <!-- MAIN CONTENT -->
       <section>
@@ -307,16 +372,6 @@
             </div>
 
             <div class="rule"></div>
-
-            <!-- File Cabinet of Regret UNDER the pseudoscience box -->
-        <div class="card-link">
-          <h3>🗂️ The File Cabinet of Regret</h3>
-          <p class="small">Affectionate parody. Skepticism with a smile. Geometry everywhere.</p>
-          <p class="small">A selection of weird questions some of which have actually been asked.</p>
-          <p><a href="file-cabinet-of-regret.html">Open the cabinet →</a></p>
-        </div>
-      </aside>
-
             <h2>About</h2>
             <p>
               John Paul Crumpler, PE, is a licensed professional engineer with 46 years of experience in applied research, machine design,
@@ -325,7 +380,6 @@
               He has also advised undergraduate students in energy systems at Georgia Tech and the University of Virginia.
             </p>
           </section>
-
           <aside><!-- Reserved for future sidebar if needed --></aside>
         </div>
       </section>
