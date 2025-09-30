@@ -1,118 +1,40 @@
-<!DOCTYPE htm
-l
->
-<htm
-l l
-ang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <tit
-l
-e>Swarm Fie
-l
-d Theory | Geometric Unification Framework</tit
-l
-e>
-  <meta name="viewport" content="width=device-width, initia
-l
--sca
-l
-e=1, viewport-fit=cover" />
-  <meta name="description" content="Swarm Fie
-l
-d Theory: a math-first framework deriving constants 
-l
-ike h, a
-l
-pha, e, and G from simp
-l
-e 
-l
-attice geometry with discip
-l
-ined, testab
-l
-e derivations." />
-  <l
-ink re
-l="canonica
-l
-" href="https://www.swarmfie
-l
-dtheory.org/">
+  <title>Swarm Field Theory | Geometric Unification Framework</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Swarm Field Theory: a math-first framework deriving constants like h, alpha, e, and G from simple lattice geometry with disciplined, testable derivations." />
+  <link rel="canonical" href="https://www.swarmfieldtheory.org/">
 
-  <!-- Socia
-l
- -->
-  <meta property="og:tit
-l
-e" content="Swarm Fie
-l
-d Theory | Geometric Unification Framework" />
-  <meta property="og:description" content="Constants from geometry. UFEB rep
-l
-aces time with updates. A modest, testab
-l
-e path to unification." />
+  <!-- Social -->
+  <meta property="og:title" content="Swarm Field Theory | Geometric Unification Framework" />
+  <meta property="og:description" content="Constants from geometry. UFEB replaces time with updates. A modest, testable path to unification." />
   <meta property="og:type" content="website" />
-  <meta property="og:ur
-l
-" content="https://www.swarmfie
-l
-dtheory.org/" />
+  <meta property="og:url" content="https://www.swarmfieldtheory.org/" />
   <meta name="twitter:card" content="summary" />
 
   <!-- Structured data -->
-  <script type="app
-l
-ication/
-l
-d+json">
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Swarm Fie
-l
-d Theory",
-    "ur
-l
-": "https://www.swarmfie
-l
-dtheory.org/",
-    "description": "A geometric framework for unification in physics—constants from first princip
-l
-es.",
-    "pub
-l
-isher": {"@type": "Person","name": "John Pau
-l
- Crump
-l
-er, PE"}
+    "name": "Swarm Field Theory",
+    "url": "https://www.swarmfieldtheory.org/",
+    "description": "A geometric framework for unification in physics—constants from first principles.",
+    "publisher": {"@type": "Person","name": "John Paul Crumpler, PE"}
   }
   </script>
 
-  <sty
-l
-e>
+  <style>
     /* ---------- Design tokens ---------- */
     :root{
-      --ink:#1f2a44; --muted:#5f6b7a; --ru
-l
-e:#d9dee5;
+      --ink:#1f2a44; --muted:#5f6b7a; --rule:#d9dee5;
       --h1:#0f172a; --h2:#0b3d91; --accent:#0b5fff; --bg:#fff;
       --card:#f9fbff; --focus:#94b8ff;
       --wrap:1100px;
-      --space-1: .35rem;   /* xs */
-      --space-2: .65rem;   /* sm */
-      --space-3: 1rem;     /* md */
-      --space-4: 1.5rem;   /* 
-l
-g */
-      --space-5: 2rem;     /* x
-l
- */
-      --radius: 12px;
+      --space-1:.35rem; --space-2:.65rem; --space-3:1rem;
+      --space-4:1.5rem; --space-5:2rem; --radius:12px;
     }
 
     /* ---------- Base ---------- */
@@ -120,19 +42,15 @@ l
     html:focus-within{ scroll-behavior:smooth }
     @media (prefers-reduced-motion:reduce){
       html:focus-within{ scroll-behavior:auto }
-      *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition: none !important }
+      *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition:none !important }
     }
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color:var(--ink);
-      background:var(--bg);
-      line-height:1.6;
-      text-rendering:optimizeLegibility;
-      -webkit-font-smoothing:antialiased;
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--ink); background:var(--bg); line-height:1.6;
+      text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased;
     }
 
-    /* Fluid type: scales nicely from phones to desktop */
+    /* Fluid type */
     h1{ margin:.1rem 0 .25rem; font-weight:750; color:var(--h1); letter-spacing:-0.01em;
         font-size:clamp(1.35rem, 2vw + 1rem, 2.25rem) }
     h2{ margin:var(--space-4) 0 var(--space-2); color:var(--h2);
@@ -142,12 +60,8 @@ l
     .small,.note{ font-size:.95rem; color:var(--muted) }
 
     a{
-      color:var(--accent);
-      text-decoration:underline;
-      text-decoration-thickness:.06em;
-      text-underline-offset:.18em;
-      text-decoration-skip-ink:auto;
-      transition:text-decoration-thickness .15s ease, color .15s ease;
+      color:var(--accent); text-decoration:underline; text-decoration-thickness:.06em; text-underline-offset:.18em;
+      text-decoration-skip-ink:auto; transition:text-decoration-thickness .15s ease, color .15s ease;
     }
     a:hover, a:focus{ text-decoration-thickness:.12em }
     a:visited{ color:#6a7cd6 }
@@ -155,30 +69,21 @@ l
 
     img{ max-width:100%; height:auto; display:block }
 
-    .skip{
-      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
-    }
+    .skip{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
     .skip:focus{
       left:12px; top:12px; width:auto; height:auto; padding:.5rem .75rem; z-index:9999;
-      background:#fff; border:2px solid var(--focus); border-radius:6px;
-      box-shadow:0 3px 10px rgba(0,0,0,.08);
+      background:#fff; border:2px solid var(--focus); border-radius:6px; box-shadow:0 3px 10px rgba(0,0,0,.08);
     }
 
     header, main, footer{ width:100% }
-    .wrap{
-      max-width:var(--wrap);
-      margin: clamp(16px, 3vw, 48px) auto;
-      padding: 0 clamp(8px, 2.5vw, 16px);
-    }
+    .wrap{ max-width:var(--wrap); margin: clamp(16px, 3vw, 48px) auto; padding: 0 clamp(8px, 2.5vw, 16px) }
 
     .tag{ color:var(--muted); margin:.2rem 0 1.2rem }
-
     .rule{ border-top:1px solid var(--rule); margin:var(--space-5) 0 var(--space-4) }
 
     /* ---------- Hero ---------- */
     .hero{
-      max-width:960px;
-      margin: var(--space-4) auto var(--space-2);
+      max-width:960px; margin: var(--space-4) auto var(--space-2);
       padding: clamp(.8rem, 2vw, 1.5rem) clamp(.7rem, 2vw, 1.25rem);
       border:1px solid #e5e7eb; border-radius:var(--radius); background:#fafafa;
     }
@@ -191,9 +96,7 @@ l
       background:#f0f8ff; border:1px solid #7ccfff; border-radius:8px;
       padding:.75rem; margin:0 0 1rem;
     }
-    details.faq > summary{
-      font-size:1.1rem; font-weight:650; cursor:pointer; color:#1b2942; list-style:none;
-    }
+    details.faq > summary{ font-size:1.1rem; font-weight:650; cursor:pointer; color:#1b2942; list-style:none }
     details.faq > summary::-webkit-details-marker{ display:none }
     details.faq div{ margin-top:.6rem; color:#1b2942 }
 
@@ -215,39 +118,26 @@ l
       border:1px solid var(--rule); border-radius:8px; background:#fff;
     }
     table.numbers{
-      width:100%; border-collapse:separate; border-spacing:0; min-width:520px; /* scroll on phones */
+      width:100%; border-collapse:separate; border-spacing:0; min-width:520px;
       font-size:clamp(.92rem, .35vw + .88rem, .97rem);
     }
     table.numbers th, table.numbers td{
       border-bottom:1px solid var(--rule);
-      padding:.65rem .6rem; text-align:left; vertical-align:top;
-      white-space:nowrap;
+      padding:.65rem .6rem; text-align:left; vertical-align:top; white-space:nowrap;
     }
     table.numbers th{ font-weight:700; color:var(--h2); position:sticky; top:0; background:#fff }
     table.numbers tbody tr:nth-child(odd){ background:#fafbfe }
 
-    blockquote{
-      margin:1rem 0; padding:.5rem .8rem; border-left:3px solid var(--rule);
-      color:#3a3f49; background:#fafbfc;
-    }
+    blockquote{ margin:1rem 0; padding:.5rem .8rem; border-left:3px solid var(--rule); color:#3a3f49; background:#fafbfc }
 
     /* ---------- Footer ---------- */
     footer{ border-top:1px solid var(--rule); background:#fafbfc }
-    footer .wrap{
-      margin:28px auto; display:flex; gap:1rem; justify-content:space-between; align-items:center; flex-wrap:wrap;
-    }
+    footer .wrap{ margin:28px auto; display:flex; gap:1rem; justify-content:space-between; align-items:center; flex-wrap:wrap }
 
-    /* ---------- Layout with sidebar ---------- */
-    .layout{
-      display:grid; grid-template-columns: 320px 1fr; gap: clamp(.7rem, 2vw, 1.25rem); align-items:start;
-    }
-    .sidebar{
-      position:sticky; top:18px; max-width:100%; word-break:break-word;
-    }
-    .card-link{
-      border:1px solid var(--rule); background:var(--card);
-      padding:.9rem; border-radius:8px; margin:0 0 1rem;
-    }
+    /* ---------- Layout with sidebar (not used here, kept for reuse) ---------- */
+    .layout{ display:grid; grid-template-columns: 320px 1fr; gap: clamp(.7rem, 2vw, 1.25rem); align-items:start }
+    .sidebar{ position:sticky; top:18px; max-width:100%; word-break:break-word }
+    .card-link{ border:1px solid var(--rule); background:var(--card); padding:.9rem; border-radius:8px; margin:0 0 1rem }
     .card-link h3{ margin:.1rem 0 .35rem }
     .card-link p{ margin:.4rem 0 }
 
@@ -295,20 +185,9 @@ l
     <div class="wrap">
       <section class="hero" aria-label="Swarm Field Theory">
         <h1>Swarm Field Theory</h1>
-        </p></p>
-        <p>
-        <h2>Swarm Field Theory is not another unifying story. It is a unifying mathematics. Where others speculate, this framework derives physical constants from first principles.</h2>
-        </p></p>
-        <p>
-        <p>
-          Modern physics is often wrapped in speculation — multiverses, hidden dimensions, and exotic entities we may never observe.
-          Swarm Field Theory takes the opposite approach. It derives familiar constants — including Newton’s gravitational constant —
-          directly from geometry and tension, without adding layers of conjecture.
-        </p>
-        <p>
-          The goal is simple: make physics simpler, testable, and grounded in clear mathematics. Gravity, electromagnetism, and
-          quantum behavior emerge from the same coherent structure — no extra dimensions required.
-        </p>
+        <p class="slogan">Swarm Field Theory is not another unifying story. It is a unifying mathematics. Where others speculate, this framework derives physical constants from first principles.</p>
+        <p>Modern physics is often wrapped in speculation — multiverses, hidden dimensions, and exotic entities we may never observe. Swarm Field Theory takes the opposite approach. It derives familiar constants — including Newton’s gravitational constant — directly from geometry and tension, without adding layers of conjecture.</p>
+        <p>The goal is simple: make physics simpler, testable, and grounded in clear mathematics. Gravity, electromagnetism, and quantum behavior emerge from the same coherent structure — no extra dimensions required.</p>
       </section>
 
       <!-- Privacy -->
@@ -321,141 +200,120 @@ l
           <p>Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></p>
         </div>
       </details>
-
-      <h2>Swarm Field Theory</h2>
-      <p class="tag"><em>A modest, math-first framework for unification in physics</em></p>
-      <p>
-        Swarm Field Theory models real space as a lattice of tension-bearing membranes stretched between zero-nodes.
-        From this simple geometry, fundamental constants — including Planck’s constant (h), the fine-structure constant (α),
-        the speed of light (c), the elementary charge (e), the gravitational constant (G), and others — emerge directly from first principles.
-      </p>
-      <p>
-        Swarm Field Theory proposes that real space is formed by membranes around zero nodes,
-        and that waves propagate helically.
-        <a href="geometry.html">Learn more about the geometry →</a>
-      </p>
     </div>
   </header>
 
-      <!-- MAIN CONTENT -->
+  <main id="main">
+    <div class="wrap">
+      <h2>Swarm Field Theory</h2>
+      <p class="tag"><em>A modest, math-first framework for unification in physics</em></p>
+      <p>Swarm Field Theory models real space as a lattice of tension-bearing membranes stretched between zero-nodes. From this simple geometry, fundamental constants — including Planck’s constant (h), the fine-structure constant (α), the speed of light (c), the elementary charge (e), the gravitational constant (G), and others — emerge directly from first principles.</p>
+      <p>Swarm Field Theory proposes that real space is formed by membranes around zero nodes, and that waves propagate helically. <a href="geometry.html">Learn more about the geometry →</a></p>
+
       <section>
-        <section>
-          <h2>The Geometry</h2>
-          <p>
-            Space is treated not as empty volume but as a woven array of two-dimensional membranes anchored at <strong>zero-nodes</strong>.
-            These sheets intersect at fixed angles and carry tension, forming a real yet massless scaffold. Disturbances travel as
-            <em>helical waves</em> bound by membrane tension and node spacing. Quantization arises from discrete apertures in the lattice;
-            energy, momentum, and phase follow from geometry and boundary conditions.
-          </p>
+        <h2>The Geometry</h2>
+        <p>Space is treated not as empty volume but as a woven array of two-dimensional membranes anchored at <strong>zero-nodes</strong>. These sheets intersect at fixed angles and carry tension, forming a real yet massless scaffold. Disturbances travel as <em>helical waves</em> bound by membrane tension and node spacing. Quantization arises from discrete apertures in the lattice; energy, momentum, and phase follow from geometry and boundary conditions.</p>
 
-          <h2>What Falls Out (from geometry alone)</h2>
-          <ul>
-            <li><strong>Electromagnetic set</strong>: h, α, e, ε₀, μ₀, Z₀, c</li>
-            <li><strong>Gravitational</strong>: G; Planck family (mₚ, ℓₚ, tₚ, Eₚ)</li>
-            <li><strong>Thermal</strong>: k<sub>B</sub>, σ, a, b, T<sub>P</sub></li>
-            <li><strong>Atomic touchstones</strong>: R∞, a₀ (with noted mass inputs)</li>
-          </ul>
+        <h2>What Falls Out (from geometry alone)</h2>
+        <ul>
+          <li><strong>Electromagnetic set</strong>: h, α, e, ε₀, μ₀, Z₀, c</li>
+          <li><strong>Gravitational</strong>: G; Planck family (mₚ, ℓₚ, tₚ, Eₚ)</li>
+          <li><strong>Thermal</strong>: k<sub>B</sub>, σ, a, b, T<sub>P</sub></li>
+          <li><strong>Atomic touchstones</strong>: R∞, a₀ (with noted mass inputs)</li>
+        </ul>
 
-          <h2>The Simplification (UFEB)</h2>
-          <p>
-            The Unified Field Equation, Budget form (UFEB), replaces continuous time with <strong>discrete updates</strong>. Each update is a
-            reconciliation of lattice-tension budgets — like closing a balance sheet. The lattice shares a universal response interval (τ),
-            but consequences still propagate locally at finite speed (<em>c</em>), preserving relativity.
-          </p>
-          <blockquote>“We measure progress in steps, not seconds.”</blockquote>
+        <h2>The Simplification (UFEB)</h2>
+        <p>The Unified Field Equation, Budget form (UFEB), replaces continuous time with <strong>discrete updates</strong>. Each update is a reconciliation of lattice-tension budgets — like closing a balance sheet. The lattice shares a universal response interval (τ), but consequences still propagate locally at finite speed (<em>c</em>), preserving relativity.</p>
+        <blockquote>“We measure progress in steps, not seconds.”</blockquote>
 
-          <h2>Publications</h2>
-          <h3>Featured Papers</h3>
-          <ul>
-            <li><strong>Plain Language Paper</strong><br />
-              <a href="https://doi.org/10.5281/zenodo.17120195" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17120195</a></li>
-            <li><strong>Unified Field Equation (UFE)</strong><br />
-              <a href="https://doi.org/10.5281/zenodo.17118609" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17118609</a></li>
-            <li><strong>UFEB: Update-Based Formulation</strong><br />
-              <a href="https://doi.org/10.5281/zenodo.17159129" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17159129</a></li>
-          </ul>
+        <h2>Publications</h2>
+        <h3>Featured Papers</h3>
+        <ul>
+          <li><strong>Plain Language Paper</strong><br>
+            <a href="https://doi.org/10.5281/zenodo.17120195" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17120195</a></li>
+          <li><strong>Unified Field Equation (UFE)</strong><br>
+            <a href="https://doi.org/10.5281/zenodo.17118609" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17118609</a></li>
+          <li><strong>UFEB: Update-Based Formulation</strong><br>
+            <a href="https://doi.org/10.5281/zenodo.17159129" target="_blank" rel="noopener">DOI: 10.5281/zenodo.17159129</a></li>
+        </ul>
 
-          <p>Open-access papers with full derivations and worked numerics:</p>
-          <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">Planck’s Constant (h)</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">Fine-Structure Constant (α)</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.17164270" target="_blank" rel="noopener">Gravitational Constant (G)</a></li>
-            <li><a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series" target="_blank" rel="noopener">Full Series on GitHub</a></li>
-          </ul>
+        <p>Open-access papers with full derivations and worked numerics:</p>
+        <ul>
+          <li><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">Planck’s Constant (h)</a></li>
+          <li><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">Fine-Structure Constant (α)</a></li>
+          <li><a href="https://doi.org/10.5281/zenodo.17164270" target="_blank" rel="noopener">Gravitational Constant (G)</a></li>
+          <li><a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series" target="_blank" rel="noopener">Full Series on GitHub</a></li>
+        </ul>
 
-          <div class="rule"></div>
+        <div class="rule"></div>
 
-          <h2>Numbers That Work</h2>
-          <p>Swarm Field Theory derives fundamental constants directly from geometry, matching CODATA values without curve fitting.</p>
+        <h2>Numbers That Work</h2>
+        <p>Swarm Field Theory derives fundamental constants directly from geometry, matching CODATA values without curve fitting.</p>
 
-          <div class="table-wrap" role="region" aria-label="Derived constants table" tabindex="0">
-            <table class="numbers" role="table">
-              <thead>
-                <tr>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">CODATA (SI)</th>
-                  <th scope="col">SFT (derived)</th>
-                  <th scope="col">Paper</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Planck’s constant, h</td>
-                  <td>6.62607015×10⁻³⁴ J·s (exact)</td>
-                  <td>6.6264×10⁻³⁴ J·s</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">DOI</a></td>
-                </tr>
-                <tr>
-                  <td>Fine-structure constant, α</td>
-                  <td>7.2973525693×10⁻³</td>
-                  <td>7.2973×10⁻³</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">DOI</a></td>
-                </tr>
-                <tr>
-                  <td>Elementary charge, e</td>
-                  <td>1.602176634×10⁻¹⁹ C (exact)</td>
-                  <td>1.6022×10⁻¹⁹ C</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17141219" target="_blank" rel="noopener">DOI</a></td>
-                </tr>
-                <tr>
-                  <td>Vacuum permittivity, ε₀</td>
-                  <td>8.8541878128×10⁻¹² F·m⁻¹</td>
-                  <td>8.854×10⁻¹² F·m⁻¹</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17141112" target="_blank" rel="noopener">DOI</a></td>
-                </tr>
-                <tr>
-                  <td>Vacuum permeability, μ₀</td>
-                  <td>1.25663706212×10⁻⁶ H·m⁻¹</td>
-                  <td>1.257×10⁻⁶ H·m⁻¹</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17151806" target="_blank" rel="noopener">DOI</a></td>
-                </tr>
-                <tr>
-                  <td>Gravitational constant, G</td>
-                  <td>6.67430×10⁻¹¹ m³·kg⁻¹·s⁻²</td>
-                  <td>6.6743×10⁻¹¹ m³·kg⁻¹·s⁻²</td>
-                  <td><a href="https://doi.org/10.5281/zenodo.17164270" target="_blank" rel="noopener">DOI</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="table-wrap" role="region" aria-label="Derived constants table" tabindex="0">
+          <table class="numbers" role="table">
+            <thead>
+              <tr>
+                <th scope="col">Quantity</th>
+                <th scope="col">CODATA (SI)</th>
+                <th scope="col">SFT (derived)</th>
+                <th scope="col">Paper</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Planck’s constant, h</td>
+                <td>6.62607015×10⁻³⁴ J·s (exact)</td>
+                <td>6.6264×10⁻³⁴ J·s</td>
+                <td><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>Fine-structure constant, α</td>
+                <td>7.2973525693×10⁻³</td>
+                <td>7.2973×10⁻³</td>
+                <td><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>Elementary charge, e</td>
+                <td>1.602176634×10⁻¹⁹ C (exact)</td>
+                <td>1.6022×10⁻¹⁹ C</td>
+                <td><a href="https://doi.org/10.5281/zenodo.17141219" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>Vacuum permittivity, ε₀</td>
+                <td>8.8541878128×10⁻¹² F·m⁻¹</td>
+                <td>8.854×10⁻¹² F·m⁻¹</td>
+                <td><a href="https://doi.org/10.5281/zenodo.17141112" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>Vacuum permeability, μ₀</td>
+                <td>1.25663706212×10⁻⁶ H·m⁻¹</td>
+                <td>1.257×10⁻⁶ H·m⁻¹</td>
+                <td><a href="https://doi.org/10.5281/zenodo.17151806" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>Gravitational constant, G</td>
+                <td>6.67430×10⁻¹¹ m³·kg⁻¹·s⁻²</td>
+                <td>6.6743×10⁻¹¹ m³·kg⁻¹·s⁻²</td>
+                <td><a href="https://doi.org/10.5281/zenodo.17164270" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-          <div class="rule"></div>
-<!-- File Cabinet moved to bottom -->
-<div class="card-link" aria-label="The File Cabinet of Regret">
-  <h2 style="margin-top:0">🗂️ The File Cabinet of Regret</h2>
-  <p class="small">A selection of humorous and weird questions some of which have actually been asked.</p>
-  <p><a href="file-cabinet-of-regret.html">Open the cabinet →</a></p>
-</div>
+        <div class="rule"></div>
 
-<div class="rule"></div>
-          <h2>About</h2>
-          <p>
-            John Paul Crumpler, PE, is a licensed professional engineer with 46 years of experience in applied research, machine design,
-            energy systems, and theoretical physics. He has authored numerous trade articles, technical reports, and fact sheets;
-            taught continuing-education courses for engineers; and lectured at the University of Georgia (PhD bioengineering cohort).
-            He has also advised undergraduate students in energy systems at Georgia Tech and the University of Virginia.
-          </p>
-        </section>
+        <!-- File Cabinet moved to bottom -->
+        <div class="card-link" aria-label="The File Cabinet of Regret">
+          <h2 style="margin-top:0">🗂️ The File Cabinet of Regret</h2>
+          <p class="small">A selection of humorous and weird questions some of which have actually been asked.</p>
+          <p><a href="file-cabinet-of-regret.html">Open the cabinet →</a></p>
+        </div>
+
+        <div class="rule"></div>
+
+        <h2>About</h2>
+        <p>John Paul Crumpler, PE, is a licensed professional engineer with 46 years of experience in applied research, machine design, energy systems, and theoretical physics. He has authored numerous trade articles, technical reports, and fact sheets; taught continuing-education courses for engineers; and lectured at the University of Georgia (PhD bioengineering cohort). He has also advised undergraduate students in energy systems at Georgia Tech and the University of Virginia.</p>
       </section>
     </div>
   </main>
