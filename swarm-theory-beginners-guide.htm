@@ -1,125 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Swarm Theory Explained: A Plain Language Guide to the Unified Field Equation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A plain-language guide to Swarm Theory and the Unified Field Equation by J. Paul Crumpler, PE.">
+  <meta charset="UTF-8" />
+  <title>Swarm Theory Explained — Plain Language Guide — J. P. Crumpler PE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Swarm Theory Explained: A plain language guide to the Unified Field Equation by John Paul Crumpler PE." />
   <style>
+    :root {
+      --bg: #f8f8fb;
+      --paper: #ffffff;
+      --ink: #222222;
+      --muted: #555555;
+      --accent: #005a9c;
+      --box-border: #d0d7e2;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Arial, sans-serif;
       line-height: 1.6;
-      margin: 1.5rem;
-      color: #222;
-      background-color: #fafafa;
     }
-    a { color: #0645ad; }
-    h1, h2, h3 { margin-top: 1.4rem; }
-    .back {
-      display: inline-block;
-      margin-bottom: 1.2rem;
+    header {
+      background: #0f172a;
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem;
     }
+    header h1 {
+      margin: 0 0 .4rem;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      letter-spacing: -0.01em;
+    }
+    header p { margin: 0.15rem 0; }
+    main {
+      max-width: 90rem;
+      margin: -2rem auto 3rem;
+      padding: 0 1rem;
+    }
+    article {
+      background: var(--paper);
+      padding: 2.5rem 2.1rem 3rem;
+      border-radius: 0.9rem;
+      box-shadow: 0 12px 42px rgba(15, 23, 42, 0.05);
+    }
+    h2, h3, h4 {
+      color: #121826;
+      scroll-margin-top: 5rem;
+    }
+    h2 {
+      margin-top: 2.3rem;
+      border-bottom: 1px solid #e4e6ea;
+      padding-bottom: .35rem;
+    }
+    h3 { margin-top: 1.5rem; }
     .meta {
-      font-size: 0.9rem;
-      color: #555;
-      margin-bottom: 1.5rem;
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
     }
-    .section {
-      background: #fff;
-      border-radius: 6px;
-      padding: 1rem 1.4rem;
-      margin-bottom: 1.2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+    .abstract {
+      background: #f3f4f6;
+      border-left: 4px solid var(--accent);
+      padding: 1.1rem 1rem 1.1rem 1.2rem;
+      margin-bottom: 1.6rem;
+    }
+    .box {
+      border: 1px solid var(--box-border);
+      border-radius: .5rem;
+      padding: 1rem 1rem .7rem;
+      margin: 1.4rem 0;
+      background: #fbfcff;
+    }
+    .box-title {
+      font-weight: 600;
+      margin-bottom: .5rem;
+    }
+    a { color: var(--accent); }
+    footer {
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: #555;
+    }
+    .back-link {
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    @media (min-width: 65rem) {
+      body {
+        background: linear-gradient(180deg, #051626 0%, #0f172a 280px, #f8f8fb 280px);
+      }
+      main { margin-top: -4rem; }
+      article { padding: 2.5rem 3.5rem 3rem; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Swarm Theory Explained: A Plain Language Guide</h1>
+    <p>John Paul Crumpler PE</p>
+    <p>© 2025 John Paul Crumpler. All rights reserved.</p>
+  </header>
+  <main>
+    <article>
+      <a class="back-link" href="index.html">← Back to Home</a>
 
-  <a class="back" href="index.html">← Back to Home</a>
+      <div class="meta">
+        Citation: Crumpler, J. P. (2025). <em>Swarm Theory Explained: A Plain Language Guide to the Unified Field Equation.</em> Zenodo. DOI:
+        <a href="https://doi.org/10.5281/zenodo.17120195" target="_blank" rel="noopener">10.5281/zenodo.17120195</a><br />
+        Licence: Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
+      </div>
 
-  <h1>Swarm Theory Explained: A Plain Language Guide to the Unified Field Equation</h1>
-  <p><strong>Author:</strong> John Paul Crumpler, PE — Researcher, United Kingdom</p>
-  <div class="meta">
-    Citation: Crumpler, J. P. (2025). <em>Swarm Theory Explained: A Plain Language Guide to the Unified Field Equation.</em>
-    Zenodo. DOI: <a href="https://doi.org/10.5281/zenodo.17120195" target="_blank" rel="noopener">10.5281/zenodo.17120195</a><br>
-    License: Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
-  </div>
+      <section class="abstract">
+        <h2>Overview</h2>
+        <p>This page is the nontechnical explanation of Swarm Theory. It follows the same ideas as the technical paper
+          <em>Swarm Theory: A Unified Field Framework</em> but uses plain language and imagery. It explains why space is treated as a structured lattice of membranes and voids, why light rides on those membranes, and how matter is just waves that refused to disperse.</p>
+      </section>
 
-  <div class="section">
-    <h2>1. Why This Matters</h2>
-    <p>Physics has long been split in two: relativity for gravity and spacetime, quantum mechanics for matter and particles. Both are correct, yet incompatible. Swarm Theory bridges the divide, starting with geometry itself — space as a woven structure. Imagine quantum foam not as chaos, but as a lattice of bubbles. From this structure, energy, light, and matter emerge naturally.</p>
-  </div>
+      <section id="why-this-matters">
+        <h2>1. Why This Matters</h2>
+        <p>Physics has lived with a split for more than a century. Relativity works for gravity and curved spacetime. Quantum mechanics works for particles and probabilities. Both are right, but they do not meet. Swarm Theory proposes to close that gap without inventing extra particles or dimensions. It starts with geometry: space itself is woven.</p>
+        <p>Think of the quantum foam not as randomness, but as organised bubbles. From that organised lattice, the rules of light, matter, and gravity follow.</p>
+      </section>
 
-  <div class="section">
-    <h2>2. Zero Nodes and Coherence Membranes</h2>
-    <p><strong>Zero Nodes</strong> are the hollow centers of bubbles — voids anchoring the lattice.  
-       <strong>Coherence Membranes</strong> are the 2-D surfaces stretched between them, forming real space though they have no thickness.</p>
-    <p>Together they weave a foamy geometry. Volume arises from countless intersecting flat surfaces, just as soap bubbles form structure.</p>
-  </div>
+      <section id="zero-nodes">
+        <h2>2. Zero Nodes and Coherence Membranes</h2>
+        <p><strong>Zero Nodes</strong> are absolute voids. Nothing is inside them, not even space. They are like the hollow centres of bubbles. They anchor the structure.</p>
+        <p><strong>Coherence Membranes</strong> are the two-dimensional skins stretched between Zero Nodes. They have no thickness but they are real. They are what we experience as space.</p>
+        <p>When many such membranes intersect, they form the foamy volume of the universe — just like real soap bubbles form a 3D shape out of 2D skins.</p>
+      </section>
 
-  <div class="section">
-    <h2>3. How Waves Move</h2>
-    <p>Energy travels as ripples along these membranes. A photon is a helical wave bound to a surface, advancing across the weave. Like sound on a drumhead, the membrane—not the void—carries vibration.</p>
-  </div>
+      <section id="waves">
+        <h2>3. How Waves Move</h2>
+        <p>Energy does not travel through empty nothing. It travels along these membranes as ripples. A photon is not a marble flying through emptiness; it is a helical wave bound to a path on the lattice, progressing step by step.</p>
+        <p>This is like sound on a drumhead: the drum’s cavity is empty, but the skin carries the vibration. In Swarm Theory, membrane tension carries light.</p>
+      </section>
 
-  <div class="section">
-    <h2>4. What Light Really Is</h2>
-    <p>Light in Swarm Theory is a coherence wave traveling on membranes — not a particle, not self-luminous. It becomes visible only when detected. Light is structured tension rippling through geometry, energy stored in the lattice waiting for translation into sight.</p>
-    <h3>Maxwell’s Equations</h3>
-    <p>Maxwell described how electric and magnetic fields oscillate to form light. Swarm Theory keeps those equations but explains why they work: these fields express membrane tension.</p>
-  </div>
+      <section id="light">
+        <h2>4. What Light Really Is</h2>
+        <p>Light is a coherence wave on the membranes. It is not “bright” while it travels. It becomes light only when it is detected. Until then it is structured tension, neatly moving across a geometric surface.</p>
+        <h3>4a. Maxwell’s Equations</h3>
+        <p>Maxwell already told us light is an electromagnetic wave at a fixed speed. Swarm Theory does not change Maxwell. It explains what Maxwell’s fields are made of: they are how membrane tension looks to us when we measure it.</p>
+        <p><strong>Maxwell says:</strong> “this is how light behaves.”  
+           <strong>Swarm Theory adds:</strong> “it behaves that way because it is a wave on a tensioned lattice.”</p>
+      </section>
 
-  <div class="section">
-    <h2>5. Quantization — Why Energy Comes in Packets</h2>
-    <p>A stretched surface vibrates in fixed modes—like drum tones. Membrane tension locks vibration into discrete steps. Planck’s constant represents that built-in scale. Energy is quantized because geometry only permits vibration in packets.</p>
-  </div>
+      <section id="quantisation">
+        <h2>5. Quantisation — Why Energy Comes in Packets</h2>
+        <p>A stretched surface cannot vibrate at any frequency it wants. It picks certain modes. A drum does this. So does a violin string.</p>
+        <p>Membrane tension in Swarm Theory does the same thing. It permits only discrete vibrations. That is why Planck’s constant exists. Quanta are not an arbitrary rule — they are what a tensioned geometric surface allows.</p>
+      </section>
 
-  <div class="section">
-    <h2>6. Gravity, Curvature, and Condensates</h2>
-    <p>Some waves fold back and lock into repeating patterns—standing swarms of coherence. These are condensates, the origins of matter. Like stable hurricanes, they persist as self-reinforcing vortices. Electrons and protons are such stable swarms; neutrons are only stable inside atoms.</p>
-  </div>
+      <section id="gravity">
+        <h2>6. Gravity, Curvature, and Condensates</h2>
+        <p>Most waves spread and fade. Some do not. Under the right conditions, waves fold back on themselves and reinforce. That produces a persistent pattern — a <strong>condensate</strong>.</p>
+        <p>This is like weather: most gusts die, but occasionally the energy, rotation, and environment line up and you get a stable hurricane.</p>
+        <p>In Swarm Theory, those stable “hurricanes” of coherence are what we call particles. Electrons and protons are the ones the lattice supports indefinitely. Neutrons, by contrast, need extra structure (for example, a nucleus) to stay around.</p>
+      </section>
 
-  <div class="section">
-    <h2>7. What Matter Really Is</h2>
-    <p>There is no hidden particle “stuff.” Matter is tension in the lattice — waves condensed and stabilized into swarms. The universe’s substance is light trapped by geometry into persistence.</p>
-  </div>
+      <section id="matter">
+        <h2>7. What Matter Really Is</h2>
+        <p>There is no hidden “particle stuff” underneath. Everything is lattice tension.</p>
+        <p>Matter is just light and other lattice waves that have condensed and locked in. Radiation and matter are made of the same thing; the difference is whether they disperse or persist.</p>
+      </section>
 
-  <div class="section">
-    <h2>8. The Unified Field Equation Without Math</h2>
-    <ul>
-      <li>Flat membranes under tension → quantum behaviour.</li>
-      <li>Curved membranes around condensates → gravity.</li>
-      <li>Both are one structure, governed by one rule.</li>
-    </ul>
-  </div>
+      <section id="ufe">
+        <h2>8. The Unified Field Equation Without Math</h2>
+        <p>The technical paper shows the full equation. In words, it says:</p>
+        <ul>
+          <li>Flat, tensioned membranes → quantum behaviour.</li>
+          <li>Curved membranes around persistent swarms → gravity.</li>
+          <li>Both are the same underlying structure.</li>
+        </ul>
+        <p>So you do not need two incompatible theories; you need one geometric one.</p>
+      </section>
 
-  <div class="section">
-    <h2>9. Why This Is Radical</h2>
-    <p>Swarm Theory suggests constants like <em>h</em>, <em>c</em>, and ε₀ emerge from the foam-like geometry of space. Instead of new particles or dimensions, physics reduces to a lattice of voids and surfaces under tension. Matter is condensed light; space itself is the structured medium.</p>
-  </div>
+      <section id="not-aether">
+        <h2>9. Why This Is Not the Aether</h2>
+        <p>Classical aether was a fluid filling space. It was ruled out because we could not detect motion through it and relativity did not need it.</p>
+        <p>Swarm Theory does not bring that back. It says space <em>is</em> the structure — the membranes themselves. There is nothing to move through, because the geometry is the medium.</p>
+        <p>In the old view, matter floated in a medium. In Swarm Theory, matter is simply persistent waves of the medium itself.</p>
+      </section>
 
-  <div class="section">
-    <h2>10. Why This Is Not the Aether</h2>
-    <p>The classical Aether was thought to fill space like a fluid; experiments disproved it. Swarm Theory is different — space <em>is</em> the structure, a lattice of voids and surfaces. There is nothing to move through: the membranes <em>are</em> geometry itself.</p>
-  </div>
+      <section id="next">
+        <h2>10. Where This Goes Next</h2>
+        <p>This framework has to be tested. But it gives you a very compact picture:</p>
+        <ul>
+          <li>Space is a foam of voids and 2D surfaces under tension.</li>
+          <li>Light is membrane tension in motion.</li>
+          <li>Matter is light that got trapped into a stable swirl.</li>
+          <li>Gravity is curvature of those tensioned surfaces.</li>
+        </ul>
+        <p>Nothing magic. Just geometry with tension.</p>
+      </section>
 
-  <div class="section">
-    <h2>11. Where This Goes Next</h2>
-    <p>This framework must be tested, refined, and challenged. It offers a unified picture: light and matter as states of the same wave-lattice. Some waves race freely; others condense into stable swarms forming matter. The universe is a foam of nothingness and surfaces under tension, alive with ripples and enduring swarms. There is no hidden particle-stuff — only light shaping itself into matter.</p>
-  </div>
+      <section id="references">
+        <h2>References</h2>
+        <ol>
+          <li>Einstein, A. (1915). Die Grundlage der allgemeinen Relativitätstheorie. <em>Annalen der Physik.</em></li>
+          <li>Maxwell, J. C. (1865). A Dynamical Theory of the Electromagnetic Field. <em>Philosophical Transactions of the Royal Society of London</em>, 155, 459–512.</li>
+          <li>’t Hooft, G. (1993). Dimensional Reduction in Quantum Gravity. <em>Salamfestschrift</em>.</li>
+          <li>Susskind, L. (1995). The World as a Hologram. <em>Journal of Mathematical Physics</em>, 36(11), 6377–6396.</li>
+          <li>Bousso, R. (2002). The Holographic Principle. <em>Reviews of Modern Physics</em>, 74, 825–874.</li>
+        </ol>
+      </section>
 
-  <div class="section">
-    <h2>References</h2>
-    <ul>
-      <li>Einstein A. (1915). <em>Die Grundlage der allgemeinen Relativitätstheorie.</em> Annalen der Physik.</li>
-      <li>Maxwell J. C. (1865). <em>A Dynamical Theory of the Electromagnetic Field.</em> Philosophical Transactions of the Royal Society of London, 155, 459–512.</li>
-      <li>’t Hooft G. (1993). <em>Dimensional Reduction in Quantum Gravity.</em> Salamfestschrift (Conf. Proc. C 930308, pp. 284–296).</li>
-      <li>Susskind L. (1995). <em>The World as a Hologram.</em> Journal of Mathematical Physics, 36(11), 6377–6396.</li>
-      <li>Bousso R. (2002). <em>The Holographic Principle.</em> Reviews of Modern Physics, 74, 825–874.</li>
-    </ul>
-  </div>
-
-  <p><strong>© Copyright John Paul Crumpler 2025. All rights reserved.</strong></p>
-
+      <footer>
+        © Copyright John Paul Crumpler 2025. All rights reserved.
+      </footer>
+    </article>
+  </main>
 </body>
 </html>
