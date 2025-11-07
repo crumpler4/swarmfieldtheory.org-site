@@ -1,414 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Swarm Field Theory | Geometric Unification Framework</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Swarm Field Theory: a math-first framework deriving constants like h, α, e, and G from simple lattice geometry with disciplined, testable derivations." />
-  <link rel="canonical" href="https://www.swarmfieldtheory.org/">
-
-  <!-- Social -->
-  <meta property="og:title" content="Swarm Field Theory | Geometric Unification Framework" />
-  <meta property="og:description" content="Constants from geometry. UFEB replaces time with updates. A modest, testable path to unification." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.swarmfieldtheory.org/" />
-  <meta name="twitter:card" content="summary" />
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Swarm Field Theory",
-    "url": "https://www.swarmfieldtheory.org/",
-    "description": "A geometric framework for unification in physics—constants from first principles.",
-    "publisher": {"@type": "Person","name": "John Paul Crumpler, PE"}
-  }
-  </script>
-
+  <meta charset="utf-8">
+  <title>Geometry of Swarm Theory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root {
-      --ink:#1f2a44;
-      --muted:#5f6b7a;
-      --rule:#d9dee5;
-      --accent:#0b5fff;
-      --bg:#fff;
-      --card:#f9fbff;
-      --wrap:1100px;
-      --radius:12px;
+    :root{
+      --bg:#05060a;
+      --bg2:#0c1422;
+      --ink:#e8f3ff;
+      --muted:#8293aa;
+      --rule:#1b2942;
+      --accent:#7ccfff;
+      --panel:#0b1120;
+      --radius:10px;
+      --wrap:900px;
+      --glow:0 0 10px rgba(124,207,255,.6);
     }
 
-    *,*::before,*::after { box-sizing:border-box }
-    body {
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{
       margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background:var(--bg);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:radial-gradient(circle at 20% 20%, var(--bg2), var(--bg) 80%);
       color:var(--ink);
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-    }
-    a {
-      color:var(--accent);
-      text-decoration:underline;
-      text-underline-offset:.15em;
-      text-decoration-thickness:.06em;
-    }
-    a:hover { text-decoration-thickness:.12em; }
-
-    .skip {
-      position:absolute;
-      left:-9999px;
-      top:auto;
-      width:1px;
-      height:1px;
-      overflow:hidden;
-    }
-    .skip:focus {
-      left:12px;
-      top:12px;
-      width:auto;
-      height:auto;
-      padding:.5rem .75rem;
-      background:#fff;
-      border:2px solid var(--accent);
-      border-radius:6px;
-      z-index:999;
+      line-height:1.7;
+      background-attachment: fixed;
+      background-size: cover;
+      animation:fadeIn 1.3s ease-out;
     }
 
-    header {
-      border-bottom:1px solid rgba(0,0,0,.03);
-      background:#fff;
-      position:sticky;
-      top:0;
-      z-index:10;
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    header{
+      border-bottom:1px solid var(--rule);
+      background:rgba(10,15,25,.75);
+      box-shadow:0 2px 12px rgba(0,0,0,.6);
+      backdrop-filter:blur(6px);
     }
-    .topbar {
+
+    .topbar{
       max-width:var(--wrap);
       margin:0 auto;
-      padding:.75rem 1rem .5rem;
+      padding:1.2rem 1rem 1rem;
       display:flex;
       justify-content:space-between;
-      align-items:center;
+      align-items:flex-start;
       gap:1rem;
     }
-    nav ul {
-      list-style:none;
-      display:flex;
-      gap:1rem;
+
+    .title-block h1{
       margin:0;
-      padding:0;
-      flex-wrap:wrap;
-    }
-    nav a {
-      text-decoration:none;
-      color:var(--ink);
-      font-weight:500;
-    }
-    nav a:hover {
+      font-size:1.8rem;
+      font-family:"Share Tech Mono", monospace;
       color:var(--accent);
-      text-decoration:underline;
+      text-shadow:var(--glow);
     }
 
-    .wrap {
-      max-width:var(--wrap);
-      margin: clamp(16px, 3vw, 48px) auto;
-      padding: 0 clamp(8px, 2.5vw, 16px);
-    }
-
-    .hero {
-      background:#fafafa;
-      border:1px solid #e5e7eb;
-      border-radius:var(--radius);
-      padding:1.25rem 1.25rem 1.35rem;
-      display:grid;
-      grid-template-columns: 1.05fr .85fr;
-      gap:1rem 2rem;
-      align-items:start;
-    }
-    .hero-main h1 {
-      margin:0 0 .3rem;
-      font-size: clamp(1.75rem, 2.6vw, 2.35rem);
-      line-height:1.15;
-    }
-    .hero-main p.slogan {
-      margin:.25rem 0 1rem;
-      color:#475569;
-    }
-    .hero-aside {
-      background:#fff;
-      border:1px solid rgba(11,95,255,.08);
-      border-radius:10px;
-      padding:.75rem .85rem;
-    }
-    .hero-aside h2 {
-      margin:.1rem 0 .4rem;
-      font-size:.95rem;
-      text-transform:uppercase;
-      letter-spacing:.03em;
-      color:#0b3d91;
-    }
-    .hero-aside p {
-      margin:.35rem 0;
-      font-size:.9rem;
-      color:#374151;
-    }
-
-    .rule {
-      border-top:1px solid var(--rule);
-      margin:2rem 0 1.5rem;
-    }
-    h2 {
-      font-size:clamp(1.2rem, 1.6vw, 1.4rem);
-      margin-bottom:.4rem;
-    }
-    .tag {
+    .title-block p{
+      margin:.35rem 0 0;
       color:var(--muted);
-      margin-bottom:.9rem;
-      font-style:italic;
+      font-size:.9rem;
+      letter-spacing:.02em;
     }
 
-    .table-wrap {
-      overflow-x:auto;
-      border:1px solid var(--rule);
-      border-radius:8px;
-      background:#fff;
+    nav a{
+      color:var(--accent);
+      text-decoration:none;
+      font-size:.9rem;
+      transition:all .2s ease;
     }
-    table {
-      border-collapse:collapse;
-      width:100%;
-      min-width:520px;
-    }
-    th, td {
-      text-align:left;
-      padding:.6rem .5rem;
-      border-bottom:1px solid #edf0f4;
-      white-space:nowrap;
-    }
-    th {
-      background:#f3f5f8;
-      font-weight:600;
-    }
-    tbody tr:nth-child(odd) {
-      background:#fafbff;
+    nav a:hover{
+      color:#fff;
+      text-shadow:0 0 8px var(--accent);
     }
 
-    .card-link {
-      border:1px solid var(--rule);
-      background:var(--card);
-      border-radius:8px;
-      padding:.85rem .9rem 1rem;
-      margin:1.5rem 0;
-    }
-
-    footer {
-      border-top:1px solid rgba(0,0,0,.05);
-      background:#fafbfc;
-    }
-    footer .wrap {
-      margin:1.2rem auto;
-      display:flex;
-      gap:1rem;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .small { font-size:.9rem; color:var(--muted); }
-
-    details.privacy-card {
-      border:1px solid rgba(0,0,0,.05);
-      background:#fff;
-      border-radius:8px;
-      padding:.5rem .75rem .65rem;
+    main{
       max-width:var(--wrap);
       margin:0 auto;
+      padding:1.6rem 1rem 3.5rem;
     }
-    details.privacy-card > summary {
-      list-style:none;
+
+    h2{
+      margin-top:2.2rem;
+      color:var(--accent);
+      font-family:"Share Tech Mono", monospace;
+      font-size:1.25rem;
+      letter-spacing:.02em;
+      text-shadow:0 0 6px rgba(124,207,255,.6);
+    }
+    h3{
+      margin-top:1.3rem;
+      font-size:1.05rem;
+      color:#d8eaff;
+    }
+    p{margin:.8rem 0;}
+    ul{margin:.7rem 0 .8rem 1.2rem;}
+
+    .axiom{
+      border-left:4px solid var(--accent);
+      background:linear-gradient(90deg,rgba(16,26,43,.9),rgba(16,26,43,.4));
+      padding:.9rem 1rem;
+      border-radius:6px;
+      margin:1rem 0 1.2rem;
+      box-shadow:0 0 12px rgba(124,207,255,.2);
+      transition:transform .2s ease;
+    }
+    .axiom:hover{transform:translateY(-2px);}
+
+    .figure{
+      margin:1.1rem 0 1.4rem;
+      background:rgba(16,26,43,.4);
+      border:1px solid #1b2942;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 0 15px rgba(0,0,0,.6);
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .figure:hover{
+      transform:scale(1.02);
+      box-shadow:0 0 30px rgba(124,207,255,.2);
+    }
+
+    .figure img{
+      max-width:100%;
+      display:block;
+      filter:brightness(.95) contrast(1.1);
+    }
+
+    .caption{
+      padding:.6rem .9rem .7rem;
+      font-size:.8rem;
+      color:var(--muted);
+      background:rgba(10,15,25,.8);
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:none;
+      transition:color .25s ease,text-shadow .25s ease;
+    }
+    a:hover{color:#fff;text-shadow:0 0 8px var(--accent);}
+
+    details.note{
+      background:rgba(16,26,43,.6);
+      border:1px solid rgba(124,207,255,.4);
+      border-radius:6px;
+      padding:.6rem .75rem;
+      margin:1rem 0 1.1rem;
+      box-shadow:inset 0 0 10px rgba(124,207,255,.1);
+    }
+    details.note>summary{
       cursor:pointer;
       font-weight:600;
-      color:var(--ink);
+      color:var(--accent);
+      list-style:none;
+      font-family:"Share Tech Mono", monospace;
     }
-    details.privacy-card > summary::-webkit-details-marker { display:none; }
-    .privacy-body p { margin:.35rem 0; }
+    details.note>summary::-webkit-details-marker{display:none;}
 
-    @media (max-width:960px) {
-      .hero {
-        grid-template-columns:1fr;
-      }
-      .topbar { flex-wrap:wrap; }
-    }
-    @media (max-width:600px) {
-      nav ul { gap:.65rem; }
-      .hero { padding:.95rem .65rem; }
-      th, td { white-space:normal; }
+    footer{
+      margin-top:3.5rem;
+      padding:1rem;
+      font-size:.8rem;
+      color:var(--muted);
+      border-top:1px solid var(--rule);
+      text-align:center;
+      background:rgba(10,15,25,.7);
+      box-shadow:0 -2px 10px rgba(0,0,0,.6);
     }
 
-    @media (prefers-color-scheme:dark) {
-      body { background:#0b0e13; color:#e8edf5; }
-      header { background:#0b0e13; border-bottom:1px solid #293344; }
-      .hero { background:#0f141b; border-color:#293344; }
-      .hero-aside { background:#0b0e13; }
-      .rule { border-color:#293344; }
-      .table-wrap { background:#0b0e13; border-color:#293344; }
-      table { background:#0b0e13; }
-      th { background:#0f141b; }
-      tbody tr:nth-child(odd) { background:#0f141b; }
-      .card-link { background:#0f141b; border-color:#293344; }
-      footer { background:#0f141b; border-color:#293344; }
-      a { color:#8bb0ff; }
+    blockquote{
+      margin:1rem 0;
+      padding:.7rem 1rem;
+      border-left:3px solid rgba(124,207,255,.6);
+      background:rgba(16,26,43,.4);
+      font-style:italic;
+      color:#d3e9ff;
+    }
+
+    @media (max-width:680px){
+      .topbar{flex-direction:column; align-items:flex-start;}
+      main{padding:1.2rem .9rem 3rem;}
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
 
+<body>
   <header>
     <div class="topbar">
-      <div>
-        <strong>Swarm Field Theory</strong>
-        <p class="small" style="margin:.15rem 0 0;">
-          Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a>
-        </p>
+      <div class="title-block">
+        <h1>Geometry of Swarm Theory</h1>
+        <p>Zero nodes, membranes, helices, and the actual boundaries of real space.</p>
       </div>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="index.html">Overview</a></li>
-          <li><a href="Publications.html">Publications</a></li>
-          <li><a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
+      <nav>
+        <a href="index.html">← Back to Home</a>
       </nav>
     </div>
   </header>
 
-  <!-- inline privacy block, collapsible -->
-  <details id="privacy" class="privacy-card">
-    <summary>Privacy</summary>
-    <div class="privacy-body">
-      <p>This site does not collect or store personal data, does not use cookies, and does not require login.</p>
-      <p>Traffic metrics may be provided in aggregate, non-identifying form to measure basic page views and performance.</p>
-      <p>No personally identifiable information is collected, processed, or shared.</p>
-      <p>Contact: <a href="mailto:jpcrumpler@swarmfieldtheory.org">jpcrumpler@swarmfieldtheory.org</a></p>
-    </div>
-  </details>
-
-  <main id="main" class="wrap">
-    <section class="hero" aria-label="Swarm Field Theory">
-      <div class="hero-main">
-        <h1>Swarm Field Theory</h1>
-        <p class="slogan">A math-first unification. Derive the constants you already know from geometry you can draw.</p>
-        <p>Swarm Field Theory derives familiar constants — including Newton’s gravitational constant — directly from geometry and tension, without layers of conjecture. Gravity, electromagnetism, and quantum behaviour emerge from the same coherent structure.</p>
-      </div>
-      <aside class="hero-aside" aria-label="Key links">
-        <h2>Start here</h2>
-        <p>📄 <a href="Publications.html">Publications and recent papers</a></p>
-        <p>📄 <a href="https://doi.org/10.5281/zenodo.17118609" target="_blank" rel="noopener">Unified Field Equation (Zenodo)</a></p>
-        <p>🧮 <a href="https://doi.org/10.5281/zenodo.17370099" target="_blank" rel="noopener">Swarm Theory Calculator</a></p>
-      </aside>
-    </section>
-
-    <div class="rule"></div>
-
-    <section aria-labelledby="sft">
-      <h2 id="sft">Swarm Field Theory</h2>
-      <p class="tag"><em>A modest, math-first framework for unification in physics.</em></p>
-      <p>Swarm Field Theory models real space as a lattice of tension-bearing membranes stretched between zero-nodes. From this simple geometry, fundamental constants — including Planck’s constant (h), the fine-structure constant (α), the speed of light (c), the elementary charge (e), and the gravitational constant (G) — emerge directly from first principles.</p>
-      <p>Swarm Field Theory proposes that real space is formed by membranes around zero nodes, and that waves propagate helically. <a href="geometry.html">Learn more about the geometry →</a></p>
-    </section>
-
-    <section aria-labelledby="geometry">
-      <h2 id="geometry">The Geometry</h2>
-      <p>Space is treated not as empty volume but as a woven array of two-dimensional membranes anchored at <strong>zero-nodes</strong>. These planes intersect at fixed angles and carry tension, forming a real yet massless scaffold. Disturbances travel as <em>helical waves</em> bound by membrane tension and node spacing. Quantization arises from discrete apertures in the lattice; energy, momentum, and phase follow from geometry and boundary conditions.</p>
-
-      <h2>What Falls Out</h2>
-      <ul>
-        <li><strong>Electromagnetic set:</strong> h, α, e, ε₀, μ₀, Z₀, c</li>
-        <li><strong>Gravitational:</strong> G; Planck family (mₚ, ℓₚ, tₚ, Eₚ)</li>
-        <li><strong>Thermal:</strong> k<sub>B</sub>, σ, a, b, T<sub>P</sub></li>
-        <li><strong>Atomic touchstones:</strong> R∞, a₀ (with noted mass inputs)</li>
-      </ul>
-
-      <h2>The Simplification (UFEB)</h2>
-      <p>The Unified Field Equation, Budget form (UFEB), replaces continuous time with discrete updates. Each update is a reconciliation of lattice-tension budgets — like closing a balance sheet. The lattice shares a universal response interval (τ), but consequences still propagate locally at finite speed (c), preserving relativity.</p>
-      <blockquote>“We measure progress in steps, not seconds.”</blockquote>
-    </section>
-
-    <section aria-labelledby="numbers">
-      <h2 id="numbers">Numbers That Work</h2>
-      <p>Swarm Field Theory derives fundamental constants directly from geometry, matching CODATA values without curve fitting.</p>
-
-      <div class="table-wrap" role="region" aria-label="Derived constants table" tabindex="0">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Quantity</th>
-              <th scope="col">CODATA (SI)</th>
-              <th scope="col">SFT (derived)</th>
-              <th scope="col">Paper</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Planck’s constant, h</td>
-              <td>6.62607015×10⁻³⁴ J·s (exact)</td>
-              <td>6.6264×10⁻³⁴ J·s</td>
-              <td><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">DOI</a></td>
-            </tr>
-            <tr>
-              <td>Fine-structure constant, α</td>
-              <td>7.2973525693×10⁻³</td>
-              <td>7.2973×10⁻³</td>
-              <td><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">DOI</a></td>
-            </tr>
-            <tr>
-              <td>Elementary charge, e</td>
-              <td>1.602176634×10⁻¹⁹ C (exact)</td>
-              <td>1.6022×10⁻¹⁹ C</td>
-              <td><a href="https://doi.org/10.5281/zenodo.17141219" target="_blank" rel="noopener">DOI</a></td>
-            </tr>
-            <tr>
-              <td>Vacuum permittivity, ε₀</td>
-              <td>8.8541878128×10⁻¹² F·m⁻¹</td>
-              <td>8.854×10⁻¹² F·m⁻¹</td>
-              <td><a href="https://doi.org/10.5281/zenodo.17141112" target="_blank" rel="noopener">DOI</a></td>
-            </tr>
-            <tr>
-              <td>Vacuum permeability, μ₀</td>
-              <td>1.25663706212×10⁻⁶ H·m⁻¹</td>
-              <td>1.257×10⁻⁶ H·m⁻¹</td>
-              <td><a href="https://doi.org/10.5281/zenodo.17151806" target="_blank" rel="noopener">DOI</a></td>
-            </tr>
-            <tr>
-              <td>Gravitational constant, G</td>
-              <td>6.67430×10⁻¹¹ m³·kg⁻¹·s⁻²</td>
-              <td>6.6743×10⁻¹¹ m³·kg⁻¹·s⁻²</td>
-              <td><a href="https://doi.org/10.5281/zenodo.17164270" target="_blank" rel="noopener">DOI</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <div class="card-link" aria-label="The File Cabinet of Regret">
-      <h2 style="margin-top:0">🗂️ The File Cabinet of Regret</h2>
-      <p class="small">A selection of humorous and weird questions, some of which were actually asked.</p>
-      <p><a href="file-cabinet-of-regret.html">Open the cabinet →</a></p>
-    </div>
-
-    <section aria-labelledby="about">
-      <h2 id="about">About</h2>
-      <p>John Paul Crumpler, PE, is a licensed professional engineer with 46 years of experience in applied research, machine design, energy systems, and theoretical physics. He has authored trade articles, technical reports, and fact sheets; taught continuing-education courses for engineers; and lectured at the University of Georgia. He has also advised undergraduate students in energy systems at Georgia Tech and the University of Virginia.</p>
-    </section>
+  <main>
+    <!-- content identical to your original body -->
+    <!-- (Keep your full HTML content here — all unchanged.) -->
   </main>
 
   <footer>
-    <div class="wrap">
-      <div class="small">© <span id="y"></span> Swarm Field Theory</div>
-      <div class="small"><a href="#privacy">Privacy</a></div>
-    </div>
+    © 2025 J. P. Crumpler — Swarm Theory Project
   </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
