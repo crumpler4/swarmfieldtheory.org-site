@@ -7,19 +7,22 @@
   <style>
     :root {
       --page-max: 1100px;
-      --bg: #f7f7f8;
-      --card-bg: #ffffff;
-      --accent: #114b8d;
-      --muted: #6c727f;
-      --border: #e2e2e4;
+      --bg: radial-gradient(circle at top, #131d2b 0%, #0a0f16 50%, #05070b 100%);
+      --card-bg: rgba(9, 12, 17, 0.6);
+      --accent: #6cd5ff;
+      --muted: #94a5bf;
+      --border: rgba(108, 213, 255, 0.12);
       --radius: 10px;
+      --ink: #edf4ff;
     }
+    * { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       margin: 0;
-      background: var(--bg);
+      background: var(--bg) fixed;
       line-height: 1.6;
-      color: #111;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
     }
     .wrapper {
       max-width: var(--page-max);
@@ -32,6 +35,7 @@
     }
     a:hover {
       text-decoration: underline;
+      text-underline-offset: .15em;
     }
     header {
       display: flex;
@@ -67,6 +71,8 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1rem 1.1rem 1rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
     .paper-title {
       font-weight: 600;
@@ -83,7 +89,7 @@
     }
     .badge {
       display: inline-block;
-      background: rgba(17, 75, 141, 0.12);
+      background: rgba(108, 213, 255, 0.12);
       color: var(--accent);
       padding: 0.25rem 0.6rem;
       border-radius: 999px;
@@ -102,15 +108,16 @@
       font-size: 0.88rem;
     }
     .section-rule {
-      border-top: 1px solid #ddd;
+      border-top: 1px solid rgba(255,255,255,.06);
       margin: 2rem 0 1.2rem;
     }
-    /* table at the end */
     .table-wrap {
       overflow-x: auto;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
+      background: rgba(6, 9, 14, 0.5);
+      border: 1px solid rgba(108, 213, 255, 0.12);
       border-radius: var(--radius);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
     table {
       border-collapse: collapse;
@@ -118,14 +125,17 @@
       min-width: 500px;
     }
     th, td {
-      border: 1px solid #ddd;
+      border: 1px solid rgba(255,255,255,.025);
       padding: 0.6rem 0.5rem;
       text-align: left;
       vertical-align: top;
     }
     th {
-      background: #f1f3f5;
+      background: rgba(19, 25, 36, 0.6);
       font-weight: 600;
+    }
+    tbody tr:nth-child(odd) {
+      background: rgba(255,255,255,.01);
     }
     @media (max-width: 600px) {
       header {
@@ -139,7 +149,7 @@
   <div class="wrapper">
     <header>
       <a class="back" href="index.html">← Back to Home</a>
-      <!-- you can put a small logo or name on the right if you wish -->
+      <!-- optional right slot -->
     </header>
 
     <h1>Publications</h1>
