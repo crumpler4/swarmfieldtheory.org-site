@@ -6,269 +6,306 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root{
-      --bg:#0f1724; --ink:#e6eef8; --muted:#95a3b8; --rule:#1b2942; --accent:#7ccfff;
+      --bg:#0f1724;
+      --ink:#e6eef8;
+      --muted:#95a3b8;
+      --rule:#1b2942;
+      --accent:#7ccfff;
+      --panel:#101a2b;
+      --radius:10px;
+      --wrap:900px;
     }
+    *{box-sizing:border-box}
     body{
-      margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg); color:var(--ink); line-height:1.6;
+      margin:0;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.6;
     }
-    header{padding:1.5rem; border-bottom:1px solid var(--rule);}
-    header h1{margin:0; font-size:1.6rem;}
-    main{max-width:850px; margin:0 auto; padding:1.5rem;}
-    h2{margin-top:2rem; color:var(--accent);}
-    h3{margin-top:1.2rem; color:var(--ink);}
+    header{
+      border-bottom:1px solid var(--rule);
+      background:rgba(15,23,36,.6);
+      backdrop-filter:blur(4px);
+    }
+    .topbar{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:1.1rem 1rem .9rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:1rem;
+    }
+    .title-block h1{
+      margin:0;
+      font-size:1.55rem;
+    }
+    .title-block p{
+      margin:.25rem 0 0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    nav a{
+      color:var(--ink);
+      text-decoration:none;
+      font-size:.9rem;
+    }
+    nav a:hover{color:var(--accent);}
+    main{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:1.4rem 1rem 3rem;
+    }
+    h2{
+      margin-top:2.1rem;
+      color:var(--accent);
+      font-size:1.2rem;
+    }
+    h3{
+      margin-top:1.25rem;
+      font-size:1.02rem;
+    }
     p{margin:.8rem 0;}
-    ul{margin:.8rem 0 .8rem 1.2rem;}
+    ul{margin:.7rem 0 .8rem 1.15rem;}
     .axiom{
       border-left:4px solid var(--accent);
-      background:#101a2b; padding:.75rem 1rem; border-radius:6px; margin:1rem 0;
+      background:var(--panel);
+      padding:.75rem 1rem;
+      border-radius:6px;
+      margin:1rem 0 1.2rem;
     }
     .axiom strong{color:var(--accent);}
-    footer{margin-top:3rem; padding:1rem; font-size:.9rem; color:var(--muted); border-top:1px solid var(--rule);}
+    .figure{
+      margin:1.1rem 0 1.4rem;
+      background:rgba(16,26,43,.5);
+      border:1px solid #1b2942;
+      border-radius:8px;
+      overflow:hidden;
+    }
+    .figure img{
+      max-width:100%;
+      display:block;
+    }
+    .caption{
+      padding:.6rem .9rem .7rem;
+      font-size:.8rem;
+      color:var(--muted);
+    }
+    a{
+      color:var(--accent);
+    }
+    .back-link{
+      margin:1rem 0 0;
+      display:inline-block;
+      font-weight:600;
+    }
+    details.note{
+      background:rgba(16,26,43,.5);
+      border:1px solid rgba(124,207,255,.35);
+      border-radius:6px;
+      padding:.5rem .65rem;
+      margin:1rem 0 1.1rem;
+    }
+    details.note>summary{
+      cursor:pointer;
+      font-weight:600;
+      list-style:none;
+    }
+    details.note>summary::-webkit-details-marker{display:none;}
+    footer{
+      margin-top:3rem;
+      padding:1rem;
+      font-size:.8rem;
+      color:var(--muted);
+      border-top:1px solid var(--rule);
+      text-align:center;
+    }
+    blockquote{
+      margin:1rem 0;
+      padding:.5rem .8rem;
+      border-left:3px solid rgba(124,207,255,.5);
+      background:rgba(16,26,43,.35);
+    }
+    @media (max-width:680px){
+      .topbar{flex-direction:column; align-items:flex-start;}
+      main{padding:1.2rem .9rem 3rem;}
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Geometry of Swarm Theory</h1>
-    <p class="muted">Explaining zero nodes, membranes, helices, and the boundaries of real space</p>
+    <div class="topbar">
+      <div class="title-block">
+        <h1>Geometry of Swarm Theory</h1>
+        <p>Zero nodes, membranes, helices, and the actual boundaries of real space.</p>
+      </div>
+      <nav>
+        <a href="index.html">← Back to Home</a>
+      </nav>
+    </div>
   </header>
-  <main>
-  <img src="images/IMG_0350.png"
-     alt="Foam-like membrane lattice in Swarm Theory"
-     style="max-width:100%;margin:1rem 0;border:1px solid #1b2942;
-            border-radius:8px;background:#fff;padding:6px;">
-<p class="caption">
-  Figure: The polygonal membranes are real space; the interiors are not part of space.
-</p>
 
-<p>
-  <a href="index.html" style="
-    color: #4dd0e1;          /* brighter cyan */
-    text-decoration: none;   /* remove underline if you want */
-    font-weight: bold;       /* make it stand out */
-  ">
-    Return to Home Page →
-  </a>
-</p>
+  <main>
+    <div class="figure">
+      <img src="images/IMG_0350.png" alt="Foam-like membrane lattice in Swarm Theory">
+      <p class="caption">Figure: The polygonal membranes are real space; the interiors are not part of space.</p>
+    </div>
+
     <h2>The Lattice</h2>
     <p>
-      In Swarm Theory, the fundamental structure of reality is not empty space but a lattice of <em>zero nodes</em> 
-      surrounded by flat, tension-bearing membranes. These membranes intersect like woven planes, enclosing each node 
-      as if within a geodesic sphere. The lattice is a tension-weave: real, massless, and continuous.
+      In Swarm Theory, the fundamental structure of reality is not empty volume but a lattice of
+      <em>zero nodes</em> surrounded by flat, tension-bearing membranes. These membranes intersect like woven planes,
+      enclosing each node as if within a geodesic sphere. The lattice is a tension-weave: real, massless, and continuous.
     </p>
- <p>
-<strong>An Important Consideration:</strong>  This physical model serves as a conceptual framework from which the 
-   mathematics was developed. The same mathematics could, in principle, be derived from any physical structure 
-   that obeys the same rules. Therefore, the model should not be taken as established fact, but as a platform 
-   supporting the mathematics. The nature of the smallest components of spacetime can only ever be described through
-   models, as they cannot be directly observed.
+    <p>
+      <strong>An important consideration:</strong> this physical model is the scaffold from which the mathematics was
+      developed. The same mathematics could, in principle, be derived from any physical structure that obeys the same
+      rules. The model should therefore be read as a platform that supports the math, not as a final claim about what
+      spacetime is made of.
     </p>
     <div class="axiom">
       <strong>Axiom — Real Space:</strong> <em>Real space is anything on the membrane.</em>
     </div>
-
     <p>
-      Distances, directions, fields, waves, and matter exist only on the membranes. They do not float in a background void. 
-      Where the membrane goes, space goes. Where the membrane does not exist, neither does space.
+      Distances, directions, fields, waves, and matter exist only on the membranes. They do not float in a background
+      void. Where the membrane goes, space goes. Where the membrane does not exist, neither does space.
     </p>
 
     <h2>Why the Interiors Are Not Real Space</h2>
     <p>
-      Each node’s membranes enclose an interior volume, but this interior is not part of the universe. 
-      It is not “empty space” — it is the absence of space. Inside, there are no distances to measure, 
-      no directions to point, no fields to propagate. This is why waves cannot enter zero nodes: 
-      there is nowhere for them to go. Reality is confined to the membrane itself.
+      Each node’s membranes enclose an interior volume, but this interior is not part of the universe. It is not “empty
+      space” — it is the absence of space. Inside there are no distances to measure, no directions to point, no fields
+      to propagate. Waves cannot enter zero nodes because there is nowhere for them to go. Reality is confined to the
+      membrane itself.
     </p>
-<section id="lattice-spacing">
-  <h2>How Large Is the Lattice Spacing?</h2>
-  <p>
-    The membranes of the lattice are separated by a <strong>characteristic coherence aperture</strong> —
-    the repeating distance that defines the weave of space itself. In Swarm Field Theory this spacing is
-    <strong>λ ≈ 8.20 × 10<sup>−10</sup> m</strong>, less than a nanometer and comparable to atomic scales.
-  </p>
-  <p>
-    This spacing is understood to be <strong>static</strong> under ordinary conditions. It anchors the constants
-    we measure in the laboratory. At everyday scales the lattice appears perfectly continuous — like a fabric that
-    looks smooth from a distance — because the “threads” of real space are fine enough that light and matter cannot
-    resolve the gaps.
-  </p>
 
-  <details>
-    <summary><strong>CLICK to OPEN--> Note on high-energy limits</strong></summary>
-    <p style="margin-top:.5rem;">
-      The fixed macro aperture λ and its implied membrane tension do not by themselves support the
-      highest-energy photons observed in nature. To reconcile this, Swarm Field Theory allows for three possible
-      extensions (not mutually exclusive):
-    </p>
-    <ul>
-      <li><strong>Deeper aperture (λ<sub>S</sub> ≪ λ):</strong> an additional, finer scale probed only by extreme-energy photons.</li>
-      <li><strong>Stretching under load:</strong> the lattice may elastically deform, pulling tighter when carrying very high-energy waves.</li>
-      <li><strong>Induced tension growth:</strong> the effective membrane tension increases dynamically with wave energy, raising the ceiling without altering λ itself.</li>
-    </ul>
+    <section id="lattice-spacing">
+      <h2>How Large Is the Lattice Spacing?</h2>
+      <p>
+        The membranes of the lattice are separated by a <strong>characteristic coherence aperture</strong> — the repeating
+        distance that defines the weave of space itself. In Swarm Field Theory this spacing is
+        <strong>λ ≈ 8.20 × 10<sup>−10</sup> m</strong>, less than a nanometer and comparable to atomic scales.
+      </p>
+      <p>
+        This spacing is understood to be <strong>static</strong> under ordinary conditions. It anchors the constants we
+        measure in the laboratory. At everyday scales the lattice appears perfectly continuous — like a fabric that looks
+        smooth from a distance — because the “threads” of real space are fine enough that light and matter cannot resolve
+        the gaps.
+      </p>
+
+      <details class="note">
+        <summary>Note on high-energy limits</summary>
+        <p style="margin-top:.45rem;">
+          The fixed macro aperture λ and its implied membrane tension do not by themselves support the highest-energy
+          photons observed in nature. Swarm Field Theory allows for three possible extensions (not mutually exclusive):
+        </p>
+        <ul>
+          <li><strong>Deeper aperture (λ<sub>S</sub> ≪ λ):</strong> an additional, finer scale probed only by extreme-energy photons.</li>
+          <li><strong>Stretching under load:</strong> the lattice may elastically deform when carrying very high-energy waves.</li>
+          <li><strong>Induced tension growth:</strong> the effective membrane tension increases dynamically with wave energy.</li>
+        </ul>
+        <p>
+          Each path implies a clear experimental test: push the lattice with high-energy events and watch how it responds.
+        </p>
+      </details>
+
+      <p>
+        Other characteristic lengths appear as well, such as the <strong>node closure length</strong>
+        (~8.9 × 10<sup>−9</sup> m), which coincides with observed atomic X-ray lines. Together these scales suggest that
+        the lattice has a <strong>measurable geometry</strong> — and may reveal new behaviour when pushed to its limits.
+      </p>
+    </section>
+
+    <h2>Why does light travel helically, and can it go faster than c?</h2>
     <p>
-      Which of these occurs is not yet known. Each path implies a clear experimental test: observing how the lattice
-      behaves under extreme-energy conditions will reveal whether λ alone is sufficient, or whether hidden structure
-      or dynamic response must be invoked.
+      A wave bound to two-dimensional membranes cannot move in a straight line through three-dimensional geometry. To advance,
+      it must wrap around the lattice planes, tracing a helix. The helical path is longer than the straight-line projection,
+      which means the observed speed of light <em>c ≈ 2.998 × 10<sup>8</sup> m/s</em> is always a projected value of the
+      maximum lattice speed <em>c<sub>max</sub> ≈ 3.25 × 10<sup>8</sup> m/s</em>. Arthur’s Constant κ ≈ 0.922 captures the
+      ratio between the two.
     </p>
-  </details>
-
-  <p>
-    Other characteristic lengths appear as well, such as the <strong>node closure length</strong>
-    (~8.9 × 10<sup>−9</sup> m), which coincides with observed atomic X-ray lines. Together these scales suggest that
-    the lattice has a <strong>measurable geometry</strong> — and may reveal new behavior when pushed to its limits.
-  </p>
-</section>
-
-</p>
-   <h2>Why does light travel helically, and can it go faster than c?</h2>
-<p>
-In Swarm Theory, a wave bound to two-dimensional membranes cannot move in a straight line through three-dimensional geometry. 
-To advance, it must wrap around the lattice planes, tracing a helix. 
-The helical path is longer than the straight-line projection, which means the observed speed of light 
-<em>c ≈ 2.998 × 10<sup>8</sup> m/s</em> is always a projected value of the maximum lattice speed 
-<em>c<sub>max</sub> ≈ 3.25 × 10<sup>8</sup> m/s</em>. 
-Arthur’s Constant κ ≈ 0.922 captures the ratio between the two.
-</p>
-
-<p>
-Light is massless, so moving faster than c does not violate relativity (the restriction applies only to massive objects). 
-In principle, the lattice supports propagation at c<sub>max</sub>. 
-But the geometry of the helix forces every photon we measure to project down to c. 
-No detector can ever register a photon at c<sub>max</sub> or anything higher, because all real propagation is bound helically. 
-Every possible observation resolves only at c.
-</p>
-
-<p>
-This also explains why information cannot travel faster than c. 
-Although the lattice allows a deeper maximum speed c<sub>max</sub>, no usable information can ever exceed c. 
-The helical geometry guarantees that the projected speed c is the only speed that can carry signals or causal influence. 
-Phase effects may appear to move faster, but information and measurement are always bound by c.
-</p>
-
-<p>
-A simple analogy: a sine wave on a rope has a forward speed, but the crest point actually traces a longer path. 
-Its local speed is higher than the forward projection, yet the signal velocity remains fixed. 
-In Swarm Theory, the lattice wave works the same way. The underlying lattice speed c<sub>max</sub> is higher, 
-but every measurement resolves to the projected speed c, preserving relativity and causality.
-</p>
-
-<p>
-In this way, c is not arbitrary. It is the inevitable result of lattice geometry — 
-a universal constant that defines relativity and causality, while c<sub>max</sub> remains hidden in the structure of space itself.
-</p>
+    <p>
+      Light is massless, so moving faster than c does not violate relativity — the restriction applies only to massive
+      objects. In principle, the lattice supports propagation at c<sub>max</sub>. But the geometry of the helix forces every
+      photon we measure to project down to c. No detector can ever register a photon at c<sub>max</sub>, because all real
+      propagation is bound helically.
+    </p>
+    <p>
+      This also explains why information cannot travel faster than c. The lattice may allow a deeper maximum speed, but the
+      helical geometry guarantees that c is the only measurable signal speed. Phase effects may appear to move faster, but
+      information and measurement are always bound by c.
+    </p>
+    <p>
+      A simple analogy: a sine wave on a rope has a forward speed, but the crest traces a longer path. The local motion is
+      higher than the forward projection, yet the signal speed is fixed. Swarm Theory uses the same idea at the lattice level.
+    </p>
 
     <h2>Consequences</h2>
     <ul>
       <li><strong>Boundaries:</strong> Membranes define where space exists. Interiors are not “places.”</li>
       <li><strong>Quantization:</strong> Helical propagation leads directly to discrete action values, including Planck’s constant.</li>
       <li><strong>Forces as geometry:</strong> Gravity, inertia, and electromagnetism emerge from membrane tension and curvature.</li>
-      <li><strong>Projection effects:</strong> The observed constants of physics arise from the geometry of helical propagation.</li>
+      <li><strong>Projection effects:</strong> Observed constants arise from the geometry of helical propagation.</li>
     </ul>
+
     <h2>Light and Vision: Common Questions</h2>
 
-<h3>Do we really see in straight lines?</h3>
-<p>
-No. We only register the lattice waves that strike the retina. 
-Your brain reconstructs the scene as if lines extend outward, but vision is not a probe into the world. 
-It is the end-point of a wave that has already traveled through the lattice.
-</p>
+    <h3>Do we really see in straight lines?</h3>
+    <p>
+      No. We only register the lattice waves that strike the retina. The brain reconstructs the scene as if lines extend
+      outward, but vision is the end-point of a wave that has already travelled on the membrane.
+    </p>
 
-<h3>If light travels helically, why does it look straight?</h3>
-<p>
-The helical motion is projected onto our three-dimensional experience. 
-What you perceive as a straight beam is the projection of a longer, spiral path wrapped around the membranes. 
-This projection is why the observed speed of light is lower than the lattice’s maximum propagation speed.
-</p>
+    <h3>If light travels helically, why does it look straight?</h3>
+    <p>
+      Because we only ever see the projection. The helical motion is wrapped around the lattice but what reaches us is the
+      straight-line projection, so c is the speed we measure.
+    </p>
 
-<h3>Why does light seem instantaneous?</h3>
-<p>
-Light moves very fast compared to everyday timescales, but never infinitely fast. 
-What seems immediate is actually the finite arrival of a helical wave across the lattice. 
-The time it takes is real — measurable in nanoseconds and years, depending on the distance.
-</p>
+    <h3>Why does light seem instantaneous?</h3>
+    <p>
+      It is only fast relative to human timescales. Every arrival is still a finite helical propagation across the lattice.
+    </p>
 
-<h3>Can we see inside a zero node?</h3>
-<p>
-No. The interior of a zero node is not part of real space. 
-There is no distance, no field, no geometry to support waves or vision. 
-Everything we see is bound to the membranes; the “insides” of nodes are permanently excluded from perception.
-</p>
+    <h3>Can we see inside a zero node?</h3>
+    <p>
+      No. The interior is not part of real space. There is no geometry to carry a wave, so nothing to see.
+    </p>
 
-<h3>So what do we really see?</h3>
-<p>
-We see lattice events. 
-Light is a wave bound to the membrane network, and vision is simply the registration of those waves at the eye. 
-Our perception is a reconstruction of what the lattice allowed to propagate — nothing more, nothing less.
+    <h3>So what do we really see?</h3>
+    <p>
+      We see lattice events — photon resolutions on a biological screen. The lattice is the hidden carrier, not the thing we
+      observe.
+    </p>
 
-</p>
-<h3>Why We Cannot See the Lattice</h3>
-<p>
-The lattice itself is not visible. It is the stage on which all physical events occur, but it does not cast shadows or reflect images back to us. 
-You cannot look at space and see the weave of membranes. 
-What you see is only the photon that reaches your retina — a single lattice event resolving on a biological detector.
-<p>
+    <h3>Why we cannot see the lattice</h3>
+    <p>
+      The lattice is the projector, not the picture. It never returns an image of itself. We see only the wave that survives
+      to the retina. That is why the weave of real space is hidden: it supports light but is not light.
+    </p>
 
-</p>
-Think of the lattice as a <strong>projector</strong> and your retina as a <strong>screen</strong>. 
-The helical waves that propagate across the membranes carry the information, but you never see the projector itself. 
-You only perceive the final frame — the photon strike that triggers a signal in the eye.
-</p>
+    <h3>How can mirrors or lenses bend light if space is a lattice?</h3>
+    <p>
+      Matter is a coherence swarm that locally reshapes the membrane. A helical wave encountering that region meets new boundary
+      conditions — reflection, refraction, focusing — exactly as in optics, but implemented as lattice geometry.
+    </p>
 
-<p>
-This is why the weave of real space remains hidden: the 3D geometry supports the propagation of light, but it is not light. 
-Your vision is a reconstruction built from the lattice’s outputs, not a direct picture of the lattice itself.
-</p>
-
-</p>
-The projector–screen model has a profound consequence: no one can ever directly observe the lattice. 
-We only ever see the resolved photon at the screen — the retina. 
-The lattice is the hidden machinery of reality, necessary for every wave to exist, but forever invisible to perception or experiment in any direct form.
-</p>
-
-<p>
-The lattice is like the film in a projector. 
-It carries the structure of reality, but no one in the theater sees the film itself. 
-What we experience is the projected frame on the screen — the photon that finally resolves on the retina. 
-The film drives everything we see, yet remains invisible by design.
-</p>
-
-<h3>How can mirrors, lenses, or telescopes bend light if space is just a lattice?</h3>
-<p>
-In Swarm Theory, light is a helical wave bound to the membranes. Matter is not separate from space; it is a swarm that modifies the lattice locally. 
-When a wave reaches such a region, the boundary conditions change, and the helix projection shifts. 
-This produces the effects we call reflection, refraction, and focusing. 
-Optical instruments do not reveal the lattice directly — they show how swarms reshape the membrane and how light responds.
-</p>
-
-</p>
-<h3>Is this the Holographic Principle proposed by ’t Hooft, Susskind, and others?</h3>
-<p>
-Not exactly. The holographic principle in mainstream physics arose from black hole thermodynamics. 
-It states that the information in a 3D region can be fully described by data on its 2D boundary. 
-In AdS/CFT, for example, a gravitational theory in the bulk corresponds to a quantum field theory on the boundary.
-</p>
-
-<p>
-Swarm Theory is different. Here, the <em>membranes themselves are space</em>. 
-The interiors of the bubbles are not space at all. 
-Our perception of light is not a direct view of the lattice, but the result of a photon resolving on the retina. 
-This creates a projector-and-screen relationship that feels holographic in flavor, but is built from geometry and coherence rather than information bounds.
-</p>
-
-<p>
-So while the two ideas both emphasize the role of 2D structures in defining 3D reality, they are not the same. 
-The holographic principle is about information and entropy. 
-Swarm Theory is about the geometric substrate of space itself.
-</p>
+    <h3>Is this the holographic principle?</h3>
+    <p>
+      Not quite. Holography is about information on a boundary. Swarm Theory says the membranes themselves are the real space.
+      It looks holographic only because we live on a 2D weave that constructs a 3D experience.
+    </p>
 
     <h2>Summary</h2>
     <p>
-      Real space is the membrane. Waves and matter live only on the lattice weave. 
-      The interiors of node enclosures are excluded from reality, not voids but the absence of geometry. 
-      Helical propagation is demanded by this structure, and from it arise the constants and quantization of physics.
+      Real space is the membrane. Waves and matter live only on the lattice weave. The interiors of node enclosures are
+      excluded from reality. Helical propagation is demanded by this structure, and from it arise the constants and the
+      quantization we observe.
     </p>
 
   </main>
+
   <footer>
     © 2025 J. P. Crumpler — Swarm Theory Project
   </footer>
