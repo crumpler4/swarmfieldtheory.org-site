@@ -86,17 +86,25 @@
     }
     tr:nth-child(even){background:rgba(255,255,255,.01)}
     .tag{background:rgba(124,207,255,.15);color:var(--accent);padding:.2rem .45rem;border-radius:999px;font-size:.65rem}
+    .panel{
+      background:rgba(16,26,43,.35);
+      border:1px solid rgba(255,255,255,.02);
+      border-radius:10px;
+      padding:1rem 1.2rem;
+      margin-top:2rem;
+    }
+    a{color:var(--accent)}
   </style>
 </head>
 <body>
   <header>
     <div class="topbar">
       <h1>Swarm Field Theory · Lattice / Closure Calculator</h1>
-      <span class="tag">from Excel 18 OCT 2025 v2</span>
+      <span class="tag">from Excel 08 NOV 2025 v3</span>
     </div>
   </header>
   <main>
-    <p>This page reproduces the logic of your Excel workbook: Inputs → Derivations → Route B closure. Change λ, κ, N, Φ or the closure factor C to see how constants and G move.</p>
+    <p>This page reproduces the logic of your Excel workbook: Inputs → Derivations → Planck/Compton → Route B closure. Change λ, κ, N, Φ or the closure factor C to see how constants and G move.</p>
 
     <div class="grid">
       <div>
@@ -143,6 +151,21 @@
       <tbody></tbody>
     </table>
 
+    <h2>Planck / Compton zone</h2>
+    <table id="planck">
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Value</th>
+          <th>Units</th>
+          <th>Reference</th>
+          <th>Δ %</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
     <h2>Gravitational closure (Route B)</h2>
     <table id="closure">
       <thead>
@@ -157,6 +180,13 @@
       </thead>
       <tbody></tbody>
     </table>
+
+    <div class="panel">
+      <h3 style="margin-top:0">Downloads & references</h3>
+      <p>This calculator mirrors the spreadsheet published on Zenodo. Update the DOI below when you publish the next version.</p>
+      <p><strong>Current record:</strong> <a href="#">https://doi.org/10.5281/zenodo.17370099</a></p>
+      <p><small>© 2025 J. Paul Crumpler, PE — Swarm Field Theory Project.</small></p>
+    </div>
   </main>
 
   <script>
@@ -169,6 +199,9 @@
     const mu0_SI   = 1.25663706212e-6;           // H/m
     const alpha_SI = 0.0072973525693;            // fine-structure const
     const G_SI     = 6.6743e-11;                 // m^3 kg^-1 s^-2 (ref)
+    // masses from your Constants sheet
+    const m_e      = 9.1093837015e-31;           // kg
+    const m_p      = 1.67262192369e-27;          // kg
 
     function pctDiff(pred, ref){
       if (!ref || ref === 0) return "";
@@ -220,6 +253,14 @@
       // G_corrected = π² (c⁵/ħ) (τ Θ_geom_corr)²
       const G_corr = Math.PI*Math.PI * Math.pow(c_SI,5)/hbar * Math.pow(tau * theta_geom_corr, 2);
 
+      // --- Swarm-derived Planck constant (from ΔI, λ, τ) ---
+      // From: h = 2 π² ΔI λ² τ
+      const h_pred = 2 * Math.PI * Math.PI * deltaI * lambda * lambda * tau;
+
+      // --- Compton wavelengths using predicted h ---
+      const lambda_e_pred = h_pred / (m_e * c_SI);
+      const lambda_p_pred = h_pred / (m_p * c_SI);
+
       // fill core table
       const coreBody = document.querySelector('#core tbody');
       coreBody.innerHTML = `
@@ -270,6 +311,35 @@
           <td>m³·kg⁻¹·s⁻²</td>
           <td></td>
           <td></td>
+        </tr>
+      `;
+
+      // fill planck/compton table
+      const planckBody = document.querySelector('#planck tbody');
+      planckBody.innerHTML = `
+        <tr>
+          <td>h (pred)</td>
+          <td>Planck’s constant from Swarm geometry</td>
+          <td>${toSci(h_pred)}</td>
+          <td>J·s</td>
+          <td>${h_SI.toExponential(8)}</td>
+          <td>${pctDiff(h_pred, h_SI)}</td>
+        </tr>
+        <tr>
+          <td>λₑ (pred)</td>
+          <td>Electron Compton wavelength (from h_pred)</td>
+          <td>${toSci(lambda_e_pred)}</td>
+          <td>m</td>
+          <td>${(h_SI/(m_e*c_SI)).toExponential(8)}</td>
+          <td>${pctDiff(lambda_e_pred, h_SI/(m_e*c_SI))}</td>
+        </tr>
+        <tr>
+          <td>λₚ (pred)</td>
+          <td>Proton Compton wavelength (from h_pred)</td>
+          <td>${toSci(lambda_p_pred)}</td>
+          <td>m</td>
+          <td>${(h_SI/(m_p*c_SI)).toExponential(8)}</td>
+          <td>${pctDiff(lambda_p_pred, h_SI/(m_p*c_SI))}</td>
         </tr>
       `;
 
