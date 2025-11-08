@@ -141,110 +141,110 @@
   </main>
 
   <script>
-    // Physical constants (CODATA-like)
-    const c_SI   = 299792458;                  // m/s
-    const h_SI   = 6.62607015e-34;             // J s
-    const hbar   = h_SI / (2*Math.PI);         // J s
-    const e_SI   = 1.602176634e-19;            // C
-    const eps0_SI = 8.8541878128e-12;          // F/m
-    const mu0_SI  = 1.25663706212e-6;          // H/m
-    const alpha_SI = 7.2973525693e-3;          // fine-structure
+  // Physical constants (from your Constants sheet)
+  const c_SI    = 299792458;                  // m/s
+  const h_SI    = 6.62607015e-34;             // J·s
+  const hbar    = h_SI / (2*Math.PI);         // J·s
+  const e_SI    = 1.602176634e-19;            // C
+  const eps0_SI = 8.8541878128e-12;           // F/m
+  const mu0_SI  = 1.2566370621e-6;            // H/m
+  const alpha_SI = 0.0072973525693;           // dimensionless
 
-    function pctDiff(pred, ref){
-      if (!ref || ref === 0) return "";
-      return ((pred - ref)/ref*100).toFixed(5);
-    }
+  function pctDiff(pred, ref){
+    if (!ref || ref === 0) return "";
+    return ((pred - ref)/ref*100).toFixed(5);
+  }
 
-    function toSci(x){
-      if (!isFinite(x)) return "";
-      return x.toExponential(8);
-    }
+  function toSci(x){
+    if (!isFinite(x)) return "";
+    return x.toExponential(8);
+  }
 
-    function runCalc(){
-      const lambda = parseFloat(document.getElementById('lambda').value);
-      const kappa  = parseFloat(document.getElementById('kappa').value);
-      const N      = parseFloat(document.getElementById('N').value);
-      const phi    = parseFloat(document.getElementById('phi').value);
+  function runCalc(){
+    const lambda = parseFloat(document.getElementById('lambda').value);
+    const kappa  = parseFloat(document.getElementById('kappa').value);
+    const N      = parseFloat(document.getElementById('N').value);
+    const phi    = parseFloat(document.getElementById('phi').value);
 
-      // 1) τ  = κ λ / c
-      const tau = kappa * lambda / c_SI;
+    // 1) τ = κ λ / c
+    const tau = kappa * lambda / c_SI;
 
-      // 2) ΔI = ħ / (π λ² τ)
-      const deltaI = hbar / (Math.PI * lambda * lambda * tau);
+    // 2) ΔI = ħ / (π λ² τ)
+    const deltaI = hbar / (Math.PI * lambda * lambda * tau);
 
-      // 3) ξ_base = κ / (2 √(π N))
-      const xi_base = kappa / (2 * Math.sqrt(Math.PI * N));
+    // 3) ξ_base = κ / (2 √(π N))
+    const xi_base = kappa / (2 * Math.sqrt(Math.PI * N));
 
-      // 4) ξ_geom = ξ_base * Φ
-      const xi_geom = xi_base * phi;
+    // 4) ξ_geom = ξ_base · Φ
+    const xi_geom = xi_base * phi;
 
-      // 5) α_pred = (ξ_geom)² / κ²
-      const alpha_pred = (xi_geom*xi_geom) / (kappa*kappa);
+    // 5) α_pred = (ξ_geom² / 4) · κ²   ← this is the correction
+    const alpha_pred = (xi_geom*xi_geom / 4) * (kappa*kappa);
 
-      // 6) ε0_pred = e² /(4 π α_pred ħ c)
-      const eps0_pred = (e_SI*e_SI) / (4*Math.PI*alpha_pred*hbar*c_SI);
+    // 6) ε0_pred = e² /(4 π α_pred ħ c)
+    const eps0_pred = (e_SI*e_SI) / (4*Math.PI*alpha_pred*hbar*c_SI);
 
-      // 7) μ0_pred = 1/(ε0_pred c²)
-      const mu0_pred = 1/(eps0_pred * c_SI * c_SI);
+    // 7) μ0_pred = 1/(ε0_pred c²)
+    const mu0_pred = 1/(eps0_pred * c_SI * c_SI);
 
-      // 8) Θ_geom_base = κ³ α_pred¹¹ /(4 π N Φ)
-      const theta_geom = (Math.pow(kappa,3) * Math.pow(alpha_pred,11)) / (4*Math.PI*N*phi);
+    // 8) Θ_geom_base = κ³ α_pred¹¹ /(4 π N Φ)
+    const theta_geom = (Math.pow(kappa,3) * Math.pow(alpha_pred,11)) / (4*Math.PI*N*phi);
 
-      const tbody = document.querySelector('#results tbody');
-      tbody.innerHTML = `
-        <tr>
-          <td>τ</td>
-          <td>Coherence time constant</td>
-          <td>${toSci(tau)}</td>
-          <td>s</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>ΔI</td>
-          <td>Coherence membrane tension</td>
-          <td>${toSci(deltaI)}</td>
-          <td>J·m⁻²</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>α</td>
-          <td>Fine-structure (pred)</td>
-          <td>${toSci(alpha_pred)}</td>
-          <td>dimensionless</td>
-          <td>${alpha_SI.toExponential(8)}</td>
-          <td>${pctDiff(alpha_pred, alpha_SI)}</td>
-        </tr>
-        <tr>
-          <td>ε₀</td>
-          <td>Vacuum permittivity (pred)</td>
-          <td>${toSci(eps0_pred)}</td>
-          <td>F·m⁻¹</td>
-          <td>${eps0_SI.toExponential(8)}</td>
-          <td>${pctDiff(eps0_pred, eps0_SI)}</td>
-        </tr>
-        <tr>
-          <td>μ₀</td>
-          <td>Vacuum permeability (pred)</td>
-          <td>${toSci(mu0_pred)}</td>
-          <td>H·m⁻¹</td>
-          <td>${mu0_SI.toExponential(8)}</td>
-          <td>${pctDiff(mu0_pred, mu0_SI)}</td>
-        </tr>
-        <tr>
-          <td>Θ_geom_base</td>
-          <td>Geometric closure term (base)</td>
-          <td>${toSci(theta_geom)}</td>
-          <td>m³·kg⁻¹·s⁻² (as per sheet)</td>
-          <td></td>
-          <td></td>
-        </tr>
-      `;
-    }
+    const tbody = document.querySelector('#results tbody');
+    tbody.innerHTML = `
+      <tr>
+        <td>τ</td>
+        <td>Coherence time constant</td>
+        <td>${toSci(tau)}</td>
+        <td>s</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>ΔI</td>
+        <td>Coherence membrane tension</td>
+        <td>${toSci(deltaI)}</td>
+        <td>J·m⁻²</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>α</td>
+        <td>Fine-structure (pred)</td>
+        <td>${toSci(alpha_pred)}</td>
+        <td>dimensionless</td>
+        <td>${alpha_SI.toExponential(8)}</td>
+        <td>${pctDiff(alpha_pred, alpha_SI)}</td>
+      </tr>
+      <tr>
+        <td>ε₀</td>
+        <td>Vacuum permittivity (pred)</td>
+        <td>${toSci(eps0_pred)}</td>
+        <td>F·m⁻¹</td>
+        <td>${eps0_SI.toExponential(8)}</td>
+        <td>${pctDiff(eps0_pred, eps0_SI)}</td>
+      </tr>
+      <tr>
+        <td>μ₀</td>
+        <td>Vacuum permeability (pred)</td>
+        <td>${toSci(mu0_pred)}</td>
+        <td>H·m⁻¹</td>
+        <td>${mu0_SI.toExponential(8)}</td>
+        <td>${pctDiff(mu0_pred, mu0_SI)}</td>
+      </tr>
+      <tr>
+        <td>Θ_geom_base</td>
+        <td>Geometric closure term (base)</td>
+        <td>${toSci(theta_geom)}</td>
+        <td>m³·kg⁻¹·s⁻²</td>
+        <td></td>
+        <td></td>
+      </tr>
+    `;
+  }
 
-    // run once on load
-    runCalc();
-  </script>
+  // run once on load
+  runCalc();
+</script>
 </body>
 </html>
