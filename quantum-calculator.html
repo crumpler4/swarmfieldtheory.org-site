@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Swarm Field Theory Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --ink:#e6eef8;
+      --muted:#95a3b8;
+      --rule:#1b2942;
+      --accent:#7ccfff;
+      --panel:#101a2b;
+      --radius:10px;
+      --wrap:960px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.5;
+      padding-bottom:3rem;
+    }
+    header{
+      border-bottom:1px solid var(--rule);
+      background:rgba(15,23,36,.6);
+      backdrop-filter:blur(4px);
+    }
+    .topbar{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:1rem 1rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    h1{font-size:1.35rem;margin:0}
+    main{max-width:var(--wrap);margin:2rem auto;padding:0 1rem}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1rem;
+      margin-bottom:1.5rem;
+    }
+    label{
+      display:block;
+      font-weight:600;
+      margin-bottom:.25rem;
+    }
+    input{
+      width:100%;
+      background:#0b111c;
+      border:1px solid #1f2b42;
+      border-radius:6px;
+      padding:.4rem .5rem;
+      color:var(--ink);
+    }
+    small{color:var(--muted);display:block;margin-top:.25rem;font-size:.7rem}
+    button{
+      background:var(--accent);
+      border:none;
+      padding:.55rem 1.2rem;
+      border-radius:6px;
+      font-weight:600;
+      cursor:pointer;
+      color:#001323;
+      margin-bottom:1rem;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:10px;
+    }
+    th,td{
+      padding:.55rem .5rem;
+      border-bottom:1px solid rgba(255,255,255,.03);
+      text-align:left;
+      font-size:.8rem;
+    }
+    th{background:rgba(16,26,43,.5);font-size:.7rem;text-transform:uppercase;letter-spacing:.04em}
+    tr:nth-child(even){background:rgba(255,255,255,.01)}
+    code{background:rgba(0,0,0,.2);padding:.1rem .35rem;border-radius:4px}
+    .tag{background:rgba(124,207,255,.15);color:var(--accent);padding:.2rem .45rem;border-radius:999px;font-size:.65rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <h1>Swarm Field Theory &middot; Lattice Constant Calculator</h1>
+      <span class="tag">demo from spreadsheet</span>
+    </div>
+  </header>
+  <main>
+    <p>Enter the geometric inputs from the <strong>Inputs</strong> sheet (λ, κ, N, Φ). The script will reproduce the core derivations from your <em>Derivations</em> and <em>Outputs_Core</em> tabs.</p>
+
+    <div class="grid">
+      <div>
+        <label for="lambda">λ (coherence aperture) [m]</label>
+        <input id="lambda" type="number" step="any" value="8.2e-10">
+        <small>From Inputs!C2 (≈ 8.20×10⁻¹⁰ m)</small>
+      </div>
+      <div>
+        <label for="kappa">κ (helical projection)</label>
+        <input id="kappa" type="number" step="any" value="0.92203">
+        <small>From Inputs!C3 (Arthur’s Constant)</small>
+      </div>
+      <div>
+        <label for="N">N (rotational count)</label>
+        <input id="N" type="number" step="any" value="11.80388">
+        <small>From Inputs!C4</small>
+      </div>
+      <div>
+        <label for="phi">Φ (packing factor)</label>
+        <input id="phi" type="number" step="any" value="2.447640847537652">
+        <small>From Inputs!C5</small>
+      </div>
+    </div>
+
+    <button onclick="runCalc()">Compute</button>
+
+    <h2>Derived quantities</h2>
+    <table id="results">
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Name</th>
+          <th>Predicted value</th>
+          <th>Units</th>
+          <th>Reference (CODATA)</th>
+          <th>Δ %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- filled by JS -->
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    // Physical constants (CODATA-like)
+    const c_SI   = 299792458;                  // m/s
+    const h_SI   = 6.62607015e-34;             // J s
+    const hbar   = h_SI / (2*Math.PI);         // J s
+    const e_SI   = 1.602176634e-19;            // C
+    const eps0_SI = 8.8541878128e-12;          // F/m
+    const mu0_SI  = 1.25663706212e-6;          // H/m
+    const alpha_SI = 7.2973525693e-3;          // fine-structure
+
+    function pctDiff(pred, ref){
+      if (!ref || ref === 0) return "";
+      return ((pred - ref)/ref*100).toFixed(5);
+    }
+
+    function toSci(x){
+      if (!isFinite(x)) return "";
+      return x.toExponential(8);
+    }
+
+    function runCalc(){
+      const lambda = parseFloat(document.getElementById('lambda').value);
+      const kappa  = parseFloat(document.getElementById('kappa').value);
+      const N      = parseFloat(document.getElementById('N').value);
+      const phi    = parseFloat(document.getElementById('phi').value);
+
+      // 1) τ  = κ λ / c
+      const tau = kappa * lambda / c_SI;
+
+      // 2) ΔI = ħ / (π λ² τ)
+      const deltaI = hbar / (Math.PI * lambda * lambda * tau);
+
+      // 3) ξ_base = κ / (2 √(π N))
+      const xi_base = kappa / (2 * Math.sqrt(Math.PI * N));
+
+      // 4) ξ_geom = ξ_base * Φ
+      const xi_geom = xi_base * phi;
+
+      // 5) α_pred = (ξ_geom)² / κ²
+      const alpha_pred = (xi_geom*xi_geom) / (kappa*kappa);
+
+      // 6) ε0_pred = e² /(4 π α_pred ħ c)
+      const eps0_pred = (e_SI*e_SI) / (4*Math.PI*alpha_pred*hbar*c_SI);
+
+      // 7) μ0_pred = 1/(ε0_pred c²)
+      const mu0_pred = 1/(eps0_pred * c_SI * c_SI);
+
+      // 8) Θ_geom_base = κ³ α_pred¹¹ /(4 π N Φ)
+      const theta_geom = (Math.pow(kappa,3) * Math.pow(alpha_pred,11)) / (4*Math.PI*N*phi);
+
+      const tbody = document.querySelector('#results tbody');
+      tbody.innerHTML = `
+        <tr>
+          <td>τ</td>
+          <td>Coherence time constant</td>
+          <td>${toSci(tau)}</td>
+          <td>s</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>ΔI</td>
+          <td>Coherence membrane tension</td>
+          <td>${toSci(deltaI)}</td>
+          <td>J·m⁻²</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>α</td>
+          <td>Fine-structure (pred)</td>
+          <td>${toSci(alpha_pred)}</td>
+          <td>dimensionless</td>
+          <td>${alpha_SI.toExponential(8)}</td>
+          <td>${pctDiff(alpha_pred, alpha_SI)}</td>
+        </tr>
+        <tr>
+          <td>ε₀</td>
+          <td>Vacuum permittivity (pred)</td>
+          <td>${toSci(eps0_pred)}</td>
+          <td>F·m⁻¹</td>
+          <td>${eps0_SI.toExponential(8)}</td>
+          <td>${pctDiff(eps0_pred, eps0_SI)}</td>
+        </tr>
+        <tr>
+          <td>μ₀</td>
+          <td>Vacuum permeability (pred)</td>
+          <td>${toSci(mu0_pred)}</td>
+          <td>H·m⁻¹</td>
+          <td>${mu0_SI.toExponential(8)}</td>
+          <td>${pctDiff(mu0_pred, mu0_SI)}</td>
+        </tr>
+        <tr>
+          <td>Θ_geom_base</td>
+          <td>Geometric closure term (base)</td>
+          <td>${toSci(theta_geom)}</td>
+          <td>m³·kg⁻¹·s⁻² (as per sheet)</td>
+          <td></td>
+          <td></td>
+        </tr>
+      `;
+    }
+
+    // run once on load
+    runCalc();
+  </script>
+</body>
+</html>
