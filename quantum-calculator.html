@@ -105,8 +105,8 @@
   </header>
   <main>
     <nav>
-        <a href="index.html">← Back to Home</a>
-      </nav>
+      <a href="index.html">← Back to Home</a>
+    </nav>
     <p>This page reproduces the logic of the Excel workbook: Inputs → Derivations → Planck/Compton → Route B closure. Change λ, κ, N, Φ or the closure factor C to see how constants and G move.</p>
 
     <div class="grid">
@@ -187,7 +187,11 @@
     <div class="panel">
       <h3 style="margin-top:0">Downloads & references</h3>
       <p>This calculator mirrors the spreadsheet published on Zenodo.</p>
-      <p><strong>Current record:</strong> <a href="https://doi.org/10.5281/zenodo.17561178">https://doi.org/10.5281/zenodo.17561178</a></p>
+      <p><strong>Current record:</strong>
+        <a href="https://doi.org/10.5281/zenodo.17561178" target="_blank" rel="noopener">
+          https://doi.org/10.5281/zenodo.17561178
+        </a>
+      </p>
       <p><small>© 2025 J. Paul Crumpler, PE — Swarm Field Theory Project.</small></p>
     </div>
   </main>
@@ -231,40 +235,36 @@
       // 3) ξ_base = κ / (2 √(π N))
       const xi_base = kappa / (2 * Math.sqrt(Math.PI * N));
 
-      // 4) ξ_geom = ξ_base * Φ
+      // 4) ξ_geom = xi_base * Φ
       const xi_geom = xi_base * phi;
 
-      // 5) α_pred = (ξ_geom² / 4) * κ²   ← matches your Derivations sheet
+      // 5) α_pred = (ξ_geom² / 4) * κ²
       const alpha_pred = (xi_geom*xi_geom / 4) * (kappa*kappa);
 
       // 6) ε0_pred = e² /(4 π α_pred ħ c)
       const eps0_pred = (e_SI*e_SI) / (4*Math.PI*alpha_pred*hbar*c_SI);
 
-      // 7) μ0_pred = 1/(ε0_pred c²)
+      // 7) μ0_pred = 1/(eps0_pred c²)
       const mu0_pred = 1/(eps0_pred * c_SI * c_SI);
 
       // 8) Θ_geom_base = κ³ α_pred¹¹ /(4 π N Φ)
       const theta_geom_base = (Math.pow(kappa,3) * Math.pow(alpha_pred,11)) / (4*Math.PI * N * phi);
 
-      // --- Route B closure (from Closure_RouteB) ---
-      // G_base (C = 1): = π² (c⁵/ħ) (τ Θ_geom_base)²
+      // G_base
       const G_base = Math.PI*Math.PI * Math.pow(c_SI,5)/hbar * Math.pow(tau * theta_geom_base, 2);
 
-      // Θ_geom (corrected) = C * Θ_geom_base
+      // corrected
       const theta_geom_corr = Ccorr * theta_geom_base;
-
-      // G_corrected = π² (c⁵/ħ) (τ Θ_geom_corr)²
       const G_corr = Math.PI*Math.PI * Math.pow(c_SI,5)/hbar * Math.pow(tau * theta_geom_corr, 2);
 
-      // --- Swarm-derived Planck constant (from ΔI, λ, τ) ---
-      // From: h = 2 π² ΔI λ² τ
+      // Swarm-derived Planck constant
       const h_pred = 2 * Math.PI * Math.PI * deltaI * lambda * lambda * tau;
 
-      // --- Compton wavelengths using predicted h ---
+      // Compton
       const lambda_e_pred = h_pred / (m_e * c_SI);
       const lambda_p_pred = h_pred / (m_p * c_SI);
 
-      // fill core table
+      // core table
       const coreBody = document.querySelector('#core tbody');
       coreBody.innerHTML = `
         <tr>
@@ -317,7 +317,7 @@
         </tr>
       `;
 
-      // fill planck/compton table
+      // planck/compton
       const planckBody = document.querySelector('#planck tbody');
       planckBody.innerHTML = `
         <tr>
@@ -346,7 +346,7 @@
         </tr>
       `;
 
-      // fill closure table
+      // closure
       const closeBody = document.querySelector('#closure tbody');
       closeBody.innerHTML = `
         <tr>
