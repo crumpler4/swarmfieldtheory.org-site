@@ -735,52 +735,60 @@
         </tr>
       `;
 
-      // Orbits
-      const orbitBody = document.querySelector('#orbit tbody');
+   // Orbits
+const orbitBody = document.querySelector('#orbit tbody');
 
-      // Earth about Sun
-      const T_earth_sun_pred = 2*Math.PI * Math.sqrt(Math.pow(AU,3)/(G_corr * M_SUN));
-      const T_earth_sun_obs  = 31558149.7635456;
-      // Moon about Earth
-      const T_moon_pred = 2*Math.PI * Math.sqrt(Math.pow(MOON_DIST,3)/(G_corr * M_EARTH));
-      const T_moon_obs  = 2360591.5104;
-      // LEO 400 km
-      const v_LEO_pred = Math.sqrt(G_corr * M_EARTH / LEO_R);
-      const v_LEO_obs  = 7670;
-      // Escape
-      const v_esc_pred = Math.sqrt(2 * G_corr * M_EARTH / ESC_R);
-      const v_esc_obs  = 11186;
+// ---- Kepler systems use total mass (primary + secondary) ----
 
-      orbitBody.innerHTML = `
-        <tr>
-          <td>Earth ↺ Sun — Kepler period T</td>
-          <td>${AU.toLocaleString()}</td>
-          <td>${T_earth_sun_pred.toPrecision(11)} s</td>
-          <td>${T_earth_sun_obs} s</td>
-          <td>${pctDiff(T_earth_sun_pred, T_earth_sun_obs)}</td>
-        </tr>
-        <tr>
-          <td>Moon ↺ Earth — Kepler period T</td>
-          <td>${MOON_DIST.toLocaleString()}</td>
-          <td>${T_moon_pred.toPrecision(11)} s</td>
-          <td>${T_moon_obs} s</td>
-          <td>${pctDiff(T_moon_pred, T_moon_obs)}</td>
-        </tr>
-        <tr>
-          <td>LEO @ 400 km — circular speed v</td>
-          <td>${LEO_R.toLocaleString()}</td>
-          <td>${v_LEO_pred.toPrecision(7)} m/s</td>
-          <td>${v_LEO_obs} m/s</td>
-          <td>${pctDiff(v_LEO_pred, v_LEO_obs)}</td>
-        </tr>
-        <tr>
-          <td>Earth surface — escape speed vₑₛc</td>
-          <td>${ESC_R.toLocaleString()}</td>
-          <td>${v_esc_pred.toPrecision(7)} m/s</td>
-          <td>${v_esc_obs} m/s</td>
-          <td>${pctDiff(v_esc_pred, v_esc_obs)}</td>
-        </tr>
-      `;
+// Earth about Sun
+const mu_earth_sun   = G_corr * (M_SUN + M_EARTH);
+const T_earth_sun_pred = 2 * Math.PI * Math.sqrt(Math.pow(AU, 3) / mu_earth_sun);
+// use the same observed/REFERENCE value you used in the spreadsheet:
+const T_earth_sun_obs  = 31558149.7635456;  // s
+
+// Moon about Earth
+const mu_moon_earth  = G_corr * (M_EARTH + M_MOON);
+const T_moon_pred    = 2 * Math.PI * Math.sqrt(Math.pow(MOON_DIST, 3) / mu_moon_earth);
+const T_moon_obs     = 2360591.5104;        // s
+
+// LEO 400 km (satellite mass negligible)
+const v_LEO_pred = Math.sqrt(G_corr * M_EARTH / LEO_R);
+const v_LEO_obs  = 7670;
+
+// Escape from Earth surface
+const v_esc_pred = Math.sqrt(2 * G_corr * M_EARTH / ESC_R);
+const v_esc_obs  = 11186;
+
+orbitBody.innerHTML = `
+  <tr>
+    <td>Earth ↺ Sun — Kepler period T</td>
+    <td>${AU.toLocaleString()}</td>
+    <td>${T_earth_sun_pred.toPrecision(11)} s</td>
+    <td>${T_earth_sun_obs} s</td>
+    <td>${pctDiff(T_earth_sun_pred, T_earth_sun_obs)}</td>
+  </tr>
+  <tr>
+    <td>Moon ↺ Earth — Kepler period T</td>
+    <td>${MOON_DIST.toLocaleString()}</td>
+    <td>${T_moon_pred.toPrecision(11)} s</td>
+    <td>${T_moon_obs} s</td>
+    <td>${pctDiff(T_moon_pred, T_moon_obs)}</td>
+  </tr>
+  <tr>
+    <td>LEO @ 400 km — circular speed v</td>
+    <td>${LEO_R.toLocaleString()}</td>
+    <td>${v_LEO_pred.toPrecision(7)} m/s</td>
+    <td>${v_LEO_obs} m/s</td>
+    <td>${pctDiff(v_LEO_pred, v_LEO_obs)}</td>
+  </tr>
+  <tr>
+    <td>Earth surface — escape speed v_esc</td>
+    <td>${ESC_R.toLocaleString()}</td>
+    <td>${v_esc_pred.toPrecision(7)} m/s</td>
+    <td>${v_esc_obs} m/s</td>
+    <td>${pctDiff(v_esc_pred, v_esc_obs)}</td>
+  </tr>
+`;
     }
 
     // initial run
