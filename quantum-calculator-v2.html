@@ -742,7 +742,7 @@
       const T_earth_sun_pred = 2*Math.PI * Math.sqrt(Math.pow(AU,3)/(G_corr * M_SUN));
       const T_earth_sun_obs  = 31558149.7635456;
       // Moon about Earth
-      const T_moon_pred = 2*Math.PI * Math.sqrt(Math.pow(MOON_DIST,3)/(G_corr * M_EARTH));
+      const T_moon_pred = 2 * Math.PI * Math.sqrt(Math.pow(MOON_DIST, 3) / (G_corr * (M_EARTH + MOON_MASS)));
       const T_moon_obs  = 2360591.5104;
       // LEO 400 km
       const v_LEO_pred = Math.sqrt(G_corr * M_EARTH / LEO_R);
