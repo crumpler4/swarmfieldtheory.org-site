@@ -280,10 +280,10 @@
 
   <script>
     // SI / reference constants (as in your Constants sheet)
-    const c_SI     = 299792458;                  // m/s
-    const h_SI     = 6.62607015e-34;             // J·s
+    const c_SI     = 299792458;                  // m/s (exact)
+    const h_SI     = 6.62607015e-34;             // J·s (exact definition)
     const hbar     = h_SI / (2*Math.PI);         // J·s
-    const e_SI     = 1.602176634e-19;            // C
+    const e_SI     = 1.602176634e-19;            // C (exact definition)
     const eps0_SI  = 8.8541878128e-12;           // F/m
     const mu0_SI   = 1.25663706212e-6;           // H/m
     const alpha_SI = 0.0072973525693;            // —
@@ -297,7 +297,7 @@
     const R_EARTH  = 6_371_000;
     const g_obs_earth = 9.80665;
 
-    const M_SUN    = 1.9884699999999998e30;
+    const M_SUN    = 1.98847e30;
     const R_SUN    = 696_340_000;
     const g_obs_sun = 274;
 
@@ -308,21 +308,28 @@
     const LEO_R = R_EARTH + 400_000;             // 400 km
     const ESC_R = R_EARTH;
 
+    // helper: % difference with high precision
     function pctDiff(pred, ref){
       if (!ref || ref === 0) return "";
-      return ((pred - ref)/ref*100).toFixed(6);
+      const val = (pred - ref) / ref * 100;
+      if (!isFinite(val)) return "";
+      // 15 significant digits – near full double precision
+      return val.toPrecision(15);
     }
+
+    // helper: scientific notation with full JS precision
     function toSci(x){
       if (!isFinite(x)) return "";
-      return x.toExponential(8);
+      // no argument -> full precision for the underlying double
+      return x.toExponential();
     }
 
     function runCalc(){
-      const lambda = parseFloat(document.getElementById('lambda').value);
-      const kappa  = parseFloat(document.getElementById('kappa').value);
-      const N      = parseFloat(document.getElementById('N').value);
-      const phi    = parseFloat(document.getElementById('phi').value);
-      const Ccorr  = parseFloat(document.getElementById('Ccorr').value);
+      const lambda = Number(document.getElementById('lambda').value);
+      const kappa  = Number(document.getElementById('kappa').value);
+      const N      = Number(document.getElementById('N').value);
+      const phi    = Number(document.getElementById('phi').value);
+      const Ccorr  = Number(document.getElementById('Ccorr').value);
 
       // 1) τ = κ λ / c
       const tau = kappa * lambda / c_SI;
@@ -386,7 +393,7 @@
           <td>Fine-structure (Swarm)</td>
           <td>${toSci(alpha_pred)}</td>
           <td>dimensionless</td>
-          <td>${alpha_SI.toExponential(8)}</td>
+          <td>${alpha_SI.toExponential()}</td>
           <td>${pctDiff(alpha_pred, alpha_SI)}</td>
         </tr>
         <tr>
@@ -394,7 +401,7 @@
           <td>Vacuum permittivity</td>
           <td>${toSci(eps0_pred)}</td>
           <td>F·m⁻¹</td>
-          <td>${eps0_SI.toExponential(8)}</td>
+          <td>${eps0_SI.toExponential()}</td>
           <td>${pctDiff(eps0_pred, eps0_SI)}</td>
         </tr>
         <tr>
@@ -402,7 +409,7 @@
           <td>Vacuum permeability</td>
           <td>${toSci(mu0_pred)}</td>
           <td>H·m⁻¹</td>
-          <td>${mu0_SI.toExponential(8)}</td>
+          <td>${mu0_SI.toExponential()}</td>
           <td>${pctDiff(mu0_pred, mu0_SI)}</td>
         </tr>
         <tr>
@@ -417,13 +424,15 @@
 
       /* --------- PLANCK / COMPTON TABLE ---------- */
       const planckBody = document.querySelector('#planck tbody');
+      const lambda_e_ref = h_SI/(m_e*c_SI);
+      const lambda_p_ref = h_SI/(m_p*c_SI);
       planckBody.innerHTML = `
         <tr>
           <td>h (pred)</td>
           <td>Planck’s constant from Swarm geometry</td>
           <td>${toSci(h_pred)}</td>
           <td>J·s</td>
-          <td>${h_SI.toExponential(8)}</td>
+          <td>${h_SI.toExponential()}</td>
           <td>${pctDiff(h_pred, h_SI)}</td>
         </tr>
         <tr>
@@ -431,16 +440,16 @@
           <td>Electron Compton wavelength (from h_pred)</td>
           <td>${toSci(lambda_e_pred)}</td>
           <td>m</td>
-          <td>${(h_SI/(m_e*c_SI)).toExponential(8)}</td>
-          <td>${pctDiff(lambda_e_pred, h_SI/(m_e*c_SI))}</td>
+          <td>${lambda_e_ref.toExponential()}</td>
+          <td>${pctDiff(lambda_e_pred, lambda_e_ref)}</td>
         </tr>
         <tr>
           <td>λₚ (pred)</td>
           <td>Proton Compton wavelength (from h_pred)</td>
           <td>${toSci(lambda_p_pred)}</td>
           <td>m</td>
-          <td>${(h_SI/(m_p*c_SI)).toExponential(8)}</td>
-          <td>${pctDiff(lambda_p_pred, h_SI/(m_p*c_SI))}</td>
+          <td>${lambda_p_ref.toExponential()}</td>
+          <td>${pctDiff(lambda_p_pred, lambda_p_ref)}</td>
         </tr>
       `;
 
@@ -452,7 +461,7 @@
           <td>Gravitational constant (Route B, C=1)</td>
           <td>${toSci(G_base)}</td>
           <td>m³·kg⁻¹·s⁻²</td>
-          <td>${G_SI.toExponential(8)}</td>
+          <td>${G_SI.toExponential()}</td>
           <td>${pctDiff(G_base, G_SI)}</td>
         </tr>
         <tr>
@@ -476,7 +485,7 @@
           <td>Predicted G with C applied</td>
           <td>${toSci(G_corr)}</td>
           <td>m³·kg⁻¹·s⁻²</td>
-          <td>${G_SI.toExponential(8)}</td>
+          <td>${G_SI.toExponential()}</td>
           <td>${pctDiff(G_corr, G_SI)}</td>
         </tr>
       `;
@@ -516,7 +525,7 @@
           <td>Coulomb’s constant</td>
           <td>${toSci(k_e)}</td>
           <td>N·m²·C⁻²</td>
-          <td>${(1/(4*Math.PI*eps0_SI)).toExponential(8)}</td>
+          <td>${(1/(4*Math.PI*eps0_SI)).toExponential()}</td>
           <td>${pctDiff(k_e, 1/(4*Math.PI*eps0_SI))}</td>
         </tr>
         <tr>
@@ -524,7 +533,7 @@
           <td>Vacuum impedance</td>
           <td>${toSci(Z0)}</td>
           <td>Ω</td>
-          <td>${(mu0_SI * c_SI).toExponential(8)}</td>
+          <td>${(mu0_SI * c_SI).toExponential()}</td>
           <td>${pctDiff(Z0, mu0_SI * c_SI)}</td>
         </tr>
         <tr>
@@ -532,7 +541,7 @@
           <td>Stefan–Boltzmann constant</td>
           <td>${toSci(sigma)}</td>
           <td>W·m⁻²·K⁻⁴</td>
-          <td>${(5.670374419e-8).toExponential(8)}</td>
+          <td>${(5.670374419e-8).toExponential()}</td>
           <td>${pctDiff(sigma, 5.670374419e-8)}</td>
         </tr>
         <tr>
@@ -540,7 +549,7 @@
           <td>Planck time</td>
           <td>${toSci(t_P)}</td>
           <td>s</td>
-          <td>${(5.391246e-44).toExponential(8)}</td>
+          <td>${(5.391246e-44).toExponential()}</td>
           <td>${pctDiff(t_P, 5.391246e-44)}</td>
         </tr>
         <tr>
@@ -548,7 +557,7 @@
           <td>Planck length</td>
           <td>${toSci(l_P)}</td>
           <td>m</td>
-          <td>${(1.616255e-35).toExponential(8)}</td>
+          <td>${(1.616255e-35).toExponential()}</td>
           <td>${pctDiff(l_P, 1.616255e-35)}</td>
         </tr>
         <tr>
@@ -556,7 +565,7 @@
           <td>Planck mass</td>
           <td>${toSci(m_P)}</td>
           <td>kg</td>
-          <td>${(2.176434e-8).toExponential(8)}</td>
+          <td>${(2.176434e-8).toExponential()}</td>
           <td>${pctDiff(m_P, 2.176434e-8)}</td>
         </tr>
         <tr>
@@ -564,7 +573,7 @@
           <td>Planck energy</td>
           <td>${toSci(E_P)}</td>
           <td>J</td>
-          <td>${(1.956082e9).toExponential(8)}</td>
+          <td>${(1.956082e9).toExponential()}</td>
           <td>${pctDiff(E_P, 1.956082e9)}</td>
         </tr>
         <tr>
@@ -572,7 +581,7 @@
           <td>Planck charge</td>
           <td>${toSci(q_P)}</td>
           <td>C</td>
-          <td>${(1.875546e-18).toExponential(8)}</td>
+          <td>${(1.875546e-18).toExponential()}</td>
           <td>${pctDiff(q_P, 1.875546e-18)}</td>
         </tr>
         <tr>
@@ -580,7 +589,7 @@
           <td>Bohr radius</td>
           <td>${toSci(a0)}</td>
           <td>m</td>
-          <td>${(5.29177210903e-11).toExponential(8)}</td>
+          <td>${(5.29177210903e-11).toExponential()}</td>
           <td>${pctDiff(a0, 5.29177210903e-11)}</td>
         </tr>
         <tr>
@@ -588,7 +597,7 @@
           <td>Classical electron radius</td>
           <td>${toSci(r_e)}</td>
           <td>m</td>
-          <td>${(2.8179403262e-15).toExponential(8)}</td>
+          <td>${(2.8179403262e-15).toExponential()}</td>
           <td>${pctDiff(r_e, 2.8179403262e-15)}</td>
         </tr>
         <tr>
@@ -596,15 +605,15 @@
           <td>Compton wavelength of electron</td>
           <td>${toSci(lambda_C_e)}</td>
           <td>m</td>
-          <td>${(h_SI/(m_e*c_SI)).toExponential(8)}</td>
-          <td>${pctDiff(lambda_C_e, h_SI/(m_e*c_SI))}</td>
+          <td>${lambda_e_ref.toExponential()}</td>
+          <td>${pctDiff(lambda_C_e, lambda_e_ref)}</td>
         </tr>
         <tr>
           <td>λ̄_C (e)</td>
           <td>Reduced Compton wavelength of electron</td>
           <td>${toSci(lambda_C_e_bar)}</td>
           <td>m</td>
-          <td>${(hbar/(m_e*c_SI)).toExponential(8)}</td>
+          <td>${(hbar/(m_e*c_SI)).toExponential()}</td>
           <td>${pctDiff(lambda_C_e_bar, hbar/(m_e*c_SI))}</td>
         </tr>
         <tr>
@@ -612,7 +621,7 @@
           <td>Rydberg constant</td>
           <td>${toSci(R_inf)}</td>
           <td>m⁻¹</td>
-          <td>${(1.0973731568160e7).toExponential(8)}</td>
+          <td>${(1.0973731568160e7).toExponential()}</td>
           <td>${pctDiff(R_inf, 1.0973731568160e7)}</td>
         </tr>
         <tr>
@@ -620,7 +629,7 @@
           <td>Hartree energy</td>
           <td>${toSci(E_h)}</td>
           <td>J</td>
-          <td>${(4.3597447222071e-18).toExponential(8)}</td>
+          <td>${(4.3597447222071e-18).toExponential()}</td>
           <td>${pctDiff(E_h, 4.3597447222071e-18)}</td>
         </tr>
         <tr>
@@ -628,7 +637,7 @@
           <td>Bohr magneton</td>
           <td>${toSci(mu_B)}</td>
           <td>J·T⁻¹</td>
-          <td>${(9.2740100783e-24).toExponential(8)}</td>
+          <td>${(9.2740100783e-24).toExponential()}</td>
           <td>${pctDiff(mu_B, 9.2740100783e-24)}</td>
         </tr>
         <tr>
@@ -636,7 +645,7 @@
           <td>Nuclear magneton</td>
           <td>${toSci(mu_N)}</td>
           <td>J·T⁻¹</td>
-          <td>${(5.0507837461e-27).toExponential(8)}</td>
+          <td>${(5.0507837461e-27).toExponential()}</td>
           <td>${pctDiff(mu_N, 5.0507837461e-27)}</td>
         </tr>
         <tr>
@@ -644,15 +653,15 @@
           <td>Compton wavelength of proton</td>
           <td>${toSci(lambda_C_p)}</td>
           <td>m</td>
-          <td>${(h_SI/(m_p*c_SI)).toExponential(8)}</td>
-          <td>${pctDiff(lambda_C_p, h_SI/(m_p*c_SI))}</td>
+          <td>${lambda_p_ref.toExponential()}</td>
+          <td>${pctDiff(lambda_C_p, lambda_p_ref)}</td>
         </tr>
         <tr>
           <td>λ̄_C (p)</td>
           <td>Reduced Compton wavelength of proton</td>
           <td>${toSci(lambda_C_p_bar)}</td>
           <td>m</td>
-          <td>${(hbar/(m_p*c_SI)).toExponential(8)}</td>
+          <td>${(hbar/(m_p*c_SI)).toExponential()}</td>
           <td>${pctDiff(lambda_C_p_bar, hbar/(m_p*c_SI))}</td>
         </tr>
         <tr>
@@ -676,7 +685,7 @@
           <td>Rydberg const. for hydrogen</td>
           <td>${toSci(R_H)}</td>
           <td>m⁻¹</td>
-          <td>${(1.096776e7).toExponential(8)}</td>
+          <td>${(1.096776e7).toExponential()}</td>
           <td>${pctDiff(R_H, 1.096776e7)}</td>
         </tr>
       `;
@@ -703,24 +712,29 @@
 
       // Surface gravity
       const gBody = document.querySelector('#gravity tbody');
+      const g_model_earth = G_corr * M_EARTH / (R_EARTH*R_EARTH);
+      const g_codata_earth = G_SI * M_EARTH / (R_EARTH*R_EARTH);
+      const g_model_sun = G_corr * M_SUN / (R_SUN*R_SUN);
+      const g_codata_sun = G_SI * M_SUN / (R_SUN*R_SUN);
+
       gBody.innerHTML = `
         <tr>
           <td>Earth</td>
           <td>${toSci(M_EARTH)}</td>
           <td>${R_EARTH.toLocaleString()}</td>
-          <td>${(G_corr * M_EARTH / (R_EARTH*R_EARTH)).toPrecision(10)}</td>
-          <td>${(G_SI   * M_EARTH / (R_EARTH*R_EARTH)).toPrecision(10)}</td>
+          <td>${g_model_earth.toPrecision(15)}</td>
+          <td>${g_codata_earth.toPrecision(15)}</td>
           <td>${g_obs_earth}</td>
-          <td>${pctDiff(G_corr * M_EARTH / (R_EARTH*R_EARTH), G_SI * M_EARTH / (R_EARTH*R_EARTH))}</td>
+          <td>${pctDiff(g_model_earth, g_codata_earth)}</td>
         </tr>
         <tr>
           <td>Sun</td>
           <td>${toSci(M_SUN)}</td>
           <td>${R_SUN.toLocaleString()}</td>
-          <td>${(G_corr * M_SUN / (R_SUN*R_SUN)).toPrecision(10)}</td>
-          <td>${(G_SI   * M_SUN / (R_SUN*R_SUN)).toPrecision(10)}</td>
+          <td>${g_model_sun.toPrecision(15)}</td>
+          <td>${g_codata_sun.toPrecision(15)}</td>
           <td>${g_obs_sun}</td>
-          <td>${pctDiff(G_corr * M_SUN / (R_SUN*R_SUN), G_SI * M_SUN / (R_SUN*R_SUN))}</td>
+          <td>${pctDiff(g_model_sun, g_codata_sun)}</td>
         </tr>
       `;
 
@@ -731,7 +745,7 @@
           <td>c_GW (model)</td>
           <td>${c_SI}</td>
           <td>${c_SI}</td>
-          <td>0.000000</td>
+          <td>0</td>
         </tr>
       `;
 
@@ -755,28 +769,28 @@
         <tr>
           <td>Earth ↺ Sun — Kepler period T</td>
           <td>${AU.toLocaleString()}</td>
-          <td>${T_earth_sun_pred.toPrecision(11)} s</td>
+          <td>${T_earth_sun_pred.toPrecision(15)} s</td>
           <td>${T_earth_sun_obs} s</td>
           <td>${pctDiff(T_earth_sun_pred, T_earth_sun_obs)}</td>
         </tr>
         <tr>
           <td>Moon ↺ Earth — Kepler period T</td>
           <td>${MOON_DIST.toLocaleString()}</td>
-          <td>${T_moon_pred.toPrecision(11)} s</td>
+          <td>${T_moon_pred.toPrecision(15)} s</td>
           <td>${T_moon_obs} s</td>
           <td>${pctDiff(T_moon_pred, T_moon_obs)}</td>
         </tr>
         <tr>
           <td>LEO @ 400 km — circular speed v</td>
           <td>${LEO_R.toLocaleString()}</td>
-          <td>${v_LEO_pred.toPrecision(7)} m/s</td>
+          <td>${v_LEO_pred.toPrecision(15)} m/s</td>
           <td>${v_LEO_obs} m/s</td>
           <td>${pctDiff(v_LEO_pred, v_LEO_obs)}</td>
         </tr>
         <tr>
           <td>Earth surface — escape speed vₑₛc</td>
           <td>${ESC_R.toLocaleString()}</td>
-          <td>${v_esc_pred.toPrecision(7)} m/s</td>
+          <td>${v_esc_pred.toPrecision(15)} m/s</td>
           <td>${v_esc_obs} m/s</td>
           <td>${pctDiff(v_esc_pred, v_esc_obs)}</td>
         </tr>
