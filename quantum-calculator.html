@@ -94,6 +94,7 @@
       margin-top:2rem;
     }
     a{color:var(--accent)}
+    h2{margin-top:2.5rem}
   </style>
 </head>
 <body>
@@ -107,8 +108,9 @@
     <nav>
       <a href="index.html">← Back to Home</a>
     </nav>
-    <p>This page reproduces the logic of the Excel workbook: Inputs → Derivations → Planck/Compton → Route B closure. Change λ, κ, N, Φ or the closure factor C to see how constants and G move.</p>
+    <p>This page reproduces the logic of the Excel workbook: Inputs → Derivations → Planck/Compton → Route B closure → Extended outputs → External predictions. Change λ, κ, N, Φ or the closure factor C to see how constants and G move.</p>
 
+    <!-- INPUTS -->
     <div class="grid">
       <div>
         <label for="lambda">λ (coherence aperture) [m]</label>
@@ -139,6 +141,7 @@
 
     <button onclick="runCalc()">Compute</button>
 
+    <!-- CORE -->
     <h2>Core derived quantities</h2>
     <table id="core">
       <thead>
@@ -154,6 +157,7 @@
       <tbody></tbody>
     </table>
 
+    <!-- PLANCK / COMPTON -->
     <h2>Planck / Compton zone</h2>
     <table id="planck">
       <thead>
@@ -169,6 +173,7 @@
       <tbody></tbody>
     </table>
 
+    <!-- CLOSURE -->
     <h2>Gravitational closure (Route B)</h2>
     <table id="closure">
       <thead>
@@ -184,6 +189,83 @@
       <tbody></tbody>
     </table>
 
+    <!-- EXTENDED OUTPUTS -->
+    <h2>Extended outputs (Planck, atomic, EM)</h2>
+    <table id="extended">
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Name</th>
+          <th>Predicted</th>
+          <th>Units</th>
+          <th>Reference</th>
+          <th>Δ %</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- EXTERNAL PREDICTIONS -->
+    <h2>External predictions</h2>
+
+    <h3>Schwarzschild radius: r<sub>s</sub> = 2 G M / c²</h3>
+    <table id="schwarzschild">
+      <thead>
+        <tr>
+          <th>Body</th>
+          <th>Mass [kg]</th>
+          <th>rₛ (G<sub>model</sub>) [m]</th>
+          <th>rₛ (G<sub>CODATA</sub>) [m]</th>
+          <th>Δ %</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3>Surface gravity: g = G M / R²</h3>
+    <table id="gravity">
+      <thead>
+        <tr>
+          <th>Body</th>
+          <th>Mass [kg]</th>
+          <th>Radius [m]</th>
+          <th>g (model) [m/s²]</th>
+          <th>g (CODATA) [m/s²]</th>
+          <th>g (observed) [m/s²]</th>
+          <th>Δ % vs CODATA</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3>Gravitational wave speed</h3>
+    <table id="gw">
+      <thead>
+        <tr>
+          <th>Quantity</th>
+          <th>Value [m/s]</th>
+          <th>Reference [m/s]</th>
+          <th>Δ %</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3>Orbital relations (Kepler & circular motion)</h3>
+    <table id="orbit">
+      <thead>
+        <tr>
+          <th>System</th>
+          <th>a / r [m]</th>
+          <th>Predicted</th>
+          <th>Observed / Ref</th>
+          <th>Δ %</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- FOOTER -->
     <div class="panel">
       <h3 style="margin-top:0">Downloads & references</h3>
       <p>This calculator mirrors the spreadsheet published on Zenodo.</p>
@@ -197,34 +279,57 @@
   </main>
 
   <script>
-    // Constants (mirroring your Constants sheet)
-    const c_SI     = 299792458;                  // m/s
-    const h_SI     = 6.62607015e-34;             // J·s
+    // SI / reference constants (as in your Constants sheet)
+    const c_SI     = 299792458;                  // m/s (exact)
+    const h_SI     = 6.62607015e-34;             // J·s (exact definition)
     const hbar     = h_SI / (2*Math.PI);         // J·s
-    const e_SI     = 1.602176634e-19;            // C
+    const e_SI     = 1.602176634e-19;            // C (exact definition)
     const eps0_SI  = 8.8541878128e-12;           // F/m
     const mu0_SI   = 1.25663706212e-6;           // H/m
-    const alpha_SI = 0.0072973525693;            // fine-structure const
-    const G_SI     = 6.6743e-11;                 // m^3 kg^-1 s^-2 (ref)
-    // masses from your Constants sheet
+    const alpha_SI = 0.0072973525693;            // —
+    const G_SI     = 6.6743e-11;                 // m^3 kg^-1 s^-2
     const m_e      = 9.1093837015e-31;           // kg
     const m_p      = 1.67262192369e-27;          // kg
+    const k_B      = 1.380649e-23;               // J/K
 
+    // astronomy numbers taken from your Predictions_External sheet
+    const M_EARTH  = 5.9722e24;
+    const R_EARTH  = 6_371_000;
+    const g_obs_earth = 9.80665;
+
+    const M_SUN    = 1.98847e30;
+    const R_SUN    = 696_340_000;
+    const g_obs_sun = 274;
+
+    // orbital inputs (same as sheet)
+    const AU = 149_597_870_700;                  // m
+    const MOON_DIST = 384_400_000;               // m
+    const MOON_MASS = 7.34767309e22;             // kg
+    const LEO_R = R_EARTH + 400_000;             // 400 km
+    const ESC_R = R_EARTH;
+
+    // helper: % difference with high precision
     function pctDiff(pred, ref){
       if (!ref || ref === 0) return "";
-      return ((pred - ref)/ref*100).toFixed(5);
+      const val = (pred - ref) / ref * 100;
+      if (!isFinite(val)) return "";
+      // 15 significant digits – near full double precision
+      return val.toPrecision(15);
     }
+
+    // helper: scientific notation with full JS precision
     function toSci(x){
       if (!isFinite(x)) return "";
-      return x.toExponential(8);
+      // no argument -> full precision for the underlying double
+      return x.toExponential();
     }
 
     function runCalc(){
-      const lambda = parseFloat(document.getElementById('lambda').value);
-      const kappa  = parseFloat(document.getElementById('kappa').value);
-      const N      = parseFloat(document.getElementById('N').value);
-      const phi    = parseFloat(document.getElementById('phi').value);
-      const Ccorr  = parseFloat(document.getElementById('Ccorr').value);
+      const lambda = Number(document.getElementById('lambda').value);
+      const kappa  = Number(document.getElementById('kappa').value);
+      const N      = Number(document.getElementById('N').value);
+      const phi    = Number(document.getElementById('phi').value);
+      const Ccorr  = Number(document.getElementById('Ccorr').value);
 
       // 1) τ = κ λ / c
       const tau = kappa * lambda / c_SI;
@@ -250,7 +355,7 @@
       // 8) Θ_geom_base = κ³ α_pred¹¹ /(4 π N Φ)
       const theta_geom_base = (Math.pow(kappa,3) * Math.pow(alpha_pred,11)) / (4*Math.PI * N * phi);
 
-      // G_base
+      // G_base from your formula
       const G_base = Math.PI*Math.PI * Math.pow(c_SI,5)/hbar * Math.pow(tau * theta_geom_base, 2);
 
       // corrected
@@ -264,7 +369,7 @@
       const lambda_e_pred = h_pred / (m_e * c_SI);
       const lambda_p_pred = h_pred / (m_p * c_SI);
 
-      // core table
+      /* --------- CORE TABLE ---------- */
       const coreBody = document.querySelector('#core tbody');
       coreBody.innerHTML = `
         <tr>
@@ -288,7 +393,7 @@
           <td>Fine-structure (Swarm)</td>
           <td>${toSci(alpha_pred)}</td>
           <td>dimensionless</td>
-          <td>${alpha_SI.toExponential(8)}</td>
+          <td>${alpha_SI.toExponential()}</td>
           <td>${pctDiff(alpha_pred, alpha_SI)}</td>
         </tr>
         <tr>
@@ -296,7 +401,7 @@
           <td>Vacuum permittivity</td>
           <td>${toSci(eps0_pred)}</td>
           <td>F·m⁻¹</td>
-          <td>${eps0_SI.toExponential(8)}</td>
+          <td>${eps0_SI.toExponential()}</td>
           <td>${pctDiff(eps0_pred, eps0_SI)}</td>
         </tr>
         <tr>
@@ -304,7 +409,7 @@
           <td>Vacuum permeability</td>
           <td>${toSci(mu0_pred)}</td>
           <td>H·m⁻¹</td>
-          <td>${mu0_SI.toExponential(8)}</td>
+          <td>${mu0_SI.toExponential()}</td>
           <td>${pctDiff(mu0_pred, mu0_SI)}</td>
         </tr>
         <tr>
@@ -317,15 +422,17 @@
         </tr>
       `;
 
-      // planck/compton
+      /* --------- PLANCK / COMPTON TABLE ---------- */
       const planckBody = document.querySelector('#planck tbody');
+      const lambda_e_ref = h_SI/(m_e*c_SI);
+      const lambda_p_ref = h_SI/(m_p*c_SI);
       planckBody.innerHTML = `
         <tr>
           <td>h (pred)</td>
           <td>Planck’s constant from Swarm geometry</td>
           <td>${toSci(h_pred)}</td>
           <td>J·s</td>
-          <td>${h_SI.toExponential(8)}</td>
+          <td>${h_SI.toExponential()}</td>
           <td>${pctDiff(h_pred, h_SI)}</td>
         </tr>
         <tr>
@@ -333,20 +440,20 @@
           <td>Electron Compton wavelength (from h_pred)</td>
           <td>${toSci(lambda_e_pred)}</td>
           <td>m</td>
-          <td>${(h_SI/(m_e*c_SI)).toExponential(8)}</td>
-          <td>${pctDiff(lambda_e_pred, h_SI/(m_e*c_SI))}</td>
+          <td>${lambda_e_ref.toExponential()}</td>
+          <td>${pctDiff(lambda_e_pred, lambda_e_ref)}</td>
         </tr>
         <tr>
           <td>λₚ (pred)</td>
           <td>Proton Compton wavelength (from h_pred)</td>
           <td>${toSci(lambda_p_pred)}</td>
           <td>m</td>
-          <td>${(h_SI/(m_p*c_SI)).toExponential(8)}</td>
-          <td>${pctDiff(lambda_p_pred, h_SI/(m_p*c_SI))}</td>
+          <td>${lambda_p_ref.toExponential()}</td>
+          <td>${pctDiff(lambda_p_pred, lambda_p_ref)}</td>
         </tr>
       `;
 
-      // closure
+      /* --------- CLOSURE TABLE ---------- */
       const closeBody = document.querySelector('#closure tbody');
       closeBody.innerHTML = `
         <tr>
@@ -354,7 +461,7 @@
           <td>Gravitational constant (Route B, C=1)</td>
           <td>${toSci(G_base)}</td>
           <td>m³·kg⁻¹·s⁻²</td>
-          <td>${G_SI.toExponential(8)}</td>
+          <td>${G_SI.toExponential()}</td>
           <td>${pctDiff(G_base, G_SI)}</td>
         </tr>
         <tr>
@@ -378,8 +485,325 @@
           <td>Predicted G with C applied</td>
           <td>${toSci(G_corr)}</td>
           <td>m³·kg⁻¹·s⁻²</td>
-          <td>${G_SI.toExponential(8)}</td>
+          <td>${G_SI.toExponential()}</td>
           <td>${pctDiff(G_corr, G_SI)}</td>
+        </tr>
+      `;
+
+      /* --------- EXTENDED OUTPUTS ---------- */
+      // Coulomb constant
+      const k_e = 1 / (4 * Math.PI * eps0_pred);
+      // free space impedance
+      const Z0 = mu0_pred * c_SI;
+      // Stefan–Boltzmann
+      const sigma = 2 * Math.pow(Math.PI,5) * Math.pow(k_B,4) / (15 * c_SI*c_SI * Math.pow(h_pred,3));
+      // Planck units
+      const t_P = Math.sqrt(hbar * G_corr / Math.pow(c_SI,5));
+      const l_P = Math.sqrt(hbar * G_corr / Math.pow(c_SI,3));
+      const m_P = Math.sqrt(hbar * c_SI / G_corr);
+      const E_P = m_P * c_SI * c_SI;
+      const q_P = Math.sqrt(4 * Math.PI * eps0_pred * hbar * c_SI);
+      // atomic
+      const a0 = 4 * Math.PI * eps0_pred * hbar * hbar / (m_e * e_SI * e_SI);
+      const r_e = e_SI*e_SI / (4 * Math.PI * eps0_pred * m_e * c_SI * c_SI);
+      const lambda_C_e = h_pred / (m_e * c_SI);
+      const lambda_C_e_bar = hbar / (m_e * c_SI);
+      const R_inf = alpha_pred*alpha_pred * m_e * c_SI / (2 * h_pred);
+      const E_h = alpha_pred*alpha_pred * m_e * c_SI * c_SI;
+      const mu_B = e_SI * hbar / (2 * m_e);
+      const mu_N = e_SI * hbar / (2 * m_p);
+      const lambda_C_p = h_pred / (m_p * c_SI);
+      const lambda_C_p_bar = hbar / (m_p * c_SI);
+      const mu_red = (m_e * m_p) / (m_e + m_p);
+      const a0_H = 4 * Math.PI * eps0_pred * hbar * hbar / (mu_red * e_SI * e_SI);
+      const R_H = R_inf / (1 + m_e / m_p);
+
+      const extBody = document.querySelector('#extended tbody');
+      extBody.innerHTML = `
+        <tr>
+          <td>k_e</td>
+          <td>Coulomb’s constant</td>
+          <td>${toSci(k_e)}</td>
+          <td>N·m²·C⁻²</td>
+          <td>${(1/(4*Math.PI*eps0_SI)).toExponential()}</td>
+          <td>${pctDiff(k_e, 1/(4*Math.PI*eps0_SI))}</td>
+        </tr>
+        <tr>
+          <td>Z₀</td>
+          <td>Vacuum impedance</td>
+          <td>${toSci(Z0)}</td>
+          <td>Ω</td>
+          <td>${(mu0_SI * c_SI).toExponential()}</td>
+          <td>${pctDiff(Z0, mu0_SI * c_SI)}</td>
+        </tr>
+        <tr>
+          <td>σ</td>
+          <td>Stefan–Boltzmann constant</td>
+          <td>${toSci(sigma)}</td>
+          <td>W·m⁻²·K⁻⁴</td>
+          <td>${(5.670374419e-8).toExponential()}</td>
+          <td>${pctDiff(sigma, 5.670374419e-8)}</td>
+        </tr>
+        <tr>
+          <td>t_P</td>
+          <td>Planck time</td>
+          <td>${toSci(t_P)}</td>
+          <td>s</td>
+          <td>${(5.391246e-44).toExponential()}</td>
+          <td>${pctDiff(t_P, 5.391246e-44)}</td>
+        </tr>
+        <tr>
+          <td>l_P</td>
+          <td>Planck length</td>
+          <td>${toSci(l_P)}</td>
+          <td>m</td>
+          <td>${(1.616255e-35).toExponential()}</td>
+          <td>${pctDiff(l_P, 1.616255e-35)}</td>
+        </tr>
+        <tr>
+          <td>m_P</td>
+          <td>Planck mass</td>
+          <td>${toSci(m_P)}</td>
+          <td>kg</td>
+          <td>${(2.176434e-8).toExponential()}</td>
+          <td>${pctDiff(m_P, 2.176434e-8)}</td>
+        </tr>
+        <tr>
+          <td>E_P</td>
+          <td>Planck energy</td>
+          <td>${toSci(E_P)}</td>
+          <td>J</td>
+          <td>${(1.956082e9).toExponential()}</td>
+          <td>${pctDiff(E_P, 1.956082e9)}</td>
+        </tr>
+        <tr>
+          <td>q_P</td>
+          <td>Planck charge</td>
+          <td>${toSci(q_P)}</td>
+          <td>C</td>
+          <td>${(1.875546e-18).toExponential()}</td>
+          <td>${pctDiff(q_P, 1.875546e-18)}</td>
+        </tr>
+        <tr>
+          <td>a₀</td>
+          <td>Bohr radius</td>
+          <td>${toSci(a0)}</td>
+          <td>m</td>
+          <td>${(5.29177210903e-11).toExponential()}</td>
+          <td>${pctDiff(a0, 5.29177210903e-11)}</td>
+        </tr>
+        <tr>
+          <td>rₑ</td>
+          <td>Classical electron radius</td>
+          <td>${toSci(r_e)}</td>
+          <td>m</td>
+          <td>${(2.8179403262e-15).toExponential()}</td>
+          <td>${pctDiff(r_e, 2.8179403262e-15)}</td>
+        </tr>
+        <tr>
+          <td>λ_C (e)</td>
+          <td>Compton wavelength of electron</td>
+          <td>${toSci(lambda_C_e)}</td>
+          <td>m</td>
+          <td>${lambda_e_ref.toExponential()}</td>
+          <td>${pctDiff(lambda_C_e, lambda_e_ref)}</td>
+        </tr>
+        <tr>
+          <td>λ̄_C (e)</td>
+          <td>Reduced Compton wavelength of electron</td>
+          <td>${toSci(lambda_C_e_bar)}</td>
+          <td>m</td>
+          <td>${(hbar/(m_e*c_SI)).toExponential()}</td>
+          <td>${pctDiff(lambda_C_e_bar, hbar/(m_e*c_SI))}</td>
+        </tr>
+        <tr>
+          <td>R_∞</td>
+          <td>Rydberg constant</td>
+          <td>${toSci(R_inf)}</td>
+          <td>m⁻¹</td>
+          <td>${(1.0973731568160e7).toExponential()}</td>
+          <td>${pctDiff(R_inf, 1.0973731568160e7)}</td>
+        </tr>
+        <tr>
+          <td>E_h</td>
+          <td>Hartree energy</td>
+          <td>${toSci(E_h)}</td>
+          <td>J</td>
+          <td>${(4.3597447222071e-18).toExponential()}</td>
+          <td>${pctDiff(E_h, 4.3597447222071e-18)}</td>
+        </tr>
+        <tr>
+          <td>μ_B</td>
+          <td>Bohr magneton</td>
+          <td>${toSci(mu_B)}</td>
+          <td>J·T⁻¹</td>
+          <td>${(9.2740100783e-24).toExponential()}</td>
+          <td>${pctDiff(mu_B, 9.2740100783e-24)}</td>
+        </tr>
+        <tr>
+          <td>μ_N</td>
+          <td>Nuclear magneton</td>
+          <td>${toSci(mu_N)}</td>
+          <td>J·T⁻¹</td>
+          <td>${(5.0507837461e-27).toExponential()}</td>
+          <td>${pctDiff(mu_N, 5.0507837461e-27)}</td>
+        </tr>
+        <tr>
+          <td>λ_C (p)</td>
+          <td>Compton wavelength of proton</td>
+          <td>${toSci(lambda_C_p)}</td>
+          <td>m</td>
+          <td>${lambda_p_ref.toExponential()}</td>
+          <td>${pctDiff(lambda_C_p, lambda_p_ref)}</td>
+        </tr>
+        <tr>
+          <td>λ̄_C (p)</td>
+          <td>Reduced Compton wavelength of proton</td>
+          <td>${toSci(lambda_C_p_bar)}</td>
+          <td>m</td>
+          <td>${(hbar/(m_p*c_SI)).toExponential()}</td>
+          <td>${pctDiff(lambda_C_p_bar, hbar/(m_p*c_SI))}</td>
+        </tr>
+        <tr>
+          <td>μ_red (e–p)</td>
+          <td>Reduced mass of e–p system</td>
+          <td>${toSci(mu_red)}</td>
+          <td>kg</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>a₀,H</td>
+          <td>Bohr radius (reduced-mass corrected)</td>
+          <td>${toSci(a0_H)}</td>
+          <td>m</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>R_H</td>
+          <td>Rydberg const. for hydrogen</td>
+          <td>${toSci(R_H)}</td>
+          <td>m⁻¹</td>
+          <td>${(1.096776e7).toExponential()}</td>
+          <td>${pctDiff(R_H, 1.096776e7)}</td>
+        </tr>
+      `;
+
+      /* --------- EXTERNAL PREDICTIONS ---------- */
+
+      // Schwarzschild
+      const schBody = document.querySelector('#schwarzschild tbody');
+      const bodies = [
+        {name:"Earth", M:M_EARTH},
+        {name:"Sun",   M:M_SUN}
+      ];
+      schBody.innerHTML = bodies.map(b => {
+        const rs_model = 2 * G_corr * b.M / (c_SI*c_SI);
+        const rs_ref   = 2 * G_SI   * b.M / (c_SI*c_SI);
+        return `<tr>
+          <td>${b.name}</td>
+          <td>${toSci(b.M)}</td>
+          <td>${toSci(rs_model)}</td>
+          <td>${toSci(rs_ref)}</td>
+          <td>${pctDiff(rs_model, rs_ref)}</td>
+        </tr>`;
+      }).join("");
+
+      // Surface gravity
+      const gBody = document.querySelector('#gravity tbody');
+      const g_model_earth = G_corr * M_EARTH / (R_EARTH*R_EARTH);
+      const g_codata_earth = G_SI * M_EARTH / (R_EARTH*R_EARTH);
+      const g_model_sun = G_corr * M_SUN / (R_SUN*R_SUN);
+      const g_codata_sun = G_SI * M_SUN / (R_SUN*R_SUN);
+
+      gBody.innerHTML = `
+        <tr>
+          <td>Earth</td>
+          <td>${toSci(M_EARTH)}</td>
+          <td>${R_EARTH.toLocaleString()}</td>
+          <td>${g_model_earth.toPrecision(15)}</td>
+          <td>${g_codata_earth.toPrecision(15)}</td>
+          <td>${g_obs_earth}</td>
+          <td>${pctDiff(g_model_earth, g_codata_earth)}</td>
+        </tr>
+        <tr>
+          <td>Sun</td>
+          <td>${toSci(M_SUN)}</td>
+          <td>${R_SUN.toLocaleString()}</td>
+          <td>${g_model_sun.toPrecision(15)}</td>
+          <td>${g_codata_sun.toPrecision(15)}</td>
+          <td>${g_obs_sun}</td>
+          <td>${pctDiff(g_model_sun, g_codata_sun)}</td>
+        </tr>
+      `;
+
+      // GW speed
+      const gwBody = document.querySelector('#gw tbody');
+      gwBody.innerHTML = `
+        <tr>
+          <td>c_GW (model)</td>
+          <td>${c_SI}</td>
+          <td>${c_SI}</td>
+          <td>0</td>
+        </tr>
+      `;
+
+      // Orbits
+      const orbitBody = document.querySelector('#orbit tbody');
+
+      // Earth about Sun
+      const T_earth_sun_pred = 2 * Math.PI * Math.sqrt(Math.pow(AU, 3) / (G_corr * M_SUN));
+      const T_earth_sun_ref  = 2 * Math.PI * Math.sqrt(Math.pow(AU, 3) / (G_SI   * M_SUN));
+      const T_earth_sun_obs  = 31558149.7635456;  // same as sheet
+
+      // Moon about Earth
+      const T_moon_pred = 2 * Math.PI * Math.sqrt(Math.pow(MOON_DIST, 3) / (G_corr * (M_EARTH + MOON_MASS)));
+      const T_moon_ref  = 2 * Math.PI * Math.sqrt(Math.pow(MOON_DIST, 3) / (G_SI   * (M_EARTH + MOON_MASS)));
+      const T_moon_obs  = 2360591.5104;          // same as sheet
+
+      // LEO 400 km
+      const v_LEO_pred = Math.sqrt(G_corr * M_EARTH / LEO_R);
+      const v_LEO_ref  = Math.sqrt(G_SI   * M_EARTH / LEO_R);
+      const v_LEO_obs  = 7670;
+
+      // Escape
+      const v_esc_pred = Math.sqrt(2 * G_corr * M_EARTH / ESC_R);
+      const v_esc_ref  = Math.sqrt(2 * G_SI   * M_EARTH / ESC_R);
+      const v_esc_obs  = 11186;
+
+      orbitBody.innerHTML = `
+        <tr>
+          <td>Earth ↺ Sun — Kepler period T</td>
+          <td>${AU.toLocaleString()}</td>
+          <td>${T_earth_sun_pred.toPrecision(15)} s</td>
+          <td>${T_earth_sun_ref.toPrecision(15)} s</td>
+          <td>${T_earth_sun_obs} s</td>
+          <td>${pctDiff(T_earth_sun_pred, T_earth_sun_ref)}</td>
+        </tr>
+        <tr>
+          <td>Moon ↺ Earth — Kepler period T</td>
+          <td>${MOON_DIST.toLocaleString()}</td>
+          <td>${T_moon_pred.toPrecision(15)} s</td>
+          <td>${T_moon_ref.toPrecision(15)} s</td>
+          <td>${T_moon_obs} s</td>
+          <td>${pctDiff(T_moon_pred, T_moon_ref)}</td>
+        </tr>
+        <tr>
+          <td>LEO @ 400 km — circular speed v</td>
+          <td>${LEO_R.toLocaleString()}</td>
+          <td>${v_LEO_pred.toPrecision(15)} m/s</td>
+          <td>${v_LEO_ref.toPrecision(15)} m/s</td>
+          <td>${v_LEO_obs} m/s</td>
+          <td>${pctDiff(v_LEO_pred, v_LEO_ref)}</td>
+        </tr>
+        <tr>
+          <td>Earth surface — escape speed vₑₛc</td>
+          <td>${ESC_R.toLocaleString()}</td>
+          <td>${v_esc_pred.toPrecision(15)} m/s</td>
+          <td>${v_esc_ref.toPrecision(15)} m/s</td>
+          <td>${v_esc_obs} m/s</td>
+          <td>${pctDiff(v_esc_pred, v_esc_ref)}</td>
         </tr>
       `;
     }
