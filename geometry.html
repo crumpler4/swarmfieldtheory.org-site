@@ -1,313 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Geometry of Swarm Theory</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    :root{
-      --bg:#0f1724;
-      --ink:#e6eef8;
-      --muted:#95a3b8;
-      --rule:#1b2942;
-      --accent:#7ccfff;
-      --panel:#101a2b;
-      --radius:10px;
-      --wrap:900px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--ink);
-      line-height:1.6;
-    }
-    header{
-      border-bottom:1px solid var(--rule);
-      background:rgba(15,23,36,.6);
-      backdrop-filter:blur(4px);
-    }
-    .topbar{
-      max-width:var(--wrap);
-      margin:0 auto;
-      padding:1.1rem 1rem .9rem;
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:1rem;
-    }
-    .title-block h1{
-      margin:0;
-      font-size:1.55rem;
-    }
-    .title-block p{
-      margin:.25rem 0 0;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-    nav a{
-      color:var(--ink);
-      text-decoration:none;
-      font-size:.9rem;
-    }
-    nav a:hover{color:var(--accent);}
-    main{
-      max-width:var(--wrap);
-      margin:0 auto;
-      padding:1.4rem 1rem 3rem;
-    }
-    h2{
-      margin-top:2.1rem;
-      color:var(--accent);
-      font-size:1.2rem;
-    }
-    h3{
-      margin-top:1.25rem;
-      font-size:1.02rem;
-    }
-    p{margin:.8rem 0;}
-    ul{margin:.7rem 0 .8rem 1.15rem;}
-    .axiom{
-      border-left:4px solid var(--accent);
-      background:var(--panel);
-      padding:.75rem 1rem;
-      border-radius:6px;
-      margin:1rem 0 1.2rem;
-    }
-    .axiom strong{color:var(--accent);}
-    .figure{
-      margin:1.1rem 0 1.4rem;
-      background:rgba(16,26,43,.5);
-      border:1px solid #1b2942;
-      border-radius:8px;
-      overflow:hidden;
-    }
-    .figure img{
-      max-width:100%;
-      display:block;
-    }
-    .caption{
-      padding:.6rem .9rem .7rem;
-      font-size:.8rem;
-      color:var(--muted);
-    }
-    a{
-      color:var(--accent);
-    }
-    .back-link{
-      margin:1rem 0 0;
-      display:inline-block;
-      font-weight:600;
-    }
-    details.note{
-      background:rgba(16,26,43,.5);
-      border:1px solid rgba(124,207,255,.35);
-      border-radius:6px;
-      padding:.5rem .65rem;
-      margin:1rem 0 1.1rem;
-    }
-    details.note>summary{
-      cursor:pointer;
-      font-weight:600;
-      list-style:none;
-    }
-    details.note>summary::-webkit-details-marker{display:none;}
-    footer{
-      margin-top:3rem;
-      padding:1rem;
-      font-size:.8rem;
-      color:var(--muted);
-      border-top:1px solid var(--rule);
-      text-align:center;
-    }
-    blockquote{
-      margin:1rem 0;
-      padding:.5rem .8rem;
-      border-left:3px solid rgba(124,207,255,.5);
-      background:rgba(16,26,43,.35);
-    }
-    @media (max-width:680px){
-      .topbar{flex-direction:column; align-items:flex-start;}
-      main{padding:1.2rem .9rem 3rem;}
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="topbar">
-      <div class="title-block">
-        <h1>Geometry of Swarm Theory</h1>
-        <p>Zero nodes, membranes, helices, and the actual boundaries of real space.</p>
-      </div>
-      <nav>
-        <a href="index.html">← Back to Home</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <div class="figure">
-      <img src="images/IMG_0350.png" alt="Foam-like membrane lattice in Swarm Theory">
-      <p class="caption">Figure: The polygonal membranes are real space; the interiors are not part of space.</p>
-    </div>
-
-    <h2>The Lattice</h2>
-    <p>
-      In Swarm Theory, the fundamental structure of reality is not empty volume but a lattice of
-      <em>zero nodes</em> surrounded by flat, tension-bearing membranes. These membranes intersect like woven planes,
-      enclosing each node as if within a geodesic sphere. The lattice is a tension-weave: real, massless, and continuous.
-    </p>
-    <p>
-      <strong>An important consideration:</strong> this physical model is the scaffold from which the mathematics was
-      developed. The same mathematics could, in principle, be derived from any physical structure that obeys the same
-      rules. The model should therefore be read as a platform that supports the math, not as a final claim about what
-      spacetime is made of.
-    </p>
-    <div class="axiom">
-      <strong>Axiom — Real Space:</strong> <em>Real space is anything on the membrane.</em>
-    </div>
-    <p>
-      Distances, directions, fields, waves, and matter exist only on the membranes. They do not float in a background
-      void. Where the membrane goes, space goes. Where the membrane does not exist, neither does space.
-    </p>
-
-    <h2>Why the Interiors Are Not Real Space</h2>
-    <p>
-      Each node’s membranes enclose an interior volume, but this interior is not part of the universe. It is not “empty
-      space” — it is the absence of space. Inside there are no distances to measure, no directions to point, no fields
-      to propagate. Waves cannot enter zero nodes because there is nowhere for them to go. Reality is confined to the
-      membrane itself.
-    </p>
-
-    <section id="lattice-spacing">
-      <h2>How Large Is the Lattice Spacing?</h2>
-      <p>
-        The membranes of the lattice are separated by a <strong>characteristic coherence aperture</strong> — the repeating
-        distance that defines the weave of space itself. In Swarm Field Theory this spacing is
-        <strong>λ ≈ 8.20 × 10<sup>−10</sup> m</strong>, less than a nanometer and comparable to atomic scales.
-      </p>
-      <p>
-        This spacing is understood to be <strong>static</strong> under ordinary conditions. It anchors the constants we
-        measure in the laboratory. At everyday scales the lattice appears perfectly continuous — like a fabric that looks
-        smooth from a distance — because the “threads” of real space are fine enough that light and matter cannot resolve
-        the gaps.
-      </p>
-
-      <details class="note">
-        <summary>Click to open➡️  Note on high-energy limits</summary>
-        <p style="margin-top:.45rem;">
-          The fixed macro aperture λ and its implied membrane tension do not by themselves support the highest-energy
-          photons observed in nature. Swarm Field Theory allows for three possible extensions (not mutually exclusive):
-        </p>
-        <ul>
-          <li><strong>Deeper aperture (λ<sub>S</sub> ≪ λ):</strong> an additional, finer scale probed only by extreme-energy photons.</li>
-          <li><strong>Stretching under load:</strong> the lattice may elastically deform when carrying very high-energy waves.</li>
-          <li><strong>Induced tension growth:</strong> the effective membrane tension increases dynamically with wave energy.</li>
-        </ul>
-        <p>
-          Each path implies a clear experimental test: push the lattice with high-energy events and watch how it responds.
-        </p>
-      </details>
-
-      <p>
-        Other characteristic lengths appear as well, such as the <strong>node closure length</strong>
-        (~8.9 × 10<sup>−9</sup> m), which coincides with observed atomic X-ray lines. Together these scales suggest that
-        the lattice has a <strong>measurable geometry</strong> — and may reveal new behaviour when pushed to its limits.
-      </p>
-    </section>
-
-    <h2>Why does light travel helically, and can it go faster than c?</h2>
-    <p>
-      A wave bound to two-dimensional membranes cannot move in a straight line through three-dimensional geometry. To advance,
-      it must wrap around the lattice planes, tracing a helix. The helical path is longer than the straight-line projection,
-      which means the observed speed of light <em>c ≈ 2.998 × 10<sup>8</sup> m/s</em> is always a projected value of the
-      maximum lattice speed <em>c<sub>max</sub> ≈ 3.25 × 10<sup>8</sup> m/s</em>. Arthur’s Constant κ ≈ 0.922 captures the
-      ratio between the two.
-    </p>
-    <p>
-      Light is massless, so moving faster than c does not violate relativity — the restriction applies only to massive
-      objects. In principle, the lattice supports propagation at c<sub>max</sub>. But the geometry of the helix forces every
-      photon we measure to project down to c. No detector can ever register a photon at c<sub>max</sub>, because all real
-      propagation is bound helically.
-    </p>
-    <p>
-      This also explains why information cannot travel faster than c. The lattice may allow a deeper maximum speed, but the
-      helical geometry guarantees that c is the only measurable signal speed. Phase effects may appear to move faster, but
-      information and measurement are always bound by c.
-    </p>
-    <p>
-      A simple analogy: a sine wave on a rope has a forward speed, but the crest traces a longer path. The local motion is
-      higher than the forward projection, yet the signal speed is fixed. Swarm Theory uses the same idea at the lattice level.
-    </p>
-
-    <h2>Consequences</h2>
-    <ul>
-      <li><strong>Boundaries:</strong> Membranes define where space exists. Interiors are not “places.”</li>
-      <li><strong>Quantization:</strong> Helical propagation leads directly to discrete action values, including Planck’s constant.</li>
-      <li><strong>Forces as geometry:</strong> Gravity, inertia, and electromagnetism emerge from membrane tension and curvature.</li>
-      <li><strong>Projection effects:</strong> Observed constants arise from the geometry of helical propagation.</li>
-    </ul>
-
-    <h2>Light and Vision: Common Questions</h2>
-
-    <h3>Do we really see in straight lines?</h3>
-    <p>
-      No. We only register the lattice waves that strike the retina. The brain reconstructs the scene as if lines extend
-      outward, but vision is the end-point of a wave that has already travelled on the membrane.
-    </p>
-
-    <h3>If light travels helically, why does it look straight?</h3>
-    <p>
-      Because we only ever see the projection. The helical motion is wrapped around the lattice but what reaches us is the
-      straight-line projection, so c is the speed we measure.
-    </p>
-
-    <h3>Why does light seem instantaneous?</h3>
-    <p>
-      It is only fast relative to human timescales. Every arrival is still a finite helical propagation across the lattice.
-    </p>
-
-    <h3>Can we see inside a zero node?</h3>
-    <p>
-      No. The interior is not part of real space. There is no geometry to carry a wave, so nothing to see.
-    </p>
-
-    <h3>So what do we really see?</h3>
-    <p>
-      We see lattice events — photon resolutions on a biological screen. The lattice is the hidden carrier, not the thing we
-      observe.
-    </p>
-
-    <h3>Why we cannot see the lattice</h3>
-    <p>
-      The lattice is the projector, not the picture. It never returns an image of itself. We see only the wave that survives
-      to the retina. That is why the weave of real space is hidden: it supports light but is not light.
-    </p>
-
-    <h3>How can mirrors or lenses bend light if space is a lattice?</h3>
-    <p>
-      Matter is a coherence swarm that locally reshapes the membrane. A helical wave encountering that region meets new boundary
-      conditions — reflection, refraction, focusing — exactly as in optics, but implemented as lattice geometry.
-    </p>
-
-    <h3>Is this the holographic principle?</h3>
-    <p>
-      Not quite. Holography is about information on a boundary. Swarm Theory says the membranes themselves are the real space.
-      It looks holographic only because we live on a 2D weave that constructs a 3D experience.
-    </p>
-
-    <h2>Summary</h2>
-    <p>
-      Real space is the membrane. Waves and matter live only on the lattice weave. The interiors of node enclosures are
-      excluded from reality. Helical propagation is demanded by this structure, and from it arise the constants and the
-      quantization we observe.
-    </p>
-
-  </main>
-
-  <footer>
-    © 2025 J. P. Crumpler — Swarm Theory Project
-  </footer>
-</body>
-</html>
+Swarm Field Theory
+Geometric modelling framework by J. P. Crumpler
+Home
+Model Status
+Geometry
+UFE
+Photon Sector
+Tests
+GEOMETRY AND LORENTZ-INVARIANT PHOTON LIMIT
+A visual model for the mathematics of Swarm Field Theory
+Swarm Field Theory uses Zero Nodes, Coherence Membranes, helical propagation, and tension-flow as a geometric language for organising a mathematical framework. The physical picture is not presented as a literal claim that spacetime is made from visible membranes. It is a modelling scaffold for visualising the equations, constants, curvature, and propagation limits.
+Read the model-status note Jump to Lorentz patch
+Important interpretation note: The membrane-and-node picture is a physical visualization of the mathematical model, not a declaration that spacetime is literally constructed from membranes. In the revised photon sector, ordinary light propagation is described by a statistically homogeneous, isotropic, coarse-grained vacuum whose effective behaviour is Lorentz invariant.
+1. What this page describes
+This page describes the geometric language used in Swarm Field Theory. The language is intentionally physical because it helps make the mathematics easier to see: surface tension represents stored field capacity, membrane intersections represent propagation channels, curvature represents strain, and helical closure represents quantized cyclic behaviour.
+The mathematics is the primary claim. The membrane picture is a visualization and modelling aid. It may be replaced by any deeper physical substrate that produces the same effective equations, symmetries, constants, and limits.
+CORE DISTINCTION
+Visual model: Zero Nodes, Coherence Membranes, lattice apertures, and helical paths.  Mathematical model: a coherence field, tension-flow, curvature coupling, effective propagation operators, and Lorentz-invariant observable limits.
+2. Zero Nodes and Coherence Membranes
+In the geometric model, a Zero Node is an irreducible null boundary. It is not a particle sitting inside space. It is a boundary condition used to describe where ordinary spatial extension terminates in the model.
+A Coherence Membrane is a two-dimensional tension-bearing surface in the visualization. It carries the model's surface-tension term, stores curvature energy, and supports propagation modes. It has no volume in the model; mass-energy is represented by persistent coherence, curvature, or trapped helical modes rather than by substance inside the membrane.
+WORKING POSTULATE
+Real space is modelled as a lattice of two-dimensional Coherence Membranes enclosing Zero Nodes. The wording “modelled as” is essential: the geometry is a representation used to derive and visualize the theory, not a confirmed microscopic photograph of spacetime.
+Conceptual visualization: the membrane lattice represents the active geometry of the model. The image should be read as an explanatory diagram, not as a literal microscopic map of spacetime.
+Zero Nodes
+Boundary conditions where ordinary spatial extension is not defined in the model.
+Coherence Membranes
+Two-dimensional tension surfaces used to visualize field storage, propagation, and curvature.
+Coherence Field ψ
+The mathematical field whose perturbations, trapping, and curvature encode the physics.
+3. Coherence aperture and model scale
+Earlier Swarm Field Theory work uses a characteristic coherence aperture, commonly written λ, as a model scale. It appears in relations for cell area, stored surface energy, minimal cycle time, and Planck-scale action-like quantities.
+h = π · ΔI · λ² · τ
+In the updated presentation, this scale should be read as an effective parameter of the model, not as proof that laboratory spacetime is visibly granular at that length. The aperture is part of the geometric construction used to connect surface tension, cycle time, and quantized action.
+4. Unified Field Equation
+The central mathematical object is the Unified Field Equation, which expresses conservation of membrane tension-flow coupled to coherent field acceleration and curvature response. In the flat first-order form:
+∇μJμ + κc⁻² ∂²ψ/∂t² = 0
+With curvature retained, the extended form is:
+∇μJμ + κc⁻²□ψ + β∇μ(Rμν∇νψ) = 0
+Here ψ is the coherence field, Jμ is the physical tension-flow four-vector, κ is the projection factor, β is the curvature coupling, and Rμν represents membrane curvature in the model.
+Flat limit
+Small perturbations reduce to an electromagnetic-like sector.
+Curved limit
+Curvature modifies tension flow and produces gravitational behaviour in the macroscopic limit.
+Finite cycle
+Aperture, tension, and cycle time provide the model route to quantization.
+5. Lorentz-invariant photon sector
+The updated photon sector is the most important change from the older webpage. A literal microscopic lattice through which photons visibly weave would risk producing forbidden effects: preferred directions, birefringence, vacuum dispersion, or frame-dependent light speed.
+The revised formulation avoids this by treating ordinary photon propagation as propagation through a coarse-grained coherence ground state. This ground state is statistically homogeneous, isotropic, helicity-balanced, and Lorentz invariant at observable scales.
+LORENTZ PATCH
+Photons do not propagate through individually observable membrane structures in ordinary flat vacuum. They propagate through the effective coarse-grained vacuum generated by the underlying coherence network.
+In the unstrained vacuum ground state, the effective metric is the ordinary flat-space metric:
+g_eff^μν = η^μν
+Therefore the observable photon dispersion relation remains:
+ω² = c²k²
+This means there is no leading-order vacuum dispersion, no preferred frame, no anisotropy, and no usable faster-than-light signal channel in the ordinary flat vacuum limit.
+6. What helical propagation means now
+The older language could be read as saying that each photon physically corkscrews through a literal microscopic lattice. The revised interpretation is more careful.
+Helical geometry is treated as a fixed invariant of the coherence ground state. Photon energy changes phase accumulation along the propagation mode, not the observable geometry of the path. In ordinary flat vacuum, the effective path remains nondispersive.
+r = r₀,   p = p₀,   ∂r/∂ω = 0,   ∂p/∂ω = 0
+This preserves the geometric intuition of Swarm Field Theory while protecting the theory from the immediate experimental problem of frequency-dependent light speed in empty space.
+7. Conditional dispersion
+Swarm Field Theory does not require ordinary flat vacuum to be dispersive. Instead, deviations from standard photon propagation are expected only when the coherence ground state is disturbed.
+g_eff^μν = η^μν + ε^μν(Rαβ, ΔI, |ψ|², ∇ψ)
+Possible correction regimes include:
+	•	Curvature: strong gravitational or membrane-curvature regions.
+	•	Strain: departures from the relaxed coherence ground state.
+	•	Strong-field excitation: nonlinear coherence response at extreme field intensity.
+	•	Analogue lattices: engineered membrane systems where quantized defects can be tested directly.
+8. Consequences of the framework
+	•	Constants from geometry: quantities such as h, c, e, α, ε₀, μ₀, and R∞ are treated as emergent from model parameters including ΔI, λ, τ, κ, and β.
+	•	Known physics as limits: Maxwell-like behaviour appears in the linear small-signal limit, while weak-field gravitational behaviour appears in the smooth curvature limit.
+	•	Mass as trapped coherence: persistent particles are modelled as stable helical coherence or curvature-trap modes.
+	•	Lorentz compatibility: the observable photon sector is nondispersive and Lorentz invariant in the unstrained vacuum ground state.
+9. Experimental and observational tests
+The revised framework is most useful when it produces testable deviations from known physics without damaging the standard limits already measured with high precision.
+High-Q cavities
+Search for tiny field-dependent shifts in effective ε₀, μ₀, or vacuum impedance under extreme conditions.
+Strong lensing
+Look for minute chromatic timing or deflection effects in highly curved astrophysical environments.
+Analogue membranes
+Build tensioned 2D lattices and test whether defect spectra scale with tension, aperture, and cycle structure.
+A clean null result in ordinary flat vacuum is not a problem for the Lorentz patch. The predicted place to search is not relaxed vacuum, but curvature, strain, strong-field excitation, and controlled analogue systems.
+10. Common questions
+Are you saying spacetime is literally made of membranes?
+No. The membrane picture is the physical model used to visualize the mathematics. It is a scaffold for reasoning about coherence, tension-flow, curvature, and quantization.
+Why keep the membrane language if it is not literal?
+Because it gives the mathematical terms a clear geometric meaning. Surface tension, curvature, aperture, projection, and helical closure are easier to reason about visually than as isolated symbols.
+Does the theory violate relativity?
+The revised photon sector is designed not to. In the unstrained ground state, the effective propagation operator is Lorentz invariant and gives the standard nondispersive relation ω² = c²k².
+Does light secretly travel faster than c?
+That is not the best current wording. The safer statement is that c is the invariant observable propagation limit. Any deeper lattice or coherence parameters belong to the underlying model and do not provide a usable faster-than-light signal.
+What are Zero Nodes, then?
+In the model, Zero Nodes are null boundary conditions. They are not little balls or particles in space. They mark where the geometric description excludes an ordinary propagating interior.
+What would prove or disprove the framework?
+The framework becomes vulnerable through its predicted correction regimes: strong-field vacuum response, chromatic micro-shifts near curvature, and analogue membrane defect spectra. It must also continue to reproduce Maxwell behaviour, weak-field gravitational behaviour, and Lorentz-invariant photon propagation in the appropriate limits.
+Summary
+Swarm Field Theory uses a membrane-and-node geometry to visualize a mathematical framework based on coherence, tension-flow, curvature, and propagation. The model is not intended as a literal claim that spacetime is visibly constructed from membranes. In the revised Lorentz-invariant formulation, ordinary photons propagate through a coarse-grained, homogeneous, isotropic effective vacuum, giving standard nondispersive light propagation in flat space. Deviations, if they exist, should appear only under curvature, strain, nonlinear excitation, or in analogue membrane systems.
+← Back to Home
+On this page
+Overview
+Zero Nodes and membranes
+Coherence aperture
+Unified Field Equation
+Lorentz-invariant photon sector
+Helical propagation
+Conditional dispersion
+Consequences
+Tests
+Common questions
+© 2026 J. P. Crumpler — Swarm Theory Project. This page presents a modelling framework and research programme.
+Suggested citation: Crumpler, J. P. (2026). Swarm Theory: A Unified Field Framework.
