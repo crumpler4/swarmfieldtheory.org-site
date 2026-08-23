@@ -1,57 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Swarm Field Equations Calculator</title>
-<style>
-:root {
- --ink:#20252b;--muted:#68717b;--line:#d8dde3;--soft:#f4f6f8;--accent:#245a8d;
- --input:#fff3b8;--formula:#edf6ff;--ok:#edf8ef;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
-.site-header{max-width:1500px;margin:auto;padding:28px 32px 18px;border-bottom:1px solid var(--line)}
-.site-header h1{margin:0 0 5px;font-size:2rem}
-.site-header p{margin:0;color:var(--muted)}
-.controls{max-width:1500px;margin:16px auto 0;padding:0 32px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.controls button{border:1px solid #aeb7c1;background:#fff;padding:8px 13px;border-radius:6px;cursor:pointer}
-.controls button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.status{color:var(--muted);font-size:.9rem}
-.notice{max-width:1500px;margin:12px auto 0;padding:0 32px;color:var(--muted);font-size:.92rem;line-height:1.5}
-.tabs-shell{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.04);margin-top:18px}
-.tabs{max-width:1500px;margin:auto;padding:10px 24px;display:flex;gap:6px;overflow-x:auto}
-.tab-btn{border:1px solid var(--line);background:var(--soft);padding:8px 12px;border-radius:6px;white-space:nowrap;cursor:pointer}
-.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-main{max-width:1500px;margin:auto;padding:25px 32px 70px}
-.sheet-panel{display:none} .sheet-panel.active{display:block}
-.sheet-panel h2{font-size:1.45rem;margin:0 0 16px}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:7px}
-table{border-collapse:collapse;min-width:100%;font-size:.86rem}
-td{border-right:1px solid #e3e7eb;border-bottom:1px solid #e3e7eb;padding:7px 9px;vertical-align:top;min-width:90px;max-width:420px;white-space:pre-wrap;overflow-wrap:anywhere}
-td.toprow{font-weight:700;background:#e9edf1}
-td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-td.formula-cell{background:var(--formula)}
-td.input-cell{background:var(--input);padding:4px 6px}
-.calc-input{width:100%;min-width:145px;border:1px solid #c9ad47;border-radius:4px;background:#fffdf3;padding:6px 7px;font:inherit;text-align:right}
-.calc-input:focus{outline:2px solid #d2b44c;outline-offset:1px}
-.edit-btn{
-  border:1px solid #aeb7c1;
-  background:#fff;
-  padding:5px 10px;
-  border-radius:5px;
-  cursor:pointer;
-  font:inherit;
-}
-.edit-btn:hover{background:#f4f6f8}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Swarm Field Theory explores whether familiar physical behaviour can emerge from a minimal underlying substrate of interacting elements.">
+    <title>Swarm Field Theory</title>
 
-.legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;color:var(--muted);font-size:.85rem}
-.swatch{display:inline-block;width:14px;height:14px;border:1px solid var(--line);vertical-align:-2px;margin-right:5px}
-.swatch.input{background:var(--input)} .swatch.formula{background:var(--formula)}
-footer{max-width:1500px;margin:auto;padding:0 32px 40px;color:var(--muted);font-size:.85rem}
-@media(max-width:700px){.site-header,.controls,.notice,main,footer{padding-left:16px;padding-right:16px}.tabs{padding-left:10px;padding-right:10px}}
-</style>
+    <style>
+        :root {
+            --text: #222;
+            --muted: #666;
+            --line: #d8d8d8;
+            --link: #245a8d;
+            --background: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+            line-height: 1.7;
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 26px 40px;
+        }
+
+        header {
+            margin-bottom: 46px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.3rem, 6vw, 3.5rem);
+            line-height: 1.05;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            margin: 12px 0 0;
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+
+        nav {
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        nav a {
+            margin-right: 18px;
+        }
+
+        h2 {
+            margin-top: 42px;
+            margin-bottom: 12px;
+            font-size: 1.45rem;
+        }
+
+        p {
+            margin: 0 0 18px;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        a:hover {
+            text-decoration-thickness: 2px;
+        }
+
+        .publication-link {
+            margin-top: 38px;
+            padding: 24px 0 4px;
+            border-top: 1px solid var(--line);
+        }
+
+        .publication-link a {
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+
+        footer {
+            margin-top: 70px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
+
+<body>
+    <div class="page">
+        <header>
+            <h1>Swarm Field Theory</h1>
+            <p class="subtitle">
+                Exploring persistence, structure, fields, and gravity from a minimal physical substrate.
+            </p>
+
+            <nav aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="publications.html">Publications</a>
+                <a href="quantum-calculator-v4.html">Swarm Field Theory Calculator Version 4</a>
+                <a href="file-cabinet-of-regret.html">File Cabinet of Regret (Humour!)</a>
+                
+            </nav>
+        </header>
+
 <body>
 <header class="site-header">
  <h1>Swarm Field Equations Calculator</h1>
