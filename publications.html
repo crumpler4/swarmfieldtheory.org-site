@@ -2,438 +2,312 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Publications — Swarm Field Theory</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications | Swarm Field Theory</title>
+  <meta name="description" content="Publications by John Paul Crumpler related to Swarm Field Theory, coherence geometry, fluid mechanics, gravitation and related research.">
   <style>
     :root {
-      --page-max: 1100px;
-      --bg: radial-gradient(circle at top, #131d2b 0%, #0a0f16 50%, #05070b 100%);
-      --card-bg: rgba(9, 12, 17, 0.6);
-      --accent: #6cd5ff;
-      --muted: #94a5bf;
-      --border: rgba(108, 213, 255, 0.12);
-      --radius: 10px;
-      --ink: #edf4ff;
+      --text: #222;
+      --muted: #666;
+      --link: #245a8d;
+      --rule: #d9d9d9;
+      --soft: #f6f6f6;
     }
     * { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      margin: 0;
-      background: var(--bg) fixed;
-      line-height: 1.6;
-      color: var(--ink);
-      -webkit-font-smoothing: antialiased;
-    }
-    .wrapper {
-      max-width: var(--page-max);
+      font-family: Georgia, "Times New Roman", serif;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 1.5rem 1.25rem 3rem;
+      padding: 48px 26px 70px;
+      line-height: 1.65;
+      color: var(--text);
+      background: #fff;
+    }
+    header {
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 24px;
+      margin-bottom: 34px;
+    }
+    h1 {
+      font-size: 2.45rem;
+      margin: 0 0 4px;
+      line-height: 1.15;
+    }
+    .subtitle {
+      color: var(--muted);
+      margin: 0;
+    }
+    nav {
+      margin-top: 20px;
     }
     a {
-      color: var(--accent);
+      color: var(--link);
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
-      text-underline-offset: .15em;
     }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+    .intro {
+      max-width: 780px;
+      margin-bottom: 42px;
     }
-    .back {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    h1 {
-      margin: 0.5rem 0 0.25rem;
-      font-size: clamp(1.8rem, 4vw, 2.1rem);
-    }
-    .subtitle {
-      color: var(--muted);
-      max-width: 48rem;
-    }
-    .section-title {
-      margin-top: 2.2rem;
-      margin-bottom: 0.8rem;
-      font-size: 1.3rem;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1rem;
-    }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem 1rem;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .paper-title {
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-    .paper-meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    .paper-body {
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-    .badge-row {
-  display: flex;
-  gap: 8px;
-  margin: 10px 0;
-}
-
-.badge {
-  display: inline-block;
-  padding: 3px 8px;
-  font-size: 13px;
-  border-radius: 4px;
-  color: #fff;
-  font-family: system-ui, sans-serif;
-}
-
-.badge.downloads {
-  background-color: #4CAF50; /* blue */
-}
-
-.badge.license {
-  background-color: #1E88E5; /* blue */
-}
-
-.badge strong {
-  font-weight: 600;
-}
-    .badge {
+    .count {
       display: inline-block;
-      background: rgba(108, 213, 255, 0.12);
-      color: var(--accent);
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-      margin-bottom: 0.4rem;
+      background: var(--soft);
+      border: 1px solid var(--rule);
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: var(--muted);
     }
-    .link-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.6rem 0 0;
+    .year-section {
+      margin-top: 42px;
     }
-    .link-list li {
-      margin-bottom: 0.4rem;
-      font-size: 0.88rem;
+    .year-section h2 {
+      font-size: 1.55rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 8px;
+      margin-bottom: 0;
     }
-    .section-rule {
-      border-top: 1px solid rgba(255,255,255,.06);
-      margin: 2rem 0 1.2rem;
+    .publication {
+      padding: 24px 0 26px;
+      border-bottom: 1px solid #ececec;
     }
-    .table-wrap {
-      overflow-x: auto;
-      background: rgba(6, 9, 14, 0.5);
-      border: 1px solid rgba(108, 213, 255, 0.12);
-      border-radius: var(--radius);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    .publication h3 {
+      font-size: 1.18rem;
+      line-height: 1.35;
+      margin: 5px 0 9px;
     }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      min-width: 500px;
+    .publication p {
+      margin: 0 0 9px;
+      max-width: 830px;
     }
-    th, td {
-      border: 1px solid rgba(255,255,255,.025);
-      padding: 0.6rem 0.5rem;
-      text-align: left;
-      vertical-align: top;
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
     }
-    th {
-      background: rgba(19, 25, 36, 0.6);
-      font-weight: 600;
+    .meta span {
+      padding: 0 5px;
     }
-    tbody tr:nth-child(odd) {
-      background: rgba(255,255,255,.01);
+    .record-link {
+      font-size: 0.92rem;
+      font-weight: bold;
+    }
+    .deprecated {
+      background: #fafafa;
+      padding-left: 14px;
+      padding-right: 14px;
+      border-left: 3px solid #aaa;
+    }
+    footer {
+      margin-top: 58px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 0.9rem;
     }
     @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      body { padding: 30px 18px 50px; }
+      h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <a class="back" href="index.html">← Back to Home</a>
-      <!-- optional right slot -->
-    </header>
-<div class="badge-row">
-  <span class="badge downloads">
-    downloads <strong>1,385+ in 8 MONTHS</strong>
-  </span>
-
-  <span class="badge license">
-    license <strong>CC-BY-NC-ND 4.0</strong>
-  </span>
-</div>
+  <header>
     <h1>Publications</h1>
-    <p class="subtitle">
-      Swarm Field Theory, Unified Field Equation (UFE), UFEB, derivations of physical constants, and supporting appendices. All papers are open for inspection and independent challenge.
-    </p>
+    <p class="subtitle">John Paul Crumpler · Swarm Field Theory</p>
+    <nav><a href="index.html">← Home</a></nav>
+  </header>
 
-        <!-- FEATURED -->
-    <h2 class="section-title">Featured Papers</h2>
-    <div class="card-grid">
-
-      <article class="card">
-        <div class="badge">Guide</div>
-        <h3 class="paper-title">Swarm Theory Explained: A Plain Language Guide to the Unified Field Equation</h3>
-        <p class="paper-body">Entry point for readers who want the idea before the math.</p>
-        <ul class="link-list">
-          <li>📄 View Online: <a href="swarm-theory-beginners-guide.htm">Swarm Theory Plain Language Guide (2025)</a></li>
-          <li>📄 Zenodo: <a href="https://doi.org/10.5281/zenodo.17120195" target="_blank" rel="noopener">10.5281/zenodo.17120195</a></li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <div class="badge">Core</div>
-        <h3 class="paper-title">Unified Field Equation</h3>
-        <p class="paper-body">Coherence-based unification, full derivation.</p>
-        <ul class="link-list">
-          <li>📄 View Online: <a href="swarm-theory-ufe.html">Swarm Theory: Unified Field Framework (2025 and 2026)</a></li>
-          <li>📄 Zenodo: <a href="https://doi.org/10.5281/zenodo.18667559" target="_blank" rel="noopener">10.5281/zenodo.18667559</a></li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <div class="badge">Update</div>
-        <h3 class="paper-title">UFEB: A Simplified Update-Based Formulation</h3>
-        <p class="paper-body">Computationally friendlier version of UFE.</p>
-        <ul class="link-list">
-          <li>📄 Zenodo: <a href="https://doi.org/10.5281/zenodo.17159129" target="_blank" rel="noopener">10.5281/zenodo.17159129</a></li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <div class="badge">Series</div>
-        <h3 class="paper-title">Geometric Derivations (open set)</h3>
-        <p class="paper-body">Open-access papers with full derivations and worked numerics.</p>
-        <ul class="link-list">
-          <li><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">Planck’s Constant (h)</a></li>
-          <li><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">Fine-Structure Constant (α)</a></li>
-          <li><a href="https://doi.org/10.5281/zenodo.18598556" target="_blank" rel="noopener">Gravitational Constant (G)</a></li>
-          <li><a href="https://github.com/crumpler4/Swarm-Theory-Unified-Field-Equation-Series" target="_blank" rel="noopener">Full Series on GitHub</a></li>
-        </ul>
-      </article>
-
-    </div>
-
-    <div class="section-rule"></div>
-
-    <!-- NEW PUBLICATIONS -->
-    <h2 class="section-title">New Publications</h2>
-
-<div class="card">
-  <h3 class="paper-title"> 20MAR2026 — A Response-Capacity Interpretation of Turbulence Onset Preserving Reynolds Scaling - Version 4.0</h3>
-  <p class="paper-meta">Acoustic-limited transition from laminar to turbulent flow..</p>
-  <p>
-    This paper extends Swarm Field Theory into classical fluid dynamics by modeling fluids as coherence-supported condensates. Instead of treating turbulence as an empirical instability, the study links the transition directly to the lattice’s acoustic response limit. The result is a closed-form prediction of the critical Reynolds number using only density, viscosity, and sound speed — with no fitted parameters. The model matches observed transition thresholds in water, air, helium, mineral oil, and mercury, and explains why dissolved gases broaden the transition band. Turbulence emerges not as randomness, but as a measurable coherence failure.
-  </p>
-  <p>📄 Zenodo:
-    <a href="https://doi.org/10.5281/zenodo.19128816" target="_blank" rel="noopener">
-      10.5281/zenodo.19128816
-    </a>
-  </p>
-</div>
-  <div class="card">
-  <h3 class="paper-title">11 NOV 2025 — Falsification Test of Swarm Theory Using Radio and Optical Propagation</h3>
-  <p class="paper-meta">Wavelength-scaling test of ΔI across the EM spectrum.</p>
-  <p>
-    This study attempted to falsify Swarm Theory by applying classical radio and optical propagation physics to its
-    lattice-tension law. Diffraction, path loss, Fresnel zones, plasma cutoff, and scattering were evaluated with
-    no fitted parameters. Instead of failing, the ΔI(λ) = h / (N λ c) model reproduced observed behavior across
-    twelve orders of magnitude, converting the falsification attempt into empirical support.
-  </p>
-  <p>📄 Zenodo:
-    <a href="https://doi.org/10.5281/zenodo.17583230" target="_blank" rel="noopener">
-      10.5281/zenodo.17583230
-    </a>
-  </p>
-</div>
-
-    <div class="card">
-      <h3 class="paper-title">26 OCT 2025 — The Raychaudhuri Equation in Coherence Form: A Swarm Theory Interpretation</h3>
-      <p class="paper-meta">Lagrangian derivation of Raychaudhuri in the SFT framework.</p>
+  <main>
+    <div class="intro">
       <p>
-        This paper presents a Lagrangian derivation of the Raychaudhuri equation within Swarm Field Theory. Spacetime curvature, expansion, and collapse are reinterpreted as mechanical effects of tension and strain in a discrete coherence lattice.
+        Papers, preprints, datasets and supporting research related to Swarm Field Theory,
+        coherence geometry, gravitation, electromagnetism, fluid mechanics and associated
+        exploratory work.
       </p>
-      <p>📄 Zenodo:
-        <a href="https://doi.org/10.5281/zenodo.17447750" target="_blank" rel="noopener">
-          10.5281/zenodo.17447750
-        </a>
-      </p>
+      <p><span class="count">29 Zenodo records</span></p>
     </div>
 
-    <div class="card">
-      <h3 class="paper-title">26 OCT 2025 — A Two-Dimensional Curvature Model Explains Flat Galactic Rotation Curves Without Dark Matter</h3>
-      <p class="paper-meta">Swarm Theory interpretation of flat rotation curves.</p>
-      <p>
-        Shows that a logarithmic tension profile ΔI(r) ∝ ln r naturally yields flat rotation curves and reproduces the baryonic Tully–Fisher relation without invoking dark matter.
-      </p>
-      <p>📄 Zenodo:
-        <a href="https://doi.org/10.5281/zenodo.17447603" target="_blank" rel="noopener">
-          10.5281/zenodo.17447603
-        </a>
-      </p>
-    </div>
+    <section class="year-section"><h2>2026</h2>
+      <article class="publication">
+        <div class="meta">April 13, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/19558872" target="_blank" rel="noopener">A Propagation-Limit Criterion for Transonic Buffet Onset</a></h3>
+        <p>A reduced, falsifiable engineering criterion interpreting transonic buffet onset as a propagation-limited separation instability.</p>
+        <a class="record-link" href="https://zenodo.org/records/19558872" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">April 9, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/19488759" target="_blank" rel="noopener">A Phenomenological Decomposition of Dark-Sector Observations</a></h3>
+        <p>A discrepancy-first framework separating galaxy acceleration, lensing, cluster binding and cosmic acceleration into explicit observational residuals.</p>
+        <a class="record-link" href="https://zenodo.org/records/19488759" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">March 31, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/19346688" target="_blank" rel="noopener">Coherence-Limited Localization in Systems with Finite Propagation Speed</a></h3>
+        <p>A structural constraint on localized wave modes based on phase closure, finite propagation speed and interaction-limited coherence.</p>
+        <a class="record-link" href="https://zenodo.org/records/19346688" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">March 20, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/19128816" target="_blank" rel="noopener">A Response-Capacity Interpretation of Turbulence Onset Preserving Reynolds Scaling</a></h3>
+        <p>A response-capacity interpretation of turbulence onset that preserves conventional Reynolds-number scaling while introducing finite strain-communication capacity.</p>
+        <a class="record-link" href="https://zenodo.org/records/19128816" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">March 17, 2026 <span>•</span> Dataset</div>
+        <h3><a href="https://zenodo.org/records/19047067" target="_blank" rel="noopener">Fundamental Physical Constants Spreadsheet Calculator</a></h3>
+        <p>A transparent spreadsheet calculator for evaluating and checking physical-constant relationships used in the Swarm Field framework.</p>
+        <a class="record-link" href="https://zenodo.org/records/19047067" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">March 15, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/19037598" target="_blank" rel="noopener">Maxwell&#x27;s Equations from Coherence Geometry: A Swarm Theory Derivation</a></h3>
+        <p>A finite-update formulation in which the standard Maxwell equations emerge as continuum consistency relations.</p>
+        <a class="record-link" href="https://zenodo.org/records/19037598" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">March 13, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/18999745" target="_blank" rel="noopener">The Raychaudhuri Equation in Coherence Form: A Swarm Theory Interpretation</a></h3>
+        <p>A coherence-based interpretation of gravitational focusing and the Raychaudhuri equation within a structured-lattice model of spacetime.</p>
+        <a class="record-link" href="https://zenodo.org/records/18999745" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">March 12, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/18984661" target="_blank" rel="noopener">Vacuum Permittivity from Coherence Geometry: A Swarm Theory Derivation V2</a></h3>
+        <p>A geometric interpretation and derivation of vacuum permittivity as the linear polarization susceptibility of the proposed coherence lattice.</p>
+        <a class="record-link" href="https://zenodo.org/records/18984661" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">February 17, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/18667559" target="_blank" rel="noopener">Swarm Theory: A Unified Field Framework</a></h3>
+        <p>The February 2026 technical reference for the Swarm Theory unified field framework, superseding the earlier 2025 preprint.</p>
+        <a class="record-link" href="https://zenodo.org/records/18667559" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">February 10, 2026 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/18598556" target="_blank" rel="noopener">The Gravitational Constant from Coherence Geometry: A Swarm Theory Derivation</a></h3>
+        <p>A weak-field UFE and Green-function derivation of Newton&#x27;s gravitational constant from coherence geometry.</p>
+        <a class="record-link" href="https://zenodo.org/records/18598556" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article></section><section class="year-section"><h2>2025</h2>
+      <article class="publication">
+        <div class="meta">November 11, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17583230" target="_blank" rel="noopener">Falsification Test of Swarm Theory Using Radio and Optical Propagation</a></h3>
+        <p>A direct test of the proposed wavelength-dependent lattice-tension law against radio and optical propagation behaviour.</p>
+        <a class="record-link" href="https://zenodo.org/records/17583230" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">November 3, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17517765" target="_blank" rel="noopener">The Promise and the Problem of Stable Nuclear Fuels</a></h3>
+        <p>A short essay considering driver-dependent or intrinsically stable nuclear-fuel concepts through the lens of coherence and stability.</p>
+        <a class="record-link" href="https://zenodo.org/records/17517765" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">October 26, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17447603" target="_blank" rel="noopener">A Two-Dimensional Curvature Model Explains Flat Galactic Rotation Curves Without Dark Matter: A Swarm Theory Interpretation</a></h3>
+        <p>A two-dimensional curvature interpretation of flat galactic rotation curves using gradients in a tensioned coherence lattice.</p>
+        <a class="record-link" href="https://zenodo.org/records/17447603" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">October 2, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17251808" target="_blank" rel="noopener">Compactification of Quantum Mechanics: Collapsing the Constants of Nature to Two Postulates and Integrating Gravity</a></h3>
+        <p>A compact formulation reducing multiple physical constants to two geometric postulates involving quantized patch action and helical projection.</p>
+        <a class="record-link" href="https://zenodo.org/records/17251808" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">October 2, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17249837" target="_blank" rel="noopener">Matter as Condensates of Wave Propagation: A Swarm Theory Derivation</a></h3>
+        <p>A model in which persistent matter-like states are interpreted as closed, stable condensates of wave propagation on the coherence lattice.</p>
+        <a class="record-link" href="https://zenodo.org/records/17249837" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication deprecated">
+        <div class="meta">September 25, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17199917" target="_blank" rel="noopener">[DEPRECATED] Gravitational Constant from Cycle Geometry (Superseded by a non-circular UFE / Green-Function derivation)</a></h3>
+        <p>An early heuristic gravity derivation retained for transparency. It is explicitly superseded by the later weak-field UFE / Green-function treatment.</p>
+        <a class="record-link" href="https://zenodo.org/records/17199917" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 22, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17179259" target="_blank" rel="noopener">Falsifiable Predictions from Swarm Theory: A Geometric Unified Field Framework</a></h3>
+        <p>A catalogue of concrete observational and experimental conditions under which the Swarm Theory framework could be falsified.</p>
+        <a class="record-link" href="https://zenodo.org/records/17179259" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 22, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17175869" target="_blank" rel="noopener">Boltzmann, Stefan–Boltzmann, Wien, Radiation Constant, Planck Temperature from Coherence Geometry (UFEB): A Swarm Theory Derivation</a></h3>
+        <p>A UFEB treatment consolidating thermal and radiation constants within the coherence-geometry framework.</p>
+        <a class="record-link" href="https://zenodo.org/records/17175869" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 20, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17169451" target="_blank" rel="noopener">Electron Mass, Proton Mass, Rydberg Constant and Bohr Radius from Coherence Geometry (UFEB): A Swarm Theory Derivation</a></h3>
+        <p>A consolidation of atomic-scale quantities and mass relationships within the UFEB coherence-geometry framework.</p>
+        <a class="record-link" href="https://zenodo.org/records/17169451" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 20, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17164419" target="_blank" rel="noopener">UFEB Development Notes with Provenance Flagging: A Swarm Theory Derivation</a></h3>
+        <p>A provenance and development record documenting completed and planned UFEB extensions, constants and predictions.</p>
+        <a class="record-link" href="https://zenodo.org/records/17164419" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 20, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17164341" target="_blank" rel="noopener">Planck Scales from Coherence Geometry: A Swarm Theory Derivation</a></h3>
+        <p>A derivation of Planck mass, energy, length and time from the lattice update interval within UFEB.</p>
+        <a class="record-link" href="https://zenodo.org/records/17164341" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 19, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17159129" target="_blank" rel="noopener">UFEB: A Simplified Update-Based Formulation of the Unified Field Equation</a></h3>
+        <p>A simplified update-based formulation of the Unified Field Equation in which explicit time is replaced by discrete update budgets.</p>
+        <a class="record-link" href="https://zenodo.org/records/17159129" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 18, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17151806" target="_blank" rel="noopener">Vacuum Permeability from Coherence Geometry: A Swarm Theory Derivation</a></h3>
+        <p>A geometric derivation of vacuum permeability as a dependent consequence of lattice geometry and coherence tension.</p>
+        <a class="record-link" href="https://zenodo.org/records/17151806" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 17, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17140967" target="_blank" rel="noopener">Vacuum Wave Impedance from Coherence Geometry: A Swarm Theory Derivation</a></h3>
+        <p>A proposed derivation of vacuum wave impedance directly from coherence-membrane geometry.</p>
+        <a class="record-link" href="https://zenodo.org/records/17140967" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 17, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17141219" target="_blank" rel="noopener">Elementary Charge: A Swarm Theory Derivation</a></h3>
+        <p>A proposed geometric derivation of the elementary charge from lattice geometry, coherence tension and helical wave projection.</p>
+        <a class="record-link" href="https://zenodo.org/records/17141219" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 17, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17140887" target="_blank" rel="noopener">Swarm Theory: The Position Hypothesis</a></h3>
+        <p>A position paper setting out the proposed lattice-coherence foundation from which space, matter, forces and constants are intended to emerge.</p>
+        <a class="record-link" href="https://zenodo.org/records/17140887" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 16, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17130007" target="_blank" rel="noopener">Sommerfeld&#x27;s Constant from Coherence Geometry: A Swarm Theory Derivation</a></h3>
+        <p>A proposed coherence-geometry derivation of the fine-structure constant.</p>
+        <a class="record-link" href="https://zenodo.org/records/17130007" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 15, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17129863" target="_blank" rel="noopener">Planck&#x27;s Constant from Coherence Geometry: A Swarm Theory Derivation</a></h3>
+        <p>A proposed derivation of Planck&#x27;s constant from coherence geometry, membrane tension and response interval.</p>
+        <a class="record-link" href="https://zenodo.org/records/17129863" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article>
+      <article class="publication">
+        <div class="meta">September 15, 2025 <span>•</span> Preprint</div>
+        <h3><a href="https://zenodo.org/records/17120195" target="_blank" rel="noopener">Swarm Theory Explained: A Plain Language Guide to the Unified Field Equation</a></h3>
+        <p>A non-technical introduction to Swarm Theory, its lattice picture and its intended unification of constants and interactions.</p>
+        <a class="record-link" href="https://zenodo.org/records/17120195" target="_blank" rel="noopener">View on Zenodo →</a>
+      </article></section>
+  </main>
 
-    <div class="card">
-      <h3 class="paper-title">16 OCT 2025 — Swarm Field Theory Calculator of Quantum Mechanics</h3>
-      <p class="paper-meta">Unlocked spreadsheet, derivations visible.</p>
-      <p>
-        A working tool that derives physical constants from lattice geometry, showing uncorrected vs corrected results for direct challenge.
-      </p>
-      <p>📄 Zenodo:
-        <a href="https://doi.org/10.5281/zenodo.17370099" target="_blank" rel="noopener">
-          10.5281/zenodo.17370099
-        </a>
-      </p>
-    </div>
-
-    <div class="card">
-      <h3 class="paper-title">OCT 2025 — Compactification of Quantum Mechanics: Two Postulates, One Mic Drop</h3>
-      <p class="paper-meta">Collapses multiple constants to two postulates.</p>
-      <p>
-        Shows how Planck’s constant, c, α, charge, ε₀, μ₀, Boltzmann’s constant, and even gravity can be recovered from a minimal SFT basis.
-      </p>
-      <p>📄 Zenodo:
-        <a href="https://doi.org/10.5281/zenodo.17251808" target="_blank" rel="noopener">
-          10.5281/zenodo.17251808
-        </a>
-      </p>
-    </div>
-
-    <div class="section-rule"></div>
-
-    <h2 class="section-title">Full List</h2>
-    <p class="subtitle" style="margin-bottom: 1rem;">
-      Canonical DOIs for Swarm Field Theory, UFE, UFEB, and supporting derivations.
-    </p>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Paper</th>
-            <th>DOI Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-        <tr>
-            <td>A Response-Capacity Interpretation of Turbulence Onset Preserving Reynolds Scalingr</td>
-            <td><a href="https://doi.org/10.5281/zenodo.19128816" target="_blank" rel="noopener">10.5281/zenodo.19128816</a></td>
-          </tr>
-          <tr>
-          <tr>
-            <td>Falsification Test of Swarm Theory Using Radio and Optical Propagation</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17583230" target="_blank" rel="noopener">10.5281/zenodo.17583230</a></td>
-          </tr>
-          
-          <tr>
-            <td>Falsifiable Predictions from Swarm Theory: A Geometric Unified Field Framework</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17179259" target="_blank" rel="noopener">10.5281/zenodo.17179259</a></td>
-          </tr>
-          <tr>
-            <td>Compactification of Quantum Mechanics: Collapsing the Constants of Nature to Two Postulates and Integrating Gravity</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17251808" target="_blank" rel="noopener">10.5281/zenodo.17251808</a></td>
-          </tr>
-          <tr>
-            <td>Matter as Condensates of Wave Propagation</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17249837" target="_blank" rel="noopener">10.5281/zenodo.17249837</a></td>
-          </tr>
-          <tr>
-            <td>Plain Language Paper</td>
-            <td><a href="https://doi.org/10.5281/zenodo.18667559" target="_blank" rel="noopener">10.5281/zenodo.18667559</a></td>
-          </tr>
-          <tr>
-            <td>Position Hypothesis</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17140887" target="_blank" rel="noopener">10.5281/zenodo.17140887</a></td>
-          </tr>
-          <tr>
-            <td>Planck’s Constant (h)</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17129863" target="_blank" rel="noopener">10.5281/zenodo.17129863</a></td>
-          </tr>
-          <tr>
-            <td>Fine-Structure Constant (α, Sommerfeld’s)</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17130007" target="_blank" rel="noopener">10.5281/zenodo.17130007</a></td>
-          </tr>
-          <tr>
-            <td>Elementary Charge (e)</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17141219" target="_blank" rel="noopener">10.5281/zenodo.17141219</a></td>
-          </tr>
-          <tr>
-            <td>Vacuum Permittivity (ε₀)</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17141112" target="_blank" rel="noopener">10.5281/zenodo.17141112</a></td>
-          </tr>
-          <tr>
-            <td>Vacuum Permeability (μ₀)</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17151806" target="_blank" rel="noopener">10.5281/zenodo.17151806</a></td>
-          </tr>
-          <tr>
-            <td>Vacuum Wave Impedance (Z₀)</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17140967" target="_blank" rel="noopener">10.5281/zenodo.17140967</a></td>
-          </tr>
-          <tr>
-            <td>Maxwell’s Equations from Coherence Geometry</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17180116" target="_blank" rel="noopener">10.5281/zenodo.17180116</a></td>
-          </tr>
-          <tr>
-            <td>Unified Field Equation (UFE)</td>
-            <td><a href="https://doi.org/10.5281/zenodo.18667559" target="_blank" rel="noopener">10.5281/zenodo.18667559</a></td>
-          </tr>
-          <tr>
-            <td>UFEB: A Simplified Update-Based Formulation of the Unified Field Equation</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17159129" target="_blank" rel="noopener">10.5281/zenodo.17159129</a></td>
-          </tr>
-          <tr>
-            <td>The Gravitational Constant from Coherence Geometry: A Swarm Theory Derivation</td>
-            <td><a href="https://doi.org/https://doi.org/10.5281/zenodo.18598556" target="_blank" rel="noopener">10.5281/zenodo.17164270</a></td>
-          </tr>
-          <tr>
-            <td>Companion paper: The Gravitational Constant as a Derived Quantity from Cycle Geometry</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17199917" target="_blank" rel="noopener">10.5281/zenodo.17199917</a></td>
-          </tr>
-          <tr>
-            <td>Planck Scales from Coherence Geometry: A Swarm Theory Derivation</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17164341" target="_blank" rel="noopener">10.5281/zenodo.17164341</a></td>
-          </tr>
-          <tr>
-            <td>Electron Mass, Proton Mass, Rydberg Constant and Bohr Radius from Coherence Geometry (UFEB): A Swarm Theory Derivation</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17169451" target="_blank" rel="noopener">10.5281/zenodo.17169451</a></td>
-          </tr>
-          <tr>
-            <td>Boltzmann, Stefan–Boltzmann, Wien, Radiation Constant, Planck Temperature from Coherence Geometry (UFEB)</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17175869" target="_blank" rel="noopener">10.5281/zenodo.17175869</a></td>
-          </tr>
-          <tr>
-            <td>UFEB Development Notes with Provenance Flagging</td>
-            <td><a href="https://doi.org/10.5281/zenodo.17164419" target="_blank" rel="noopener">10.5281/zenodo.17164419</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
+  <footer>
+    Swarm Field Theory · Publications are hosted on Zenodo.
+  </footer>
 </body>
 </html>
